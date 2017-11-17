@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+mat-card-subtitle:not(:first-child), mat-card-title:not(:first-child) {
+  margin-top: -14px;
+}
+
+.demo-preview {
+  mat-card > mat-card-content > * {
+    margin: 0;
+  }
+}

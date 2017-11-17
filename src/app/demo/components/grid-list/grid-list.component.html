@@ -1,0 +1,45 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="margin: 24px 0;">
+  <mat-card fxFlex="90%">
+    <mat-card-title>Material Grid List</mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content fxLayout="column">
+
+      <div fxLayout="column" fxLayout.gt-md="row" fxLayoutAlign="start stretch" fxLayoutAlign.gt-md="start start" style="margin: 24px 0">
+        <div fxFlex fxFlex.gt-md="30%" style="margin-right: 24px;">
+          <div fxLayout="column">
+            <h3>Grid List</h3>
+            <h4>&lt;mat-grid-list&gt;</h4>
+            <p>An mat-grid-list is an alternative list view that arranges cells into grid-based layout.</p>
+            <h5>Example:</h5>
+            <p><code msHighlight class="html">&lt;mat-grid-list cols="4"&gt;<br/>  &lt;mat-grid-tile&gt;Content 1&lt;/mat-grid-tile&gt;<br/>&lt;/mat-grid-list&gt;</code></p>
+          </div>
+        </div>
+        <div class="demo-tabs mat-elevation-z2" fxFlex>
+          <mat-tab-group>
+            <mat-tab label="PREVIEW">
+              <div class="demo-preview" fxLayout="row" fxLayoutAlign="center center">
+                <mat-card fxFlex="80%" fxFlex.sm="90%">
+                  <mat-card-content>
+                    <mat-grid-list cols="4" rowHeight="100px">
+                      <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
+                                    [style.background]="tile.color">
+                        {{tile.text}}
+                      </mat-grid-tile>
+                    </mat-grid-list>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </mat-tab>
+            <mat-tab label="HTML">
+              <code [innerHTML]="getEscaped(gridListHTML)" msHighlight class="html"></code>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>

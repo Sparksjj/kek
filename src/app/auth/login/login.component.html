@@ -1,0 +1,61 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
+  <div class="login mat-elevation-z12">
+    <div class="login-header" fxLayout="column" fxLayoutAlign="center center">
+      <img src="assets/img/icon.png">
+    </div>
+    <form #form="ngForm" (ngSubmit)="login(form)">
+      <div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
+        <mat-form-field>
+          <input matInput placeholder="Телефон" type="text" name="email" required [(ngModel)]="data.email" #fEmail="ngModel">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Пароль" type="password" name="password" required [(ngModel)]="data.password" #userPass="ngModel">
+        </mat-form-field>
+        <!--
+          <div class="extra-options" fxLayout="row" fxLayoutAlign="space-between center">
+            <md-checkbox class="remember-me">Remember Me</md-checkbox>
+          </div> -->
+        <div class="text-center" *ngIf="(form.invalid && form.submitted) || error">
+          <small>
+            <div style="color: red" *ngIf="fEmail.errors?.required || userPass?.required || err">Поля обязательны для заполнения</div>
+            <div style="color: red" *ngIf="error">{{error}}</div>
+          </small>
+          <br />
+        </div>
+
+        <ms-parse422 [obj]="errorObj"></ms-parse422>
+
+        <button color="primary" mat-raised-button [disabled]="form.invalid && form.submitted">Войти</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- 
+<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
+  <div class="login mat-elevation-z12">
+    <div class="login-header" fxLayout="column" fxLayoutAlign="center center">
+      <img src="assets/img/icon.png">
+    </div>
+    <form #form="ngForm" (ngSubmit)="login()">
+      <div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
+          <mat-form-field>
+            <input matInput placeholder="E-Mail" type="text" name="email" required [(ngModel)]="email">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="password">
+          </mat-form-field>
+          <div class="extra-options" fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-checkbox class="remember-me">Remember Me</mat-checkbox>
+            <a class="forgot-password" [routerLink]="['/forgot-password']">Forgot Password?</a>
+          </div>
+          <button color="primary" mat-raised-button [disabled]="!form.valid">SIGN IN</button>
+        <p class="note">Don't have an account?<br/> <a [routerLink]="['/register']">Click here to create one</a></p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<button color="primary" md-raised-button [disabled]="form.invalid && form.submitted">Войти</button> -->

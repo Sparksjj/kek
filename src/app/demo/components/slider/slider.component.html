@@ -1,0 +1,91 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="margin: 24px 0;">
+  <mat-card fxFlex="90%">
+    <mat-card-title>Material Sliders</mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content fxLayout="column">
+
+      <div fxLayout="column" fxLayout.gt-md="row" fxLayoutAlign="start stretch" fxLayoutAlign.gt-md="start start" style="margin: 24px 0">
+        <div fxFlex fxFlex.gt-md="30%" style="margin-right: 24px;">
+          <div fxLayout="column">
+            <h3>Slider with Thumb Label and Ticks</h3>
+            <h4>&lt;mat-slider&gt;</h4>
+            <p>Sliders allow for selection of a value from a range via mouse, touch, or keyboard.</p>
+            <h5>Example:</h5>
+            <p><code msHighlight class="html">&lt;mat-slider min="1" max="5" step="0.5" value="1.5"&gt;&lt;/mat-slider&gt;</code></p>
+          </div>
+        </div>
+        <div class="demo-tabs mat-elevation-z2" fxFlex>
+          <mat-tab-group>
+            <mat-tab label="PREVIEW">
+              <div class="demo-preview" fxLayout="row" fxLayoutAlign="center center">
+                <mat-card fxFlex="80%" fxFlex.sm="90%">
+                  <mat-card-content>
+                    <mat-slider style="width: 100%;" min="1" max="10" thumbLabel tickInterval="1" value="7"></mat-slider>
+                    <mat-slider color="primary" style="width: 100%;" min="1" max="10" value="2"></mat-slider>
+                    <mat-slider color="warn" style="width: 100%;" min="1" max="10" value="8"></mat-slider>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </mat-tab>
+            <mat-tab label="HTML">
+              <code [innerHTML]="getEscaped(slider1HTML)" msHighlight class="html"></code>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div fxLayout="column" fxLayout.gt-md="row" fxLayoutAlign="start stretch" fxLayoutAlign.gt-md="start start" style="margin: 24px 0">
+
+        <div fxFlex>
+          <h3>Vertical Slider with Thumb-Label</h3>
+          <div class="demo-tabs mat-elevation-z2" fxFlex>
+            <mat-tab-group>
+              <mat-tab label="PREVIEW">
+                <div class="demo-preview" fxLayout="row" fxLayoutAlign="center center">
+                  <mat-card fxFlex="80%" fxFlex.sm="90%">
+                    <mat-card-content fxLayout="row" fxLayoutAlign="center center">
+                      <mat-slider vertical min="1" max="10" thumbLabel tickInterval="1" value="4"></mat-slider>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </mat-tab>
+              <mat-tab label="HTML">
+                <code [innerHTML]="getEscaped(slider2HTML)" msHighlight class="html"></code>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+
+        <span fxFlex="24px"></span>
+
+        <div fxFlex>
+          <h3>Simple Slider without Thumb-Label and Ticks</h3>
+          <div class="demo-tabs mat-elevation-z2">
+            <mat-tab-group>
+              <mat-tab label="PREVIEW">
+                <div class="demo-preview" fxLayout="row" fxLayoutAlign="center center">
+                  <mat-card fxFlex="80%" fxFlex.sm="90%">
+                    <mat-card-content fxLayout="row" fxLayoutAlign="center center">
+                      <mat-slider min="1" max="10" value="7"></mat-slider>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </mat-tab>
+              <mat-tab label="HTML">
+                <code [innerHTML]="getEscaped(slider3HTML)" msHighlight class="html"></code>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>
+

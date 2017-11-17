@@ -1,0 +1,16 @@
+<ul *ngIf="obj" style="
+list-style: none;
+padding: 0;
+margin-bottom: 30px;
+font-size: 16px;
+color: red;">
+  <ng-template ngFor let-err [ngForOf]="obj | forObj">
+    <ng-template ngFor let-errDesc [ngForOf]="err">
+      <li class="col-xs-12" style="text-align: center;
+                                margin-top: 15px;
+                                margin-bottom: 15px;">
+        <small class="text-danger error-icon">{{errDesc}}</small>
+      </li>
+    </ng-template>
+  </ng-template>
+</ul>

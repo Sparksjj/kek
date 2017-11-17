@@ -1,0 +1,129 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="margin: 24px 0;">
+  <mat-card fxFlex="90%">
+    <mat-card-title>Material Cards</mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content fxLayout="column">
+
+      <div fxLayout="column" fxLayout.gt-md="row" fxLayoutAlign="start stretch" fxLayoutAlign.gt-md="start start" style="margin: 24px 0">
+        <div fxFlex fxFlex.gt-md="30%" style="margin-right: 24px;">
+          <div fxLayout="column">
+            <h3>Image + Action Card</h3>
+            <h4>&lt;mat-card&gt;</h4>
+            <p>Cards are containers for text, photos and actions. They are intented to provide information on a single subject.</p>
+            <h5>Example:</h5>
+            <p><code msHighlight class="html">&lt;mat-card&gt;<br/>  &lt;mat-card-title&gt;Card Title&lt;/mat-card-title&gt;<br/>  &lt;mat-card-content&gt;Card Content&lt;/mat-card-content&gt;<br/>  &lt;mat-card-actions&gt;<br/>    &lt;button&gt;Click Me!&lt;/button&gt;<br/> &lt;/mat-card-actions&gt;<br/>&lt;/mat-card&gt;</code></p>
+        </div>
+        </div>
+        <div class="demo-tabs mat-elevation-z2" fxFlex>
+          <mat-tab-group>
+            <mat-tab label="PREVIEW">
+              <div class="demo-preview" fxLayout="row" fxLayoutAlign="center center">
+                <mat-card fxFlex="80%">
+                  <mat-card-header>
+                    <img mat-card-avatar src="assets/img/avatars/3.png">
+                    <mat-card-subtitle>
+                      Yesterday
+                    </mat-card-subtitle>
+                    <mat-card-title>Gerald Morris</mat-card-title>
+                  </mat-card-header>
+                  <img mat-card-image src="assets/img/backgrounds/1.jpg">
+                  <mat-card-content>
+                    <p>Piqued favour stairs it enable exeter as seeing. Remainder met improving but engrossed sincerity age. Better but length gay denied abroad are. Attachment astonished to on appearance imprudence so collecting in excellence. Tiled way blind lived whose new. The for fully had she there leave merit enjoy forth. </p>
+                  </mat-card-content>
+                  <mat-divider></mat-divider>
+                  <mat-card-actions>
+                    <div fxLayout="row">
+                      <button mat-icon-button>
+                        <mat-icon>share</mat-icon>
+                      </button>
+                      <button mat-icon-button>
+                        <mat-icon>favorite</mat-icon>
+                      </button>
+                      <span fxFlex></span>
+                      <button mat-button>
+                        More Info
+                      </button>
+                      <button mat-button>
+                        Save as
+                      </button>
+                    </div>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+            </mat-tab>
+            <mat-tab label="HTML">
+              <code [innerHTML]="getEscaped(card1HTML)" msHighlight class="html"></code>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div fxLayout="column" fxLayout.gt-md="row" fxLayoutAlign="start stretch" fxLayoutAlign.gt-md="start start" style="margin: 24px 0">
+
+        <div fxFlex>
+          <h3>Standard Card with Actions</h3>
+          <div class="demo-tabs mat-elevation-z2" fxFlex>
+            <mat-tab-group>
+              <mat-tab label="PREVIEW">
+                <div class="demo-preview" fxLayout="row" fxLayoutAlign="center center">
+                  <mat-card fxFlex="80%">
+                    <mat-card-title>Standard Card with Actions</mat-card-title>
+                    <mat-card-subtitle>Subtitle</mat-card-subtitle>
+                    <mat-card-content>
+                      <p>Old there any widow law rooms. Agreed but expect repair she nay sir silent person. Direction
+                        can dependent one bed situation attempted. His she are man their spite avoid. Her pretended
+                        fulfilled extremely education yet. Satisfied did one admitting incommode tolerably how are. </p>
+                    </mat-card-content>
+                    <mat-card-actions align="end">
+                      <button mat-button>Cancel</button>
+                      <button color="primary" mat-raised-button>Action</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </div>
+              </mat-tab>
+              <mat-tab label="HTML">
+                <code [innerHTML]="getEscaped(card2HTML)" msHighlight class="html"></code>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+
+        <span fxFlex="24px"></span>
+
+        <div fxFlex>
+          <h3>Standard Card</h3>
+          <div class="demo-tabs mat-elevation-z2">
+            <mat-tab-group>
+              <mat-tab label="PREVIEW">
+                <div class="demo-preview" fxLayout="row" fxLayoutAlign="center center">
+                  <mat-card fxFlex="80%">
+                    <mat-card-title>Standard Card</mat-card-title>
+                    <mat-card-subtitle>Subtitle</mat-card-subtitle>
+                    <mat-card-content>
+                      <p>Do play they miss give so up. Words to up style of since world. We leaf to snug on no need. Way
+                        own uncommonly travelling now acceptance bed compliment solicitude. Dissimilar admiration so
+                        terminated no in contrasted it. Advantages entreaties mr he apartments do. Limits far yet turned
+                        highly repair parish talked six. Draw fond rank form nor the day eat. </p>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </mat-tab>
+              <mat-tab label="HTML">
+                <code [innerHTML]="getEscaped(card3HTML)" msHighlight class="html"></code>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>
+
+
