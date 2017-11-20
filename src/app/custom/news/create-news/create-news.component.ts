@@ -1,6 +1,7 @@
+import { News } from './../../../core/classes/news';
+import { routeAnimation } from './../../../route.animation';
 import { AppMemoryService } from './../../../core/app-memory.service';
-import { App } from './../../../core/classes/app';
-import { AppService } from './../app.service';
+import { NewsService } from './../news.service';
 
 import {
   Component,
@@ -15,11 +16,15 @@ import { Subscription, Subject } from 'rxjs';
 declare var $: any;
 
 @Component({
-  selector: 'ms-create-app',
-  templateUrl: './create-app.component.html',
-  styleUrls: ['./create-app.component.scss']
+  selector: 'ms-create-news',
+  templateUrl: './create-news.component.html',
+  styleUrls: ['./create-news.component.scss'],
+  host: {
+    '[@routeAnimation]': 'true'
+  },
+  animations: [routeAnimation]
 })
-export class CreateAppComponent implements OnInit {
+export class CreateNewsComponent implements OnInit {
   @ViewChild('image1') image1;
   @ViewChild('image2') image2;
   @ViewChild('image3') image3;
@@ -27,14 +32,14 @@ export class CreateAppComponent implements OnInit {
   private paramsSub: Subscription;
   public error: string;
   public errorObj: any;
-  public item: App = new App();
+  public item: News = new News();
   public id: string | number;
   public load = false;
   public imgErr = false;
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: AppService,
+    private data: NewsService,
     private appMemory: AppMemoryService,
     private router: Router
   ) {}
@@ -42,14 +47,14 @@ export class CreateAppComponent implements OnInit {
   ngOnInit() {}
 
   saveItem(form: any) {
-    this.errorObj = undefined;
     this.imgErr = false;
+    this.errorObj = undefined;
     if (form.invalid) {
       return;
     }
 
     const formData: FormData = new FormData();
-
+    /* 
     if (
       !this.image1.nativeElement.files[0] ||
       !this.image1.nativeElement.files[0] ||
@@ -73,18 +78,18 @@ export class CreateAppComponent implements OnInit {
       this.image3.nativeElement.files[0],
       this.image3.nativeElement.files[0].name
     );
+    */
 
-    if (this.item.google) {
-      formData.append('google', this.item.google);
-    }
-    if (this.item.apple) {
-      formData.append('apple', this.item.apple);
-    }
-    formData.append('installations', this.item.installations);
-    formData.append('active_users', this.item.active_users.toString());
-    formData.append('partner', this.item.partner);
-    formData.append('active', this.item.active ? '1' : '0');
-    formData.append('name', this.item.name);
+    formData.append('titles[ru]', this.item.titles.ru);
+    formData.append('titles[en]', this.item.titles.en);
+
+    formData.append('short_contents[ru]', this.item.short_contents.ru);
+    formData.append('short_contents[en]', this.item.short_contents.en);
+
+    formData.append('contents[ru]', this.item.contents2.ru);
+    formData.append('contents[en]', this.item.contents2.en);
+
+    // formData.append('active', this.item.active ? '1' : '0');
 
     console.log(formData);
     this.load = true;

@@ -26,7 +26,9 @@ export class SidenavService {
     const menu = this;
 
     // menu.addItem('Dashboard', 'dashboard', '/', 1);
-    menu.addItem('App', 'apps', '/app', 1);
+    menu.addItem('Приложения', 'apps', '/app', 1);
+    menu.addItem('Команда', 'supervisor_account', '/team', 1);
+    menu.addItem('Новости', 'local_activity', '/news', 1);
 
     /*
 

@@ -36,6 +36,15 @@ import { LoadingComponent } from './loading/loading.component';
 import { AppService } from '../custom/app/app.service';
 import { ShowAppComponent } from '../custom/app/show-app/show-app.component';
 import { CreateAppComponent } from '../custom/app/create-app/create-app.component';
+import { IndexTeamComponent } from '../custom/team/index-team/index-team.component';
+import { ShowTeamComponent } from '../custom/team/show-team/show-team.component';
+import { CreateTeamComponent } from '../custom/team/create-team/create-team.component';
+import { IndexNewsComponent } from '../custom/news/index-news/index-news.component';
+import { ShowNewsComponent } from '../custom/news/show-news/show-news.component';
+import { CreateNewsComponent } from '../custom/news/create-news/create-news.component';
+import { TeamService } from '../custom/team/team.service';
+import { NewsService } from '../custom/news/news.service';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   imports: [
@@ -46,7 +55,8 @@ import { CreateAppComponent } from '../custom/app/create-app/create-app.componen
     FormsModule,
     ScrollbarModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule
   ],
   exports: [
     MaterialComponentsModule,
@@ -75,7 +85,13 @@ import { CreateAppComponent } from '../custom/app/create-app/create-app.componen
     LoadingOverlayComponent,
     PaginationComponent,
     ShowAppComponent,
-    CreateAppComponent
+    CreateAppComponent,
+    IndexTeamComponent,
+    ShowTeamComponent,
+    CreateTeamComponent,
+    IndexNewsComponent,
+    ShowNewsComponent,
+    CreateNewsComponent
   ],
   providers: [
     SidenavService,
@@ -85,7 +101,9 @@ import { CreateAppComponent } from '../custom/app/create-app/create-app.componen
     BreadcrumbService,
     Http,
     ApplicationHttpClient,
-    AppMemoryService
+    AppMemoryService,
+    TeamService,
+    NewsService
   ]
 })
 export class CoreModule {}

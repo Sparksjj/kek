@@ -1,6 +1,7 @@
+import { routeAnimation } from './../../../route.animation';
 import { AppMemoryService } from './../../../core/app-memory.service';
-import { App } from './../../../core/classes/app';
-import { AppService } from './../app.service';
+import { News, Content } from './../../../core/classes/news';
+import { NewsService } from './../news.service';
 
 import {
   Component,
@@ -16,26 +17,30 @@ import { Subscription, Subject } from 'rxjs';
 declare var $: any;
 
 @Component({
-  selector: 'ms-show-app',
-  templateUrl: './show-app.component.html',
-  styleUrls: ['./show-app.component.scss']
+  selector: 'ms-show-news',
+  templateUrl: './show-news.component.html',
+  styleUrls: ['./show-news.component.scss'],
+  host: {
+    '[@routeAnimation]': 'true'
+  },
+  animations: [routeAnimation]
 })
-export class ShowAppComponent implements OnInit {
+export class ShowNewsComponent implements OnInit, OnDestroy {
   @ViewChild('image1') image1;
   @ViewChild('image2') image2;
   @ViewChild('image3') image3;
 
   private paramsSub: Subscription;
-  public errorObj: any;
   public error: string;
-  public item: App;
+  public errorObj: any;
+  public item: News = new News();
   public id: string | number;
   public load = true;
   public imgErr = false;
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: AppService,
+    private data: NewsService,
     private activatedRoute: ActivatedRoute,
     private appMemory: AppMemoryService,
     private router: Router
@@ -48,11 +53,24 @@ export class ShowAppComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    if (this.paramsSub) {
+      this.paramsSub.unsubscribe();
+    }
+  }
+
   getItem() {
-    this.http.Get<App>(this.data.urls.api + '/' + this.id).subscribe(
+    this.http.Get<News>(this.data.urls.api + '/' + this.id).subscribe(
       res => {
-        this.load = false;
+        res.contents2 = new Content();
+
+        if (res.contents) {
+          res.contents.forEach(el => {
+            res.contents2[el.language] = el.content;
+          });
+        }
         this.item = res;
+        this.load = false;
       },
       err => {
         console.log(err);
@@ -70,7 +88,7 @@ export class ShowAppComponent implements OnInit {
     }
 
     const formData: FormData = new FormData();
-
+    /*
     if (this.item.change_img) {
       if (
         !this.image1.nativeElement.files[0] ||
@@ -95,44 +113,40 @@ export class ShowAppComponent implements OnInit {
         this.image3.nativeElement.files[0],
         this.image3.nativeElement.files[0].name
       );
-    }
+    } */
 
-    if (this.item.google) {
-      formData.append('google', this.item.google);
-    }
-    if (this.item.apple) {
-      formData.append('apple', this.item.apple);
-    }
+    formData.append('titles[ru]', this.item.titles.ru);
+    formData.append('titles[en]', this.item.titles.en);
 
-    formData.append('installations', this.item.installations);
-    formData.append('active_users', this.item.active_users.toString());
-    formData.append('partner', this.item.partner);
-    formData.append('active', this.item.active ? '1' : '0');
-    formData.append('name', this.item.name);
+    formData.append('short_contents[ru]', this.item.short_contents.ru);
+    formData.append('short_contents[en]', this.item.short_contents.en);
+
+    formData.append('contents[ru]', this.item.contents2.ru);
+    formData.append('contents[en]', this.item.contents2.en);
+
+    // formData.append('active', this.item.active ? '1' : '0');
 
     this.load = true;
-    this.http
-      .Post(this.data.urls.api + '/' + this.item.id + '/image', formData)
-      .subscribe(
-        res => {
-          this.load = false;
-          this.appMemory.openSimpleSnackbar();
-        },
-        err => {
-          if (err.status === 422) {
-            this.errorObj = err.error.errors || { err: [err.error.error] };
-          } else if (err.status === 413) {
-            /*           this.contentLarge = true;
+    this.http.Put(this.data.urls.api + '/' + this.item.id, formData).subscribe(
+      res => {
+        this.load = false;
+        this.appMemory.openSimpleSnackbar();
+      },
+      err => {
+        if (err.status === 422) {
+          this.errorObj = err.error.errors || { err: [err.error.error] };
+        } else if (err.status === 413) {
+          /*           this.contentLarge = true;
           this.load = false;
           setTimeout(() => {
             $('.main-container').scrollTop(10000);
           }, 100); */
-          } else {
-            this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
-          }
-          this.load = false;
+        } else {
+          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
         }
-      );
+        this.load = false;
+      }
+    );
   }
 
   onChange(event, img: string) {

@@ -29,6 +29,54 @@ td {
   }
 }
 
+.err_border {
+  border: 1px solid red;
+}
+.err_color {
+  color: red;
+}
+
+.ql-syntax {
+  white-space: normal !important;
+}
+
+.ql-video,
+.ql-font.ql-picker,
+.no-image .ql-image {
+  display: none !important;
+}
+.ql-container.ql-snow {
+  min-height: 200px;
+}
+.ql-align-center {
+  text-align: center;
+}
+.ql-align-left {
+  text-align: left;
+}
+.ql-align-right {
+  text-align: right;
+}
+.ql-align-justify {
+  text-align: justify;
+}
+
+.ql-size-huge {
+  font-size: 21px;
+}
+.ql-size-normal {
+  font-size: 16px;
+}
+.ql-size-large {
+  font-size: 18px;
+}
+.ql-size-small {
+  font-size: 13px;
+}
+.ql-syntax {
+  white-space: normal !important;
+}
+
 @keyframes pageLoad {
   from {
     opacity: 1;

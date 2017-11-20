@@ -11,6 +11,7 @@ export class AppService {
   urls = {
     api: 'admin/app',
     show: '/app',
+    index: '/app',
     create: '/newApp',
     paggination: 'app'
   };
