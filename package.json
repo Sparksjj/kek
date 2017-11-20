@@ -42,6 +42,7 @@
     "screenfull": "^3.0.2",
     "smooth-scrollbar": "^8.2.0",
     "sortablejs": "^1.6.0",
+    "jquery": "3.2.1",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

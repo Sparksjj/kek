@@ -1,3 +1,5 @@
+import { CreateAppComponent } from './custom/app/create-app/create-app.component';
+import { IndexAppComponent } from './custom/app/index-app/index-app.component';
 import { HomeComponent } from './custom/home/home.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { NgModule } from '@angular/core';
@@ -30,6 +32,7 @@ import { InboxComponent } from './demo/apps/inbox/inbox.component';
 import { CalendarComponent } from './demo/apps/calendar/calendar.component';
 import { ChatComponent } from './demo/apps/chat/chat.component';
 import { AutocompleteComponent } from './demo/components/autocomplete/autocomplete.component';
+import { ShowAppComponent } from './custom/app/show-app/show-app.component';
 
 const routes: Routes = [
   /*   {
@@ -40,10 +43,6 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  },
-  {
-    path: 'forgot-password',
-    component: ForgotPasswordComponent
   }, */
   {
     path: '',
@@ -54,8 +53,28 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         pathMatch: 'full'
+      },
+      {
+        path: 'app',
+        component: IndexAppComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'newApp',
+        component: CreateAppComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'app/:id',
+        component: ShowAppComponent,
+        pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: '**',
+    redirectTo: 'app',
+    pathMatch: 'full'
   }
 ];
 

@@ -1,13 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700');
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import "styles/_var.scss";
+@import 'styles/_var.scss';
 @import 'styles/_tables.scss';
 @import 'styles/_charts.scss';
-@import "styles/_cards.scss";
-@import "styles/_inbox.scss";
-@import "styles/_calendar.scss";
-@import "styles/_misc.scss";
+@import 'styles/_cards.scss';
+@import 'styles/_inbox.scss';
+@import 'styles/_calendar.scss';
+@import 'styles/_misc.scss';
+
+.err_top {
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+  background-color: #2b303b;
+}
+td {
+  position: relative;
+  a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+  }
+}
 
 @keyframes pageLoad {
   from {
@@ -32,7 +52,7 @@
   animation-fill-mode: forwards;
   animation-duration: 0.5s;
   animation-delay: 0.5s;
-  background: #2B303B;
+  background: #2b303b;
   z-index: 9999;
   pointer-events: none;
 }

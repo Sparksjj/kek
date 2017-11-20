@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 export interface IRequestOptions {
   headers?: HttpHeaders;
   observe?: 'body';
-  params?: HttpParams;
+  params?: any;
   reportProgress?: boolean;
   responseType?: 'json';
   withCredentials?: boolean;
@@ -46,6 +46,7 @@ export class ApplicationHttpClient {
     options: IRequestOptions = {}
   ): Observable<T> {
     this.updateHeaders(options);
+    console.log(options);
     return this.http.get<T>(this.api + endPoint, options);
   }
 
@@ -97,10 +98,9 @@ export class ApplicationHttpClient {
   }
 
   private updateHeaders(data: any): void {
-    data.headers = new Headers(data.Headers);
-    data.headers.append('Accept', 'application/json');
+    data.headers = new HttpHeaders();
     if (this.authService.isLoggedIn) {
-      data.headers.append(
+      data.headers = data.headers.append(
         'Authorization',
         'Bearer ' + this.authService.getToken()
       );

@@ -7,10 +7,7 @@
     {
       "root": "src",
       "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "assets": ["assets", "favicon.ico"],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -27,6 +24,7 @@
         "styles.scss"
       ],
       "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
         "../node_modules/hammerjs/hammer.js",
         "../node_modules/sortablejs/Sortable.js",
         "./app/core/highlightjs/highlight.pack.js",

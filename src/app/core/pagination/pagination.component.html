@@ -1,0 +1,56 @@
+<div style="text-align: center; padding-top: 20px; width: 100%" [ngClass]="{'smal': small}">
+    <form (ngSubmit)="goToPage(toPage)" class="pagination" *ngIf="showNavigation">
+        <mat-input-container style="width: 110px">
+            <input matInput type="number" #toPage min="1" max="{{lastPage}}" placeholder="На страницу:">
+        </mat-input-container>
+
+        <span style="padding: 0 10px;">
+            <span *ngIf="lastPage != 1">{{(currentPage * perPage) - perPage+1}} -
+                <span *ngIf="currentPage != lastPage">{{currentPage * perPage}}</span>
+                <span *ngIf="currentPage == lastPage">{{total}}</span>
+            </span>
+            <span *ngIf="lastPage == 1">1-{{total}}</span>
+            of {{total}}
+        </span>
+
+        <!--         <mat-select style="position: relative; top: -6px" name="perPage" [(ngModel)]="curentState.value" (change)="changePerPage()">
+            <mat-option *ngFor="let state of states" [value]="state.value">{{ state.value }}</mat-option>
+        </mat-select> -->
+    </form>
+    <span *ngFor="let page of paginationPages; let i = index" style="position: relative;top: -6px;">
+        <!-- current -->
+        <button style="position: relative; top: -6px" color="primary" mat-mini-fab disabled="true" *ngIf="page.current">
+            {{page.number}}
+        </button>
+        <!-- other -->
+        <button style="position: relative; top: -6px" color="primary" mat-mini-fab [routerLink]="['/' + type]" [queryParams]="getQuery(page.number)"
+            *ngIf="(!page.current && i != 0 && i != paginationPages.length-1 && !showSpecial) ||
+        (!page.current && i != 0 && i != 1 && i != paginationPages.length-1 && i != paginationPages.length-2 && showSpecial)">
+            {{page.number}}
+        </button>
+
+        <!-- prev -->
+
+        <button [disabled]="currentPage == 1" color="primary" mat-mini-fab [routerLink]="['/' + type]" [queryParams]="getQuery(page.href)"
+            *ngIf="(i == 0 && !showSpecial) || (i == 1 && showSpecial)">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <!-- next -->
+        <button [disabled]="currentPage == lastPage" color="primary" mat-mini-fab [routerLink]="['/' + type]" [queryParams]="getQuery(page.href)"
+            *ngIf="(i == paginationPages.length-1 && !showSpecial) || (i == paginationPages.length-2 && showSpecial)">
+            <mat-icon>arrow_forward</mat-icon>
+        </button>
+
+        <button [disabled]="currentPage == 1" color="primary" mat-mini-fab [routerLink]="['/' + type]" [queryParams]="getQuery(page.number)"
+            *ngIf="i == 0 && showSpecial">
+            <mat-icon>fast_rewind</mat-icon>
+        </button>
+
+        <!-- next -->
+        <button [disabled]="currentPage == lastPage" color="primary" mat-mini-fab [routerLink]="['/' + type]" [queryParams]="getQuery(page.number)"
+            *ngIf="i == paginationPages.length-1 && showSpecial">
+            <mat-icon>fast_forward</mat-icon>
+        </button>
+    </span>
+</div>

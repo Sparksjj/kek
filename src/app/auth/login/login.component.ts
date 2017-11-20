@@ -26,10 +26,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     public authService: AuthService,
-    private getService: ApplicationHttpClient
-  ) {
-    console.log(getService);
-  }
+    private http: ApplicationHttpClient
+  ) {}
 
   ngOnInit() {}
 
@@ -39,7 +37,7 @@ export class LoginComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.getService
+    this.http
       .Post<{ access_token: string }>('oauth/token', this.data)
       .subscribe(
         res => {

@@ -6,7 +6,7 @@
     <form #form="ngForm" (ngSubmit)="login(form)">
       <div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
         <mat-form-field>
-          <input matInput placeholder="Телефон" type="text" name="email" required [(ngModel)]="data.email" #fEmail="ngModel">
+          <input matInput placeholder="E-mail" type="text" name="email" required [(ngModel)]="data.email" #fEmail="ngModel">
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Пароль" type="password" name="password" required [(ngModel)]="data.password" #userPass="ngModel">

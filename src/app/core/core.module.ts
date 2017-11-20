@@ -1,3 +1,7 @@
+import { AppMemoryService } from './app-memory.service';
+import { PaginationComponent } from './pagination/pagination.component';
+import { PaginationService } from './pagination/pagination.service';
+import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -27,6 +31,11 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Parse422Component } from '../custom/parse422/parse422.component';
 import { ForObjPipe } from './for-obj.pipe';
 import { HomeComponent } from '../custom/home/home.component';
+import { IndexAppComponent } from '../custom/app/index-app/index-app.component';
+import { LoadingComponent } from './loading/loading.component';
+import { AppService } from '../custom/app/app.service';
+import { ShowAppComponent } from '../custom/app/show-app/show-app.component';
+import { CreateAppComponent } from '../custom/app/create-app/create-app.component';
 
 @NgModule({
   imports: [
@@ -36,12 +45,10 @@ import { HomeComponent } from '../custom/home/home.component';
     FlexLayoutModule,
     FormsModule,
     ScrollbarModule,
-    TextMaskModule,
     HttpModule,
     HttpClientModule
   ],
   exports: [
-    TextMaskModule,
     MaterialComponentsModule,
     HttpModule,
     FlexLayoutModule,
@@ -62,14 +69,23 @@ import { HomeComponent } from '../custom/home/home.component';
     ToolbarNotificationsComponent,
     Parse422Component,
     ForObjPipe,
-    HomeComponent
+    HomeComponent,
+    IndexAppComponent,
+    LoadingComponent,
+    LoadingOverlayComponent,
+    PaginationComponent,
+    ShowAppComponent,
+    CreateAppComponent
   ],
   providers: [
     SidenavService,
+    PaginationService,
+    AppService,
     MediaReplayService,
     BreadcrumbService,
     Http,
-    ApplicationHttpClient
+    ApplicationHttpClient,
+    AppMemoryService
   ]
 })
 export class CoreModule {}

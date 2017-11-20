@@ -1,0 +1,154 @@
+<ms-loading *ngIf="load"></ms-loading>
+<div class="err_top" style="text-align: center" *ngIf="error && !load">
+  {{error}}
+</div>
+
+<div fxLayout="column" *ngIf="!load">
+  <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
+    <mat-card fxFlex>
+
+      <mat-card-title class="text-center">Новое {{data.names.ru1}}
+        <div style="float: left; margin-top: -7px">
+          <button mat-mini-fab [routerLink]="[(appMemory?.urls?.previousUrl?.url || '/news')]" [queryParams]="appMemory?.urls?.previousUrl?.query"
+            color="primary">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+      </mat-card-title>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content fxLayout="row" fxLayoutAlign="space-around stretch" style="margin: 30px 0">
+
+        <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)">
+          <!-- 
+          <mat-card-title [ngClass]="{'err_color': newItemForm.submitted && !item.title_ru}">Название</mat-card-title>
+
+          <div class="demo-tabs mat-elevation-z2 tabs1" [ngClass]="{'err_border': newItemForm.submitted && !item.title_ru}" style="margin-bottom: 40px">
+            <mat-tab-group (selectChange)="focusInput('.tabs1 textarea')">
+              <mat-tab label="RU" style="border-color: red">
+                <div fxLayout="column" style="margin: 20px">
+                  <mat-input-container fxFlex>
+                    <textarea rows="3" maxlength="225" matInput placeholder="(ru)" name="title_ru" [(ngModel)]="item.title_ru" required autofocus></textarea>
+                  </mat-input-container>
+                </div>
+              </mat-tab>
+              <mat-tab label="BY">
+                <div fxLayout="column" style="margin: 20px">
+                  <mat-input-container fxFlex>
+                    <textarea rows="3" maxlength="225" matInput placeholder="(by)" name="title_by" [(ngModel)]="item.title_by"></textarea>
+                  </mat-input-container>
+                </div>
+              </mat-tab>
+              <mat-tab label="EN">
+                <div fxLayout="column" style="margin: 20px">
+                  <mat-input-container fxFlex>
+                    <textarea rows="3" maxlength="225" matInput placeholder="(en)" name="title_en" [(ngModel)]="item.title_en"></textarea>
+                  </mat-input-container>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div> -->
+
+          <mat-card-title>Название</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <input matInput placeholder="name" name="display_name33" [(ngModel)]="item.name" required>
+            </mat-input-container>
+          </div>
+
+          <br>
+
+          <mat-card-title>Ссылка apple</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <input matInput placeholder="apple" name="display_name3" [(ngModel)]="item.apple">
+            </mat-input-container>
+          </div>
+
+          <br>
+
+          <mat-card-title>Ссылка google</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <input matInput placeholder="google" name="display_name2" [(ngModel)]="item.google">
+            </mat-input-container>
+          </div>
+
+          <br>
+
+          <mat-card-title>Партнер</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <input matInput placeholder="partner" name="display_name4" [(ngModel)]="item.partner" required>
+            </mat-input-container>
+          </div>
+
+          <br>
+
+          <mat-card-title>Активные пользователи</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <input matInput placeholder="active users" name="display_name5" [(ngModel)]="item.active_users" required>
+            </mat-input-container>
+          </div>
+
+          <br>
+
+          <mat-card-title>Установки</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <input matInput placeholder="installations" name="display_name6" [(ngModel)]="item.installations" required>
+            </mat-input-container>
+          </div>
+
+          <br>
+
+          <mat-card-title style="margin-bottom: 30px">
+            Добавить иконку
+          </mat-card-title>
+
+          <div fxLayout="column" style="margin-bottom: 30px">
+            Размер 1x (оптимальные пропорции: 298x245)
+            <div fxFlex>
+              <input #image1 type="file" name="icon_first" required accept="image/jpeg,image/png,image/gif" (change)="changeListner($event); imgErr = false; imgLarge = false ">
+            </div>
+            <div *ngIf="imgErr" style="color: red">Добавьте изображение</div>
+            <div *ngIf="imgLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
+          </div>
+
+          <div fxLayout="column" style="margin-bottom: 30px">
+            Размер 2x (оптимальные пропорции: 298x245)
+            <div fxFlex>
+              <input #image2 type="file" name="icon_second" required accept="image/jpeg,image/png,image/gif" (change)="changeListner($event); imgErr = false; imgLarge = false ">
+            </div>
+            <div *ngIf="imgErr" style="color: red">Добавьте изображение</div>
+            <div *ngIf="imgLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
+          </div>
+
+          <div fxLayout="column" style="margin-bottom: 30px">
+            Размер 3x (оптимальные пропорции: 298x245)
+            <div fxFlex>
+              <input #image3 type="file" name="icon_third" required accept="image/jpeg,image/png,image/gif" (change)="changeListner($event); imgErr = false; imgLarge = false ">
+            </div>
+            <div *ngIf="imgErr" style="color: red">Добавьте изображение</div>
+            <div *ngIf="imgLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
+          </div>
+
+          <div fxLayout="column" fxLayout.gt-md="row" style="margin-bottom: 50px">
+            <mat-checkbox color="primary" name="active" [(ngModel)]="item.active">
+              Публиковать?
+            </mat-checkbox>
+          </div>
+
+          <div class="text-center">
+            <button [disabled]="newItemForm.submitted && newItemForm.invalid" type="submit" mat-raised-button color="primary">Сохранить</button>
+          </div>
+
+        </form>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>

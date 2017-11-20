@@ -23,9 +23,12 @@ export class SidenavService {
   isIconSidenav: boolean;
 
   constructor(snackbar: MatSnackBar) {
-    let menu = this;
+    const menu = this;
 
-    let dashboard = menu.addItem('Dashboard', 'dashboard', '/', 1);
+    menu.addItem('Dashboard', 'dashboard', '/', 1);
+    menu.addItem('App', 'apps', '/app', 1);
+
+    /*
 
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');
     menu.addItem('Chat', 'chat', '/apps/chat', 2, '14', '#E15C74');
@@ -126,7 +129,7 @@ export class SidenavService {
       null,
       null,
       'add-dynamic-menu'
-    );
+    ); */
   }
 
   addItem(
@@ -138,7 +141,7 @@ export class SidenavService {
     badgeColor?: string,
     customClass?: string
   ) {
-    let item = new SidenavItem({
+    const item = new SidenavItem({
       name: name,
       icon: icon,
       route: route,
@@ -156,7 +159,7 @@ export class SidenavService {
   }
 
   addSubItem(parent: SidenavItem, name: string, route: any, position: number) {
-    let item = new SidenavItem({
+    const item = new SidenavItem({
       name: name,
       route: route,
       parent: parent,
@@ -171,7 +174,7 @@ export class SidenavService {
   }
 
   removeItem(item: SidenavItem) {
-    let index = this._items.indexOf(item);
+    const index = this._items.indexOf(item);
     if (index > -1) {
       this._items.splice(index, 1);
     }
@@ -180,7 +183,7 @@ export class SidenavService {
   }
 
   isOpen(item: SidenavItem) {
-    return this._currentlyOpen.indexOf(item) != -1;
+    return this._currentlyOpen.indexOf(item) !== -1;
   }
 
   toggleCurrentlyOpen(item: SidenavItem) {
@@ -218,7 +221,7 @@ export class SidenavService {
   nextCurrentlyOpenByRoute(route: string) {
     let currentlyOpen = [];
 
-    let item = this.findByRouteRecursive(route, this._items);
+    const item = this.findByRouteRecursive(route, this._items);
 
     if (item && item.hasParent()) {
       currentlyOpen = this.getAllParents(item);
@@ -235,7 +238,7 @@ export class SidenavService {
     if (!result) {
       _.each(collection, item => {
         if (item.hasSubItems()) {
-          let found = this.findByRouteRecursive(route, item.subItems);
+          const found = this.findByRouteRecursive(route, item.subItems);
 
           if (found) {
             result = found;
