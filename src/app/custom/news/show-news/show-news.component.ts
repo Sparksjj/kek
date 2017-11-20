@@ -127,26 +127,28 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
     // formData.append('active', this.item.active ? '1' : '0');
 
     this.load = true;
-    this.http.Put(this.data.urls.api + '/' + this.item.id, formData).subscribe(
-      res => {
-        this.load = false;
-        this.appMemory.openSimpleSnackbar();
-      },
-      err => {
-        if (err.status === 422) {
-          this.errorObj = err.error.errors || { err: [err.error.error] };
-        } else if (err.status === 413) {
-          /*           this.contentLarge = true;
+    this.http
+      .Post(this.data.urls.api + '/' + this.item.id + '/image', formData)
+      .subscribe(
+        res => {
+          this.load = false;
+          this.appMemory.openSimpleSnackbar();
+        },
+        err => {
+          if (err.status === 422) {
+            this.errorObj = err.error.errors || { err: [err.error.error] };
+          } else if (err.status === 413) {
+            /*           this.contentLarge = true;
           this.load = false;
           setTimeout(() => {
             $('.main-container').scrollTop(10000);
           }, 100); */
-        } else {
-          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
+          } else {
+            this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
+          }
+          this.load = false;
         }
-        this.load = false;
-      }
-    );
+      );
   }
 
   onChange(event, img: string) {

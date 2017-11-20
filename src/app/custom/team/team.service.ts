@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class TeamService {
   names = {
     en: 'team',
-    ru1: 'команда',
+    ru1: 'команду',
     ru2: 'команды',
     ru3: 'команд'
   };
