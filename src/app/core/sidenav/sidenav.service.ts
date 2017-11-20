@@ -25,7 +25,7 @@ export class SidenavService {
   constructor(snackbar: MatSnackBar) {
     const menu = this;
 
-    menu.addItem('Dashboard', 'dashboard', '/', 1);
+    // menu.addItem('Dashboard', 'dashboard', '/', 1);
     menu.addItem('App', 'apps', '/app', 1);
 
     /*

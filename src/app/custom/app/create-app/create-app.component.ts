@@ -25,7 +25,7 @@ export class CreateAppComponent implements OnInit {
   @ViewChild('image3') image3;
 
   private paramsSub: Subscription;
-  private error: string;
+  public error: string;
   public item: App = new App();
   public id: string | number;
   public load = false;

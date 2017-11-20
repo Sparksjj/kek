@@ -26,7 +26,7 @@ export class ShowAppComponent implements OnInit {
   @ViewChild('image3') image3;
 
   private paramsSub: Subscription;
-  private error: string;
+  public error: string;
   public item: App;
   public id: string | number;
   public load = true;
