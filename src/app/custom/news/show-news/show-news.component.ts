@@ -1,6 +1,6 @@
 import { routeAnimation } from './../../../route.animation';
 import { AppMemoryService } from './../../../core/app-memory.service';
-import { News, Content } from './../../../core/classes/news';
+import { News, Content, Contents } from './../../../core/classes/news';
 import { NewsService } from './../news.service';
 
 import {
@@ -62,7 +62,7 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
   getItem() {
     this.http.Get<News>(this.data.urls.api + '/' + this.id).subscribe(
       res => {
-        res.contents2 = new Content();
+        res.contents2 = new Contents();
 
         if (res.contents) {
           res.contents.forEach(el => {
