@@ -6,7 +6,8 @@ export class TeamService {
     en: 'team',
     ru1: 'команду',
     ru2: 'команды',
-    ru3: 'команд'
+    ru3: 'команд',
+    ru4: 'командa'
   };
   urls = {
     api: 'admin/team',
