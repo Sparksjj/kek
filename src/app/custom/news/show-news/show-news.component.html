@@ -105,7 +105,7 @@
           </mat-card-title>
 
           <div fxLayout="column" style="margin-bottom: 30px" *ngIf="item?.change_img">
-            оптимальные пропорции: 740:240
+            оптимальные пропорции: 740 x 240
             <div fxFlex>
               <input #image1 type="file" name="icon_first" required accept="image/jpeg,image/png,image/gif" (change)="changeListner($event); imgErr = false; imgLarge = false ">
             </div>
