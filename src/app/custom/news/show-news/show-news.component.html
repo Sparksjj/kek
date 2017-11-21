@@ -96,25 +96,23 @@
             </mat-tab-group>
           </div>
 
-          <!-- 
           <mat-card-title style="margin-bottom: 30px">
-            Добавить картинку
+
+            <button (click)="item.change_img = !item.change_img" type="button" mat-raised-button color="primary">
+              {{ item.change_img ? 'Отменить изменение' : 'Изменить картинку' }}
+            </button>
+
           </mat-card-title>
 
-          <div fxLayout="column" style="margin-bottom: 30px">
+          <div fxLayout="column" style="margin-bottom: 30px" *ngIf="item?.change_img">
             оптимальные пропорции: xx:xx
             <div fxFlex>
               <input #image1 type="file" name="icon_first" required accept="image/jpeg,image/png,image/gif" (change)="changeListner($event); imgErr = false; imgLarge = false ">
             </div>
             <div *ngIf="imgErr" style="color: red">Добавьте изображение</div>
             <div *ngIf="imgLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
-          </div> -->
+          </div>
 
-          <!--           <div fxLayout="column" fxLayout.gt-md="row" style="margin-bottom: 50px">
-            <mat-checkbox color="primary" name="active" [(ngModel)]="item.active">
-              Публиковать?
-            </mat-checkbox>
-          </div> -->
 
           <ms-parse422 [obj]="errorObj"></ms-parse422>
 

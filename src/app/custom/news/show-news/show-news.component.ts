@@ -88,32 +88,18 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
     }
 
     const formData: FormData = new FormData();
-    /*
+
     if (this.item.change_img) {
-      if (
-        !this.image1.nativeElement.files[0] ||
-        !this.image1.nativeElement.files[0] ||
-        !this.image1.nativeElement.files[0]
-      ) {
+      if (!this.image1.nativeElement.files[0]) {
         this.imgErr = true;
         return;
       }
       formData.append(
-        'icon_first',
+        'image',
         this.image1.nativeElement.files[0],
         this.image1.nativeElement.files[0].name
       );
-      formData.append(
-        'icon_second',
-        this.image2.nativeElement.files[0],
-        this.image2.nativeElement.files[0].name
-      );
-      formData.append(
-        'icon_third',
-        this.image3.nativeElement.files[0],
-        this.image3.nativeElement.files[0].name
-      );
-    } */
+    }
 
     formData.append('titles[ru]', this.item.titles.ru);
     formData.append('titles[en]', this.item.titles.en);
