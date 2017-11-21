@@ -8,7 +8,6 @@ import { RoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-import { SortablejsModule } from 'angular-sortablejs';
 import { ScrollbarModule } from './core/scrollbar/scrollbar.module';
 /* custom */
 import { LoginComponent } from './auth/login/login.component';
@@ -24,7 +23,6 @@ import { LoginRoutingModule } from './auth/login-routing.module';
     RoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    SortablejsModule,
     ScrollbarModule,
     LoginRoutingModule
   ],
