@@ -20,7 +20,7 @@
         <table class="table table-hover table-striped table-condensed table-bordered" *ngIf="items?.length > 0">
           <thead>
             <tr>
-              <!-- <th></th> -->
+              <th></th>
               <th>Id</th>
               <th>Заголовок</th>
               <th>Просмотры</th>
@@ -34,10 +34,10 @@
             <ng-template ngFor let-item [ngForOf]="items">
 
               <tr style="cursor: pointer; position: relative">
-                <!--<td class="avatar-cell">
-                  <img class="avatar" [src]="item?.icon">
+                <td class="avatar-cell">
+                  <img class="avatar" [src]="item?.image">
                   <a [routerLink]="[data.urls.show, item?.id]"></a>
-                </td> -->
+                </td>
 
                 <td>
                   {{item?.id}}
@@ -45,7 +45,7 @@
                 </td>
 
                 <td>
-                  {{item?.title}}
+                  {{item?.titles?.ru}}
                   <a [routerLink]="[data.urls.show, item?.id]"></a>
                 </td>
 
