@@ -7,6 +7,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { RoadmapService } from '../roadmap.service';
+import { SortablejsOptions } from 'angular-sortablejs';
 
 @Component({
   selector: 'ms-index-roadmap',
@@ -27,6 +28,16 @@ export class IndexRoadmapComponent implements OnInit, OnDestroy {
     page: 1,
     sort: 'createdAt:asc',
     count: 20
+  };
+
+  groupOptions: SortablejsOptions = {
+    group: 'testGroup',
+    handle: '.drag-handle',
+    animation: 300
+  };
+
+  simpleOptions: SortablejsOptions = {
+    animation: 300
   };
 
   constructor(
@@ -62,7 +73,9 @@ export class IndexRoadmapComponent implements OnInit, OnDestroy {
         }
       );
   }
-
+  changeOrder() {
+    console.log(this.items);
+  }
   ngOnDestroy() {
     if (this.sub) {
       this.sub.unsubscribe();

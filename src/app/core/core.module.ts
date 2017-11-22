@@ -53,6 +53,7 @@ import { ShowRoadmapComponent } from '../custom/roadmap/show-roadmap/show-roadma
 import { IndexRoadmapComponent } from '../custom/roadmap/index-roadmap/index-roadmap.component';
 import { RoadmapService } from '../custom/roadmap/roadmap.service';
 import { FaqService } from '../custom/faq/faq.service';
+import { SortablejsModule } from 'angular-sortablejs';
 
 @NgModule({
   imports: [
@@ -64,7 +65,8 @@ import { FaqService } from '../custom/faq/faq.service';
     ScrollbarModule,
     HttpModule,
     HttpClientModule,
-    QuillModule
+    QuillModule,
+    SortablejsModule
   ],
   exports: [
     MaterialComponentsModule,

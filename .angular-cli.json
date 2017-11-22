@@ -24,6 +24,7 @@
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/hammerjs/hammer.js",
+        "../node_modules/sortablejs/Sortable.js",
         "./app/core/highlightjs/highlight.pack.js",
         "../node_modules/css-element-queries/src/ResizeSensor.js"
       ],
