@@ -5,7 +5,7 @@ export class RoadmapService {
   names = {
     en: 'roadmap',
     ru1: 'План',
-    ru2: 'Планы',
+    ru2: 'Плана',
     ru3: 'Планов'
   };
   urls = {
