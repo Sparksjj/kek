@@ -46,7 +46,6 @@ export class ApplicationHttpClient {
     options: IRequestOptions = {}
   ): Observable<T> {
     this.updateHeaders(options);
-    console.log(options);
     return this.http.get<T>(this.api + endPoint, options);
   }
 
@@ -62,7 +61,6 @@ export class ApplicationHttpClient {
     params: Object,
     options: IRequestOptions = {}
   ): Observable<T> {
-    console.log(options);
     this.updateHeaders(options);
     return this.http.post<T>(this.api + endPoint, params, options);
   }
@@ -105,6 +103,5 @@ export class ApplicationHttpClient {
         'Bearer ' + this.authService.getToken()
       );
     }
-    console.log(data);
   }
 }

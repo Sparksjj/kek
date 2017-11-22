@@ -1,0 +1,84 @@
+<ms-loading *ngIf="load"></ms-loading>
+<div class="err_top" style="text-align: center" *ngIf="error && !load">
+  {{error}}
+</div>
+
+<div fxLayout="column" *ngIf="!load">
+  <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
+    <mat-card fxFlex>
+
+      <mat-card-title class="text-center">Новое {{data.names.ru1}}
+        <div style="float: left; margin-top: -7px">
+          <button mat-mini-fab [routerLink]="[(appMemory?.urls?.previousUrl?.url || data.urls.index)]" [queryParams]="appMemory?.urls?.previousUrl?.query"
+            color="primary">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+      </mat-card-title>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content fxLayout="row" fxLayoutAlign="space-around stretch" style="margin: 30px 0">
+
+        <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)">
+
+          <mat-card-title [ngClass]="{'err_color': newItemForm.submitted && (!item.questions.ru || !item.questions.en)}">Вопрос</mat-card-title>
+
+          <div class="demo-tabs mat-elevation-z2 tabs1" [ngClass]="{'err_border': newItemForm.submitted && !item.questions.ru}" style="margin-bottom: 40px">
+            <mat-tab-group (selectChange)="focusInput('.tabs1 textarea')">
+
+              <mat-tab label="RU" style="border-color: red">
+                <div fxLayout="column" style="margin: 20px">
+                  <mat-input-container fxFlex>
+                    <textarea rows="3" matInput placeholder="(ru)" name="title_ru" [(ngModel)]="item.questions.ru" required autofocus></textarea>
+                  </mat-input-container>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="EN">
+                <div fxLayout="column" style="margin: 20px">
+                  <mat-input-container fxFlex>
+                    <textarea rows="3" matInput placeholder="(en)" name="title_en" [(ngModel)]="item.questions.en" required></textarea>
+                  </mat-input-container>
+                </div>
+              </mat-tab>
+
+            </mat-tab-group>
+          </div>
+
+          <mat-card-title [ngClass]="{'err_color': newItemForm.submitted && (!item?.contents2?.ru || !item?.contents2?.en)}">Ответ</mat-card-title>
+
+          <div class="demo-tabs mat-elevation-z2 tabs3" style="margin-bottom: 40px" [ngClass]="{'err_border': newItemForm.submitted && !item?.contents2?.ru}">
+
+            <mat-tab-group (selectChange)="focusInput('.tabs3 .ql-editor')">
+              <mat-tab label="RU">
+                <div fxLayout="column">
+                  <div class="editor-container mat-elevation-z16">
+                    <quill-editor placeholder="Введите текст новости на русском языке" name="content_ru23" required [(ngModel)]="item.contents2.ru"></quill-editor>
+                  </div>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="EN">
+                <div fxLayout="column">
+                  <div class="editor-container mat-elevation-z16">
+                    <quill-editor placeholder="Введите текст новости на английском языке" name="content_en312" required [(ngModel)]="item.contents2.en"></quill-editor>
+                  </div>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+
+          <ms-parse422 [obj]="errorObj"></ms-parse422>
+
+          <div class="text-center">
+            <button [disabled]="newItemForm.submitted && newItemForm.invalid" type="submit" mat-raised-button color="primary">Сохранить</button>
+          </div>
+
+        </form>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>

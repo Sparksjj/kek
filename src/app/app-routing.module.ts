@@ -1,3 +1,9 @@
+import { IndexFaqComponent } from './custom/faq/index-faq/index-faq.component';
+import { CreateFaqComponent } from './custom/faq/create-faq/create-faq.component';
+import { ShowFaqComponent } from './custom/faq/show-faq/show-faq.component';
+import { IndexRoadmapComponent } from './custom/roadmap/index-roadmap/index-roadmap.component';
+import { CreateRoadmapComponent } from './custom/roadmap/create-roadmap/create-roadmap.component';
+import { ShowRoadmapComponent } from './custom/roadmap/show-roadmap/show-roadmap.component';
 import { CreateNewsComponent } from './custom/news/create-news/create-news.component';
 import { IndexNewsComponent } from './custom/news/index-news/index-news.component';
 import { IndexTeamComponent } from './custom/team/index-team/index-team.component';
@@ -76,6 +82,36 @@ const routes: Routes = [
       {
         path: 'news/:id',
         component: ShowNewsComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'roadmap',
+        component: IndexRoadmapComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'newRoadmap',
+        component: CreateRoadmapComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'roadmap/:id',
+        component: ShowRoadmapComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'faq',
+        component: IndexFaqComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'newFaq',
+        component: CreateFaqComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'faq/:id',
+        component: ShowFaqComponent,
         pathMatch: 'full'
       }
     ]

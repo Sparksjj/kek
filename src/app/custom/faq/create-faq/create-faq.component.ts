@@ -1,8 +1,7 @@
-import { News } from './../../../core/classes/news';
+import { Faq } from './../../../core/classes/faq';
 import { routeAnimation } from './../../../route.animation';
 import { AppMemoryService } from './../../../core/app-memory.service';
-import { NewsService } from './../news.service';
-
+import { FaqService } from './../faq.service';
 import {
   Component,
   OnInit,
@@ -16,15 +15,15 @@ import { Subscription, Subject } from 'rxjs';
 declare var $: any;
 
 @Component({
-  selector: 'ms-create-news',
-  templateUrl: './create-news.component.html',
-  styleUrls: ['./create-news.component.scss'],
+  selector: 'ms-create-faq',
+  templateUrl: './create-faq.component.html',
+  styleUrls: ['./create-faq.component.scss'],
   host: {
     '[@routeAnimation]': 'true'
   },
   animations: [routeAnimation]
 })
-export class CreateNewsComponent implements OnInit {
+export class CreateFaqComponent implements OnInit {
   @ViewChild('image1') image1;
   @ViewChild('image2') image2;
   @ViewChild('image3') image3;
@@ -32,14 +31,14 @@ export class CreateNewsComponent implements OnInit {
   private paramsSub: Subscription;
   public error: string;
   public errorObj: any;
-  public item: News = new News();
+  public item: Faq = new Faq();
   public id: string | number;
   public load = false;
   public imgErr = false;
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: NewsService,
+    private data: FaqService,
     private appMemory: AppMemoryService,
     private router: Router
   ) {}
@@ -55,26 +54,11 @@ export class CreateNewsComponent implements OnInit {
 
     const formData: FormData = new FormData();
 
-    if (!this.image1.nativeElement.files[0]) {
-      this.imgErr = true;
-      return;
-    }
-    formData.append(
-      'image',
-      this.image1.nativeElement.files[0],
-      this.image1.nativeElement.files[0].name
-    );
+    formData.append('questions[ru]', this.item.questions.ru);
+    formData.append('questions[en]', this.item.questions.en);
 
-    formData.append('titles[ru]', this.item.titles.ru);
-    formData.append('titles[en]', this.item.titles.en);
-
-    formData.append('short_contents[ru]', this.item.short_contents.ru);
-    formData.append('short_contents[en]', this.item.short_contents.en);
-
-    formData.append('contents[ru]', this.item.contents2.ru);
-    formData.append('contents[en]', this.item.contents2.en);
-
-    formData.append('active', this.item.active ? '1' : '0');
+    formData.append('answers[ru]', this.item.contents2.ru);
+    formData.append('answers[en]', this.item.contents2.en);
 
     this.load = true;
     this.http.Post(this.data.urls.api, formData).subscribe(

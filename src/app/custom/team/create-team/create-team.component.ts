@@ -77,7 +77,6 @@ export class CreateTeamComponent implements OnInit {
     formData.append('names[en]', this.item.names.en);
     // formData.append('active', this.item.active ? '1' : '0');
 
-    console.log(formData);
     this.load = true;
     this.http.Post(this.data.urls.api, formData).subscribe(
       res => {
@@ -132,7 +131,6 @@ export class CreateTeamComponent implements OnInit {
   }
 
   focusInput(cl: string) {
-    console.log(cl);
     setTimeout(() => {
       $(cl)
         .eq(0)

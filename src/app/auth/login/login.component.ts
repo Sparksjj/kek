@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
       .Post<{ access_token: string }>('oauth/token', this.data)
       .subscribe(
         res => {
-          console.log(res);
           this.authService.login(res.access_token, true);
           this.router.navigate([''], {});
         },

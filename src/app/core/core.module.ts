@@ -45,6 +45,14 @@ import { CreateNewsComponent } from '../custom/news/create-news/create-news.comp
 import { TeamService } from '../custom/team/team.service';
 import { NewsService } from '../custom/news/news.service';
 import { QuillModule } from 'ngx-quill';
+import { IndexFaqComponent } from '../custom/faq/index-faq/index-faq.component';
+import { ShowFaqComponent } from '../custom/faq/show-faq/show-faq.component';
+import { CreateFaqComponent } from '../custom/faq/create-faq/create-faq.component';
+import { CreateRoadmapComponent } from '../custom/roadmap/create-roadmap/create-roadmap.component';
+import { ShowRoadmapComponent } from '../custom/roadmap/show-roadmap/show-roadmap.component';
+import { IndexRoadmapComponent } from '../custom/roadmap/index-roadmap/index-roadmap.component';
+import { RoadmapService } from '../custom/roadmap/roadmap.service';
+import { FaqService } from '../custom/faq/faq.service';
 
 @NgModule({
   imports: [
@@ -91,7 +99,13 @@ import { QuillModule } from 'ngx-quill';
     CreateTeamComponent,
     IndexNewsComponent,
     ShowNewsComponent,
-    CreateNewsComponent
+    CreateNewsComponent,
+    IndexFaqComponent,
+    ShowFaqComponent,
+    CreateFaqComponent,
+    CreateRoadmapComponent,
+    ShowRoadmapComponent,
+    IndexRoadmapComponent
   ],
   providers: [
     SidenavService,
@@ -103,7 +117,9 @@ import { QuillModule } from 'ngx-quill';
     ApplicationHttpClient,
     AppMemoryService,
     TeamService,
-    NewsService
+    NewsService,
+    RoadmapService,
+    FaqService
   ]
 })
 export class CoreModule {}

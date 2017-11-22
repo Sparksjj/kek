@@ -1,7 +1,7 @@
-import { Team } from './../../../core/classes/team';
+import { Roadmap } from './../../../core/classes/roadmap';
 import { routeAnimation } from './../../../route.animation';
 import { AppMemoryService } from './../../../core/app-memory.service';
-import { TeamService } from './../team.service';
+import { RoadmapService } from './../roadmap.service';
 import {
   Component,
   OnInit,
@@ -16,15 +16,15 @@ import { Subscription, Subject } from 'rxjs';
 declare var $: any;
 
 @Component({
-  selector: 'ms-show-team',
-  templateUrl: './show-team.component.html',
-  styleUrls: ['./show-team.component.scss'],
+  selector: 'ms-show-roadmap',
+  templateUrl: './show-roadmap.component.html',
+  styleUrls: ['./show-roadmap.component.scss'],
   host: {
     '[@routeAnimation]': 'true'
   },
   animations: [routeAnimation]
 })
-export class ShowTeamComponent implements OnInit, OnDestroy {
+export class ShowRoadmapComponent implements OnInit, OnDestroy {
   @ViewChild('image1') image1;
   @ViewChild('image2') image2;
   @ViewChild('image3') image3;
@@ -32,14 +32,14 @@ export class ShowTeamComponent implements OnInit, OnDestroy {
   private paramsSub: Subscription;
   public error: string;
   public errorObj: any;
-  public item: Team = new Team();
+  public item: Roadmap = new Roadmap();
   public id: string | number;
   public load = true;
   public imgErr = false;
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: TeamService,
+    private data: RoadmapService,
     private activatedRoute: ActivatedRoute,
     private appMemory: AppMemoryService,
     private router: Router
@@ -59,7 +59,7 @@ export class ShowTeamComponent implements OnInit, OnDestroy {
   }
 
   getItem() {
-    this.http.Get<Team>(this.data.urls.api + '/' + this.id).subscribe(
+    this.http.Get<Roadmap>(this.data.urls.api + '/' + this.id).subscribe(
       res => {
         this.item = res;
         this.load = false;
@@ -81,54 +81,36 @@ export class ShowTeamComponent implements OnInit, OnDestroy {
 
     const formData: FormData = new FormData();
 
-    if (this.item.change_img) {
-      if (!this.image1.nativeElement.files[0]) {
-        this.imgErr = true;
-        return;
-      }
-      formData.append(
-        'image',
-        this.image1.nativeElement.files[0],
-        this.image1.nativeElement.files[0].name
-      );
-    }
-
-    formData.append('linkedin', this.item.linkedin);
+    formData.append('quarters[ru]', this.item.quarters.ru);
+    formData.append('quarters[en]', this.item.quarters.en);
 
     formData.append('descriptions[ru]', this.item.descriptions.ru);
     formData.append('descriptions[en]', this.item.descriptions.en);
 
-    formData.append('posts[ru]', this.item.posts.ru);
-    formData.append('posts[en]', this.item.posts.en);
-
-    formData.append('names[ru]', this.item.names.ru);
-    formData.append('names[en]', this.item.names.en);
-
-    // formData.append('active', this.item.active ? '1' : '0');
+    formData.append('year', this.item.year.toString());
+    formData.append('active', this.item.active ? '1' : '0');
 
     this.load = true;
-    this.http
-      .Post(this.data.urls.api + '/' + this.item.id + '/image', formData)
-      .subscribe(
-        res => {
-          this.load = false;
-          this.appMemory.openSimpleSnackbar();
-        },
-        err => {
-          if (err.status === 422) {
-            this.errorObj = err.error.errors || { err: [err.error.error] };
-          } else if (err.status === 413) {
-            /*           this.contentLarge = true;
+    this.http.Post(this.data.urls.api + '/' + this.item.id, formData).subscribe(
+      res => {
+        this.load = false;
+        this.appMemory.openSimpleSnackbar();
+      },
+      err => {
+        if (err.status === 422) {
+          this.errorObj = err.error.errors || { err: [err.error.error] };
+        } else if (err.status === 413) {
+          /*           this.contentLarge = true;
           this.load = false;
           setTimeout(() => {
             $('.main-container').scrollTop(10000);
           }, 100); */
-          } else {
-            this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
-          }
-          this.load = false;
+        } else {
+          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
         }
-      );
+        this.load = false;
+      }
+    );
   }
 
   onChange(event, img: string) {

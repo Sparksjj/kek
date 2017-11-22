@@ -1,8 +1,7 @@
-import { News } from './../../../core/classes/news';
+import { Roadmap } from './../../../core/classes/roadmap';
 import { routeAnimation } from './../../../route.animation';
 import { AppMemoryService } from './../../../core/app-memory.service';
-import { NewsService } from './../news.service';
-
+import { RoadmapService } from './../roadmap.service';
 import {
   Component,
   OnInit,
@@ -16,15 +15,15 @@ import { Subscription, Subject } from 'rxjs';
 declare var $: any;
 
 @Component({
-  selector: 'ms-create-news',
-  templateUrl: './create-news.component.html',
-  styleUrls: ['./create-news.component.scss'],
+  selector: 'ms-create-roadmap',
+  templateUrl: './create-roadmap.component.html',
+  styleUrls: ['./create-roadmap.component.scss'],
   host: {
     '[@routeAnimation]': 'true'
   },
   animations: [routeAnimation]
 })
-export class CreateNewsComponent implements OnInit {
+export class CreateRoadmapComponent implements OnInit {
   @ViewChild('image1') image1;
   @ViewChild('image2') image2;
   @ViewChild('image3') image3;
@@ -32,14 +31,14 @@ export class CreateNewsComponent implements OnInit {
   private paramsSub: Subscription;
   public error: string;
   public errorObj: any;
-  public item: News = new News();
+  public item: Roadmap = new Roadmap();
   public id: string | number;
   public load = false;
   public imgErr = false;
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: NewsService,
+    private data: RoadmapService,
     private appMemory: AppMemoryService,
     private router: Router
   ) {}
@@ -55,25 +54,13 @@ export class CreateNewsComponent implements OnInit {
 
     const formData: FormData = new FormData();
 
-    if (!this.image1.nativeElement.files[0]) {
-      this.imgErr = true;
-      return;
-    }
-    formData.append(
-      'image',
-      this.image1.nativeElement.files[0],
-      this.image1.nativeElement.files[0].name
-    );
+    formData.append('quarters[ru]', this.item.quarters.ru);
+    formData.append('quarters[en]', this.item.quarters.en);
 
-    formData.append('titles[ru]', this.item.titles.ru);
-    formData.append('titles[en]', this.item.titles.en);
+    formData.append('descriptions[ru]', this.item.descriptions.ru);
+    formData.append('descriptions[en]', this.item.descriptions.en);
 
-    formData.append('short_contents[ru]', this.item.short_contents.ru);
-    formData.append('short_contents[en]', this.item.short_contents.en);
-
-    formData.append('contents[ru]', this.item.contents2.ru);
-    formData.append('contents[en]', this.item.contents2.en);
-
+    formData.append('year', this.item.year.toString());
     formData.append('active', this.item.active ? '1' : '0');
 
     this.load = true;

@@ -15,14 +15,13 @@ export class AppMemoryService {
   };
 
   constructor(private snackBar: MatSnackBar, private router: Router) {
-    console.log(this.router);
     this.router.events
       .filter(e => e instanceof NavigationEnd)
       .pairwise()
       .subscribe(e => {
-        let arr = e[0]['urlAfterRedirects'].split('?');
-        let url = arr[0];
-        let query = {};
+        const arr = e[0]['urlAfterRedirects'].split('?');
+        const url = arr[0];
+        const query = {};
 
         if (arr.length > 1) {
           const q = arr[1].split('&');

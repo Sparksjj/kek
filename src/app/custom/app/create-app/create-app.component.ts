@@ -86,7 +86,6 @@ export class CreateAppComponent implements OnInit {
     formData.append('active', this.item.active ? '1' : '0');
     formData.append('name', this.item.name);
 
-    console.log(formData);
     this.load = true;
     this.http.Post(this.data.urls.api, formData).subscribe(
       res => {
@@ -141,7 +140,6 @@ export class CreateAppComponent implements OnInit {
   }
 
   focusInput(cl: string) {
-    console.log(cl);
     setTimeout(() => {
       $(cl)
         .eq(0)

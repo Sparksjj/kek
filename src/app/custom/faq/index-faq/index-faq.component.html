@@ -20,11 +20,8 @@
         <table class="table table-hover table-striped table-condensed table-bordered" *ngIf="items?.length > 0">
           <thead>
             <tr>
-              <th></th>
               <th>Id</th>
-              <th>Заголовок</th>
-              <th>Просмотры</th>
-              <th>Статус</th>
+              <th>Вопрос</th>
               <th>Время создания</th>
               <th>Удалить</th>
             </tr>
@@ -35,30 +32,13 @@
             <ng-template ngFor let-item [ngForOf]="items">
 
               <tr style="cursor: pointer; position: relative">
-                <td class="avatar-cell">
-                  <img class="avatar" [src]="item?.image">
-                  <a [routerLink]="[data.urls.show, item?.id]"></a>
-                </td>
-
                 <td>
                   {{item?.id}}
                   <a [routerLink]="[data.urls.show, item?.id]"></a>
                 </td>
 
                 <td>
-                  {{item?.titles?.ru}}
-                  <a [routerLink]="[data.urls.show, item?.id]"></a>
-                </td>
-
-                <td>
-                  {{item?.views}}
-                  <a [routerLink]="[data.urls.show, item?.id]"></a>
-                </td>
-
-                <td>
-                  <mat-icon [color]="item?.active ? 'primary' : 'warn'">
-                    {{item?.active ? 'check_circle' : 'close'}}
-                  </mat-icon>
+                  {{item?.questions?.ru}}
                   <a [routerLink]="[data.urls.show, item?.id]"></a>
                 </td>
 
@@ -89,9 +69,9 @@
           </tbody>
         </table>
 
-        <pagination [lastPage]="paginationInfo?.last_page" [currentPage]="paginationInfo?.current_page" [total]="paginationInfo?.total"
+        <!--         <pagination [lastPage]="paginationInfo?.last_page" [currentPage]="paginationInfo?.current_page" [total]="paginationInfo?.total"
           [type]="data.urls.show" [query]="currentQuery" [perPage]="paginationInfo?.per_page" [showNavigation]="true" *ngIf="paginationInfo?.last_page && paginationInfo?.current_page && paginationInfo?.last_page > 1">
-        </pagination>
+        </pagination> -->
 
       </mat-card-content>
 

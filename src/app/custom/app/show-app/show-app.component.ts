@@ -165,7 +165,6 @@ export class ShowAppComponent implements OnInit {
   }
 
   focusInput(cl: string) {
-    console.log(cl);
     setTimeout(() => {
       $(cl)
         .eq(0)

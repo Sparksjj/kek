@@ -110,7 +110,7 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
     formData.append('contents[ru]', this.item.contents2.ru);
     formData.append('contents[en]', this.item.contents2.en);
 
-    // formData.append('active', this.item.active ? '1' : '0');
+    formData.append('active', this.item.active ? '1' : '0');
 
     this.load = true;
     this.http
@@ -167,7 +167,6 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
   }
 
   focusInput(cl: string) {
-    console.log(cl);
     setTimeout(() => {
       $(cl)
         .eq(0)

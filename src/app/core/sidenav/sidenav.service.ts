@@ -30,6 +30,9 @@ export class SidenavService {
     menu.addItem('Команда', 'supervisor_account', '/team', 1);
     menu.addItem('Новости', 'local_activity', '/news', 1);
 
+    menu.addItem('Faq', 'local_library', '/faq', 1);
+    menu.addItem('План', 'trending_up', '/roadmap', 1);
+
     /*
 
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');
