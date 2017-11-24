@@ -86,7 +86,8 @@ export class IndexRoadmapComponent implements OnInit, OnDestroy {
 
     this.http.Post(this.data.urls.api + '-order', formData).subscribe(
       res => {
-        this.appMemory.openSimpleSnackbar();
+        /*
+        this.appMemory.openSimpleSnackbar(); */
       },
       err => {
         this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
