@@ -28,12 +28,12 @@
               <th>Удалить</th>
             </tr>
           </thead>
-          <tbody [sortablejs]="items" [sortablejsOptions]="simpleOptions">
+          <tbody [sortablejs]="items" [sortablejsOptions]="simpleOptions" (onUpdate)="changeOrder()">
 
 
             <ng-template ngFor let-item [ngForOf]="items">
 
-              <tr style="cursor: pointer; position: relative">
+              <tr class="draggable" style="cursor: pointer; position: relative">
 
                 <td>
                   {{item?.id}}

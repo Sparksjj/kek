@@ -37,7 +37,10 @@ export class IndexRoadmapComponent implements OnInit, OnDestroy {
   };
 
   simpleOptions: SortablejsOptions = {
-    animation: 300
+    animation: 300,
+    onUpdate: (event: any) => {
+      this.changeOrder();
+    }
   };
 
   constructor(
@@ -74,7 +77,21 @@ export class IndexRoadmapComponent implements OnInit, OnDestroy {
       );
   }
   changeOrder() {
-    console.log(this.items);
+    const data = [];
+    const formData: FormData = new FormData();
+
+    this.items.forEach((el, i) => {
+      formData.append('data[' + el.id + ']', '' + (i + 1));
+    });
+
+    this.http.Post(this.data.urls.api + '-order', formData).subscribe(
+      res => {
+        this.appMemory.openSimpleSnackbar();
+      },
+      err => {
+        this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
+      }
+    );
   }
   ngOnDestroy() {
     if (this.sub) {
