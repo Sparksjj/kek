@@ -28,7 +28,7 @@
               <th>Удалить</th>
             </tr>
           </thead>
-          <tbody [sortablejs]="listArray" [sortablejsOptions]="simpleOptions" (orderChanged)="changeOrder()">
+          <tbody [sortablejs]="items" [sortablejsOptions]="simpleOptions">
 
 
             <ng-template ngFor let-item [ngForOf]="items">
