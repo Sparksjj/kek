@@ -91,8 +91,8 @@ export class ShowFaqComponent implements OnInit, OnDestroy {
     formData.append('questions[ru]', this.item.questions.ru);
     formData.append('questions[en]', this.item.questions.en);
 
-    formData.append('contents[ru]', this.item.contents2.ru);
-    formData.append('contents[en]', this.item.contents2.en);
+    formData.append('answers[ru]', this.item.contents2.ru);
+    formData.append('answers[en]', this.item.contents2.en);
 
     // formData.append('active', this.item.active ? '1' : '0');
 
