@@ -8,6 +8,7 @@ export class RoadmapService {
     ru2: 'Плана',
     ru3: 'Планов'
   };
+
   urls = {
     api: 'admin/roadmap',
     show: '/roadmap',
@@ -15,5 +16,15 @@ export class RoadmapService {
     create: '/newRoadmap',
     paggination: 'roadmap'
   };
-  constructor() {}
+
+  roadStatus = [];
+
+  constructor() {
+    this.roadStatus[1] = 'past';
+    this.roadStatus[2] = 'now';
+    this.roadStatus[3] = 'future';
+  }
+  getStatus(text: string): number {
+    return this.roadStatus.indexOf(text);
+  }
 }

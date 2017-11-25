@@ -61,7 +61,7 @@ export class CreateRoadmapComponent implements OnInit {
     formData.append('descriptions[en]', this.item.descriptions.en);
 
     formData.append('year', this.item.year.toString());
-    formData.append('active', this.item.active ? '1' : '0');
+    formData.append('status', this.item.selectedStatus);
 
     this.load = true;
     this.http.Post(this.data.urls.api, formData).subscribe(

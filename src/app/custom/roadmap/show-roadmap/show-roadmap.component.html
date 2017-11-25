@@ -81,10 +81,18 @@
 
           <br>
 
+          <mat-card-title>Статус</mat-card-title>
           <div fxLayout="column" fxLayout.gt-md="row" style="margin-bottom: 50px">
-            <mat-checkbox color="primary" name="active" [(ngModel)]="item.active">
+            <!--             <mat-checkbox color="primary" name="active" [(ngModel)]="item.active">
               Публиковать?
-            </mat-checkbox>
+            </mat-checkbox> -->
+            <mat-form-field>
+              <mat-select placeholder="Status" name="status" [(ngModel)]="item.selectedStatus">
+                <mat-option *ngFor="let value of data?.roadStatus" [value]="value">
+                  {{ value }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
           <ms-parse422 [obj]="errorObj"></ms-parse422>

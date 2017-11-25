@@ -5,6 +5,8 @@ export class Roadmap {
   year: number;
   order: number;
   active: number;
+  status: number;
+  selectedStatus: string;
   created_at: string;
   updated_at: string;
 }

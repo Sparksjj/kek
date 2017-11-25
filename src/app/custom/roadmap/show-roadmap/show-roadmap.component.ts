@@ -61,6 +61,7 @@ export class ShowRoadmapComponent implements OnInit, OnDestroy {
   getItem() {
     this.http.Get<Roadmap>(this.data.urls.api + '/' + this.id).subscribe(
       res => {
+        res.selectedStatus = '' + res.status;
         this.item = res;
         this.load = false;
       },
@@ -88,7 +89,7 @@ export class ShowRoadmapComponent implements OnInit, OnDestroy {
     formData.append('descriptions[en]', this.item.descriptions.en);
 
     formData.append('year', this.item.year.toString());
-    formData.append('active', this.item.active ? '1' : '0');
+    formData.append('status', this.item.selectedStatus);
 
     this.load = true;
     this.http.Post(this.data.urls.api + '/' + this.item.id, formData).subscribe(
