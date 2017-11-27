@@ -39,10 +39,14 @@ import { CreateAppComponent } from '../custom/app/create-app/create-app.componen
 import { IndexTeamComponent } from '../custom/team/index-team/index-team.component';
 import { ShowTeamComponent } from '../custom/team/show-team/show-team.component';
 import { CreateTeamComponent } from '../custom/team/create-team/create-team.component';
+import { IndexTeam2Component } from '../custom/team2/index-team/index-team.component';
+import { ShowTeam2Component } from '../custom/team2/show-team/show-team.component';
+import { CreateTeam2Component } from '../custom/team2/create-team/create-team.component';
 import { IndexNewsComponent } from '../custom/news/index-news/index-news.component';
 import { ShowNewsComponent } from '../custom/news/show-news/show-news.component';
 import { CreateNewsComponent } from '../custom/news/create-news/create-news.component';
 import { TeamService } from '../custom/team/team.service';
+import { Team2Service } from '../custom/team2/team.service';
 import { NewsService } from '../custom/news/news.service';
 import { QuillModule } from 'ngx-quill';
 import { IndexFaqComponent } from '../custom/faq/index-faq/index-faq.component';
@@ -100,6 +104,9 @@ import { CustomQuillDirective } from './custom-quill.directive';
     IndexTeamComponent,
     ShowTeamComponent,
     CreateTeamComponent,
+    IndexTeam2Component,
+    ShowTeam2Component,
+    CreateTeam2Component,
     IndexNewsComponent,
     ShowNewsComponent,
     CreateNewsComponent,
@@ -121,6 +128,7 @@ import { CustomQuillDirective } from './custom-quill.directive';
     ApplicationHttpClient,
     AppMemoryService,
     TeamService,
+    Team2Service,
     NewsService,
     RoadmapService,
     FaqService

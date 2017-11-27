@@ -1,7 +1,8 @@
 import { Team } from './../../../core/classes/team';
 import { routeAnimation } from './../../../route.animation';
 import { AppMemoryService } from './../../../core/app-memory.service';
-import { TeamService } from './../team.service';
+import { Team2Service } from './../team.service';
+
 import {
   Component,
   OnInit,
@@ -11,20 +12,19 @@ import {
 } from '@angular/core';
 import { ApplicationHttpClient } from './../../../core/http-client';
 import { Router, Params, ActivatedRoute } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription, Subject } from 'rxjs';
 declare var $: any;
 
 @Component({
-  selector: 'ms-show-team',
-  templateUrl: './show-team.component.html',
-  styleUrls: ['./show-team.component.scss'],
+  selector: 'ms-create-team2',
+  templateUrl: './create-team.component.html',
+  styleUrls: ['./create-team.component.scss'],
   host: {
     '[@routeAnimation]': 'true'
   },
   animations: [routeAnimation]
 })
-export class ShowTeamComponent implements OnInit, OnDestroy {
+export class CreateTeam2Component implements OnInit {
   @ViewChild('image1') image1;
   @ViewChild('image2') image2;
   @ViewChild('image3') image3;
@@ -32,66 +32,38 @@ export class ShowTeamComponent implements OnInit, OnDestroy {
   private paramsSub: Subscription;
   public error: string;
   public errorObj: any;
-  public item: Team = new Team();
+  public item: Team = new Team('adviser');
   public id: string | number;
-  public load = true;
+  public load = false;
   public imgErr = false;
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: TeamService,
-    private activatedRoute: ActivatedRoute,
+    private data: Team2Service,
     private appMemory: AppMemoryService,
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.paramsSub = this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
-      this.getItem();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.paramsSub) {
-      this.paramsSub.unsubscribe();
-    }
-  }
-
-  getItem() {
-    this.http.Get<Team>(this.data.urls.api + '/' + this.id).subscribe(
-      res => {
-        this.item = res;
-        this.load = false;
-      },
-      err => {
-        console.log(err);
-        this.router.navigate([this.data.urls.show]);
-        this.load = false;
-      }
-    );
-  }
+  ngOnInit() {}
 
   saveItem(form: any) {
-    this.errorObj = undefined;
     this.imgErr = false;
+    this.errorObj = undefined;
     if (form.invalid) {
       return;
     }
 
     const formData: FormData = new FormData();
 
-    if (this.item.change_img) {
-      if (!this.image1.nativeElement.files[0]) {
-        this.imgErr = true;
-        return;
-      }
-      formData.append(
-        'image',
-        this.image1.nativeElement.files[0],
-        this.image1.nativeElement.files[0].name
-      );
+    if (!this.image1.nativeElement.files[0]) {
+      this.imgErr = true;
+      return;
     }
+    formData.append(
+      'image',
+      this.image1.nativeElement.files[0],
+      this.image1.nativeElement.files[0].name
+    );
 
     formData.append('linkedin', this.item.linkedin);
 
@@ -104,32 +76,30 @@ export class ShowTeamComponent implements OnInit, OnDestroy {
     formData.append('names[ru]', this.item.names.ru);
     formData.append('names[en]', this.item.names.en);
     formData.append('type', this.item.type);
-
     // formData.append('active', this.item.active ? '1' : '0');
 
     this.load = true;
-    this.http
-      .Post(this.data.urls.api + '/' + this.item.id + '/image', formData)
-      .subscribe(
-        res => {
-          this.load = false;
-          this.appMemory.openSimpleSnackbar();
-        },
-        err => {
-          if (err.status === 422) {
-            this.errorObj = err.error.errors || { err: [err.error.error] };
-          } else if (err.status === 413) {
-            /*           this.contentLarge = true;
+    this.http.Post(this.data.urls.api, formData).subscribe(
+      res => {
+        this.load = false;
+        this.router.navigate([this.data.urls.index]);
+        this.appMemory.openSimpleSnackbar();
+      },
+      err => {
+        if (err.status === 422) {
+          this.errorObj = err.error.errors || { err: [err.error.error] };
+        } else if (err.status === 413) {
+          /*this.contentLarge = true;
           this.load = false;
           setTimeout(() => {
             $('.main-container').scrollTop(10000);
           }, 100); */
-          } else {
-            this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
-          }
-          this.load = false;
+        } else {
+          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
         }
-      );
+        this.load = false;
+      }
+    );
   }
 
   onChange(event, img: string) {

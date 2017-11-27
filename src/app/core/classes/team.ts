@@ -10,7 +10,11 @@ export class Team {
   name: string;
   post: string;
   description: string;
+  type: string;
   change_img: boolean;
+  constructor(type?: string) {
+    this.type = type || 'team_member';
+  }
 }
 
 export class Names {

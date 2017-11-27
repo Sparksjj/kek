@@ -6,10 +6,10 @@ import { ApplicationHttpClient } from './../../../core/http-client';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { TeamService } from '../team.service';
+import { Team2Service } from '../team.service';
 
 @Component({
-  selector: 'ms-index-team',
+  selector: 'ms-index-team2',
   templateUrl: './index-team.component.html',
   styleUrls: ['./index-team.component.scss'],
   host: {
@@ -17,7 +17,7 @@ import { TeamService } from '../team.service';
   },
   animations: [routeAnimation]
 })
-export class IndexTeamComponent implements OnInit, OnDestroy {
+export class IndexTeam2Component implements OnInit, OnDestroy {
   public items: Team[];
   public paginationInfo: Pagination;
   public load = true;
@@ -27,12 +27,12 @@ export class IndexTeamComponent implements OnInit, OnDestroy {
     page: 1,
     sort: 'createdAt:asc',
     count: 20,
-    type: 'team_member'
+    type: 'adviser'
   };
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: TeamService,
+    private data: Team2Service,
     private activatedRoute: ActivatedRoute,
     private appMemory: AppMemoryService,
     private router: Router

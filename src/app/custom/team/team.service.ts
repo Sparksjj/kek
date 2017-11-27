@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
 export class TeamService {
   names = {
     en: 'team',
-    ru1: 'команду',
-    ru2: 'команды',
-    ru3: 'команд',
-    ru4: 'командa'
+    ru1: 'участника',
+    ru2: 'участники',
+    ru3: 'участников',
+    ru4: 'участник'
   };
   urls = {
     api: 'admin/team',

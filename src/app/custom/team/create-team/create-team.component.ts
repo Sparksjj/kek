@@ -75,6 +75,7 @@ export class CreateTeamComponent implements OnInit {
 
     formData.append('names[ru]', this.item.names.ru);
     formData.append('names[en]', this.item.names.en);
+    formData.append('type', this.item.type);
     // formData.append('active', this.item.active ? '1' : '0');
 
     this.load = true;

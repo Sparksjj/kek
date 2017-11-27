@@ -1,7 +1,7 @@
 import { Team } from './../../../core/classes/team';
 import { routeAnimation } from './../../../route.animation';
 import { AppMemoryService } from './../../../core/app-memory.service';
-import { TeamService } from './../team.service';
+import { Team2Service } from './../team.service';
 import {
   Component,
   OnInit,
@@ -16,7 +16,7 @@ import { Subscription, Subject } from 'rxjs';
 declare var $: any;
 
 @Component({
-  selector: 'ms-show-team',
+  selector: 'ms-show-team2',
   templateUrl: './show-team.component.html',
   styleUrls: ['./show-team.component.scss'],
   host: {
@@ -24,7 +24,7 @@ declare var $: any;
   },
   animations: [routeAnimation]
 })
-export class ShowTeamComponent implements OnInit, OnDestroy {
+export class ShowTeam2Component implements OnInit, OnDestroy {
   @ViewChild('image1') image1;
   @ViewChild('image2') image2;
   @ViewChild('image3') image3;
@@ -32,14 +32,14 @@ export class ShowTeamComponent implements OnInit, OnDestroy {
   private paramsSub: Subscription;
   public error: string;
   public errorObj: any;
-  public item: Team = new Team();
+  public item: Team = new Team('adviser');
   public id: string | number;
   public load = true;
   public imgErr = false;
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: TeamService,
+    private data: Team2Service,
     private activatedRoute: ActivatedRoute,
     private appMemory: AppMemoryService,
     private router: Router
