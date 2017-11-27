@@ -30,10 +30,11 @@ export class SidenavService {
     menu.addSubItem(first, 'Приложения', '/app', 1);
     menu.addSubItem(first, 'Команда участников', '/team', 2);
     menu.addSubItem(first, 'Команда советников', '/team2', 3);
-    menu.addSubItem(first, 'Новости', '/news', 4);
-    menu.addSubItem(first, 'Faq', '/faq', 5);
     menu.addSubItem(first, 'План', '/roadmap', 6);
 
+    menu.addItem('Новости', 'local_activity', '/news', 2);
+
+    menu.addItem('Faq', 'local_library', '/faq', 3);
     /*
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');
     menu.addItem('Chat', 'chat', '/apps/chat', 2, '14', '#E15C74');
