@@ -54,6 +54,7 @@ import { IndexRoadmapComponent } from '../custom/roadmap/index-roadmap/index-roa
 import { RoadmapService } from '../custom/roadmap/roadmap.service';
 import { FaqService } from '../custom/faq/faq.service';
 import { SortablejsModule } from 'angular-sortablejs';
+import { CustomQuillDirective } from './custom-quill.directive';
 
 @NgModule({
   imports: [
@@ -107,7 +108,8 @@ import { SortablejsModule } from 'angular-sortablejs';
     CreateFaqComponent,
     CreateRoadmapComponent,
     ShowRoadmapComponent,
-    IndexRoadmapComponent
+    IndexRoadmapComponent,
+    CustomQuillDirective
   ],
   providers: [
     SidenavService,

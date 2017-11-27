@@ -81,7 +81,8 @@
               <mat-tab label="RU">
                 <div fxLayout="column">
                   <div class="editor-container mat-elevation-z16">
-                    <quill-editor placeholder="Введите текст новости на русском языке" name="content_ru23" required [(ngModel)]="item.contents2.ru"></quill-editor>
+                    <quill-editor [modules]="appMemory.defaultModules.modules" #editorRu [msCustomQuill]="editorRu" placeholder="Введите текст новости на русском языке"
+                      name="content_ru23" required [(ngModel)]="item.contents2.ru"></quill-editor>
                   </div>
                 </div>
               </mat-tab>
@@ -89,7 +90,8 @@
               <mat-tab label="EN">
                 <div fxLayout="column">
                   <div class="editor-container mat-elevation-z16">
-                    <quill-editor placeholder="Введите текст новости на английском языке" name="content_en312" required [(ngModel)]="item.contents2.en"></quill-editor>
+                    <quill-editor [modules]="appMemory.defaultModules.modules" #editorEn [msCustomQuill]="editorEn" placeholder="Введите текст новости на английском языке"
+                      name="content_en312" required [(ngModel)]="item.contents2.en"></quill-editor>
                   </div>
                 </div>
               </mat-tab>

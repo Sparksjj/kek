@@ -14,6 +14,62 @@ export class AppMemoryService {
     currentUrl: ''
   };
 
+  public defaultModules = {
+    modules: {
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        // toggled buttons
+        ['blockquote', 'code-block'],
+        [{ header: 1 }, { header: 2 }],
+        // custom button values
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ script: 'sub' }, { script: 'super' }],
+        // superscript/subscript
+        [{ indent: '-1' }, { indent: '+1' }],
+        // outdent/indent
+        [{ direction: 'rtl' }],
+        // text direction
+        [{ size: ['small', false, 'large', 'huge'] }],
+        // custom dropdown
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        [{ color: [].slice() }, { background: [].slice() }],
+        // dropdown with defaults from theme
+        [{ font: [].slice() }],
+        [{ align: [].slice() }],
+        ['clean'],
+        // remove formatting button
+        ['link', 'image'], // link and image, video
+        ['sorce']
+      ]
+    },
+    modules2: {
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        // toggled buttons
+        ['blockquote', 'code-block'],
+        [{ header: 1 }, { header: 2 }],
+        // custom button values
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ script: 'sub' }, { script: 'super' }],
+        // superscript/subscript
+        [{ indent: '-1' }, { indent: '+1' }],
+        // outdent/indent
+        [{ direction: 'rtl' }],
+        // text direction
+        [{ size: ['small', false, 'large', 'huge'] }],
+        // custom dropdown
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        [{ color: [].slice() }, { background: [].slice() }],
+        // dropdown with defaults from theme
+        [{ font: [].slice() }],
+        [{ align: [].slice() }],
+        ['clean'],
+        // remove formatting button
+        ['link', 'image'], // link and image, video
+        ['sorce-2']
+      ]
+    }
+  };
   constructor(private snackBar: MatSnackBar, private router: Router) {
     this.router.events
       .filter(e => e instanceof NavigationEnd)

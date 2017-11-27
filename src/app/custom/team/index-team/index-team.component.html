@@ -22,8 +22,8 @@
             <tr>
               <th></th>
               <th>Id</th>
-              <th>Название</th>
-              <th>Время создания</th>
+              <th>Имя</th>
+              <th>Дата создания</th>
               <th>Удалить</th>
             </tr>
           </thead>
@@ -44,7 +44,7 @@
                 </td>
 
                 <td>
-                  {{item?.name}}
+                  {{item?.names?.ru}}
                   <a [routerLink]="[data.urls.show, item?.id]"></a>
                 </td>
 

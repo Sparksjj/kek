@@ -39,7 +39,10 @@ td {
 .ql-syntax {
   white-space: normal !important;
 }
-
+.ql-sorce:after,
+.ql-sorce-2:after {
+  content: '</>';
+}
 .ql-video,
 .ql-font.ql-picker,
 .no-image .ql-image {
