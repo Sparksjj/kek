@@ -38,13 +38,8 @@ export class CustomQuillDirective implements AfterViewInit {
     console.log(this.msCustomQuill);
   }
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.txtArea.value = this.msCustomQuill.quillEditor.container.children[0].innerHTML;
-      const htmlEditor = this.msCustomQuill.quillEditor.addContainer(
-        'ql-custom'
-      );
-      htmlEditor.appendChild(this.txtArea);
-    }, 1000);
+    const htmlEditor = this.msCustomQuill.quillEditor.addContainer('ql-custom');
+    htmlEditor.appendChild(this.txtArea);
   }
   @HostListener('click', ['$event'])
   onclick($event) {
@@ -57,6 +52,8 @@ export class CustomQuillDirective implements AfterViewInit {
       if (this.txtArea.style.display === '') {
         const html = this.txtArea.value;
         this.msCustomQuill.quillEditor.pasteHTML(html);
+      } else {
+        this.txtArea.value = this.msCustomQuill.quillEditor.container.children[0].innerHTML;
       }
       this.txtArea.style.display =
         this.txtArea.style.display === 'none' ? '' : 'none';
