@@ -16,6 +16,9 @@ export class AppMemoryService {
 
   public defaultModules = {
     modules: {
+      clipboard: {
+        matchVisual: false
+      },
       toolbar: [
         ['bold', 'italic', 'underline', 'strike'],
         // toggled buttons

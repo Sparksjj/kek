@@ -33,14 +33,53 @@ export class CustomQuillDirective implements AfterViewInit {
     /* 
     let htmlEditor = this.msCustomQuill.quillEditor.addContainer('ql-custom');
     htmlEditor.appendChild(this.txtArea); */
-
-    console.log(el);
-    console.log(this.msCustomQuill);
   }
   ngAfterViewInit() {
     const htmlEditor = this.msCustomQuill.quillEditor.addContainer('ql-custom');
     htmlEditor.appendChild(this.txtArea);
   }
+
+  private formatCode(
+    code: string,
+    stripWhiteSpaces?: any,
+    stripEmptyLines?: any
+  ): string {
+    const whitespace = ' '.repeat(2);
+    let currentIndent = 0;
+    let char: any = null;
+    let nextChar = null;
+
+    let result = '';
+    for (let pos = 0; pos <= code.length; pos++) {
+      char = code.substr(pos, 1);
+      nextChar = code.substr(pos + 1, 1);
+
+      if (char === '<' && nextChar !== '/' && pos) {
+        result += '\n' + whitespace.repeat(currentIndent);
+        currentIndent++;
+      } else if (char === '<' && nextChar === '/') {
+        if (--currentIndent < 0) {
+          currentIndent = 0;
+        }
+        result += '\n' + whitespace.repeat(currentIndent);
+      } else if (
+        stripWhiteSpaces === true &&
+        char === ' ' &&
+        nextChar === ' '
+      ) {
+        char = '';
+      } else if (stripEmptyLines === true && char === '\n') {
+        if (code.substr(pos, code.substr(pos).indexOf('<')).trim() === '') {
+          char = '';
+        }
+      }
+
+      result += char;
+    }
+
+    return result;
+  }
+
   @HostListener('click', ['$event'])
   onclick($event) {
     $event.preventDefault();
@@ -53,7 +92,11 @@ export class CustomQuillDirective implements AfterViewInit {
         const html = this.txtArea.value;
         this.msCustomQuill.quillEditor.pasteHTML(html);
       } else {
-        this.txtArea.value = this.msCustomQuill.quillEditor.container.children[0].innerHTML;
+        this.txtArea.value = this.formatCode(
+          this.msCustomQuill.quillEditor.container.children[0].innerHTML,
+          false,
+          false
+        );
       }
       this.txtArea.style.display =
         this.txtArea.style.display === 'none' ? '' : 'none';
