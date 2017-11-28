@@ -1,3 +1,4 @@
+import { AuthenticatedHttpService } from './../auth/auth-http.service';
 import { AppMemoryService } from './app-memory.service';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationService } from './pagination/pagination.service';
@@ -124,7 +125,7 @@ import { CustomQuillDirective } from './custom-quill.directive';
     AppService,
     MediaReplayService,
     BreadcrumbService,
-    Http,
+    { provide: Http, useClass: AuthenticatedHttpService },
     ApplicationHttpClient,
     AppMemoryService,
     TeamService,
