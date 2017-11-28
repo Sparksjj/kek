@@ -1,3 +1,4 @@
+import { SortablejsOptions } from 'angular-sortablejs';
 import { Team } from './../../../core/classes/team';
 import { AppMemoryService } from './../../../core/app-memory.service';
 import { routeAnimation } from './../../../route.animation';
@@ -30,9 +31,16 @@ export class IndexTeamComponent implements OnInit, OnDestroy {
     type: 'team_member'
   };
 
+  simpleOptions: SortablejsOptions = {
+    animation: 300,
+    onUpdate: (event: any) => {
+      this.changeOrder();
+    }
+  };
+
   constructor(
     private http: ApplicationHttpClient,
-    private data: TeamService,
+    public data: TeamService,
     private activatedRoute: ActivatedRoute,
     private appMemory: AppMemoryService,
     private router: Router
@@ -45,6 +53,24 @@ export class IndexTeamComponent implements OnInit, OnDestroy {
       this.load = true;
       this.getItems();
     });
+  }
+  changeOrder() {
+    const data = [];
+    const formData: FormData = new FormData();
+
+    this.items.forEach((el, i) => {
+      formData.append('data[' + el.id + ']', '' + (i + 1));
+    });
+
+    this.http.Post(this.data.urls.api + '-order', formData).subscribe(
+      res => {
+        /*
+        this.appMemory.openSimpleSnackbar(); */
+      },
+      err => {
+        this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
+      }
+    );
   }
   getItems() {
     this.error = '';

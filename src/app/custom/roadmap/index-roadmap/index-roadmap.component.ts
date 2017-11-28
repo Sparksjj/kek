@@ -45,7 +45,7 @@ export class IndexRoadmapComponent implements OnInit, OnDestroy {
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: RoadmapService,
+    public data: RoadmapService,
     private activatedRoute: ActivatedRoute,
     private appMemory: AppMemoryService,
     private router: Router

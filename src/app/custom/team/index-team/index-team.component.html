@@ -27,7 +27,7 @@
               <th>Удалить</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody [sortablejs]="items" [sortablejsOptions]="simpleOptions">
 
 
             <ng-template ngFor let-item [ngForOf]="items">
