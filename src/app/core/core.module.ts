@@ -1,4 +1,7 @@
-import { AuthenticatedHttpService } from './../auth/auth-http.service';
+import {
+  AuthenticatedHttpService,
+  ServerLocationInterceptor
+} from './../auth/auth-http.service';
 import { AppMemoryService } from './app-memory.service';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationService } from './pagination/pagination.service';
@@ -28,7 +31,12 @@ import { ScrollbarModule } from './scrollbar/scrollbar.module';
 import { ApplicationHttpClient } from './http-client';
 import { TextMaskModule } from 'angular2-text-mask';
 import { HttpModule, Http } from '@angular/http';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HttpClient,
+  HttpInterceptor,
+  HTTP_INTERCEPTORS
+} from '@angular/common/http';
 import { Parse422Component } from '../custom/parse422/parse422.component';
 import { ForObjPipe } from './for-obj.pipe';
 import { HomeComponent } from '../custom/home/home.component';
@@ -125,13 +133,18 @@ import { CustomQuillDirective } from './custom-quill.directive';
     AppService,
     MediaReplayService,
     BreadcrumbService,
-    { provide: Http, useClass: AuthenticatedHttpService },
     ApplicationHttpClient,
     AppMemoryService,
     TeamService,
     Team2Service,
     NewsService,
     RoadmapService,
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerLocationInterceptor,
+      multi: true
+    },
     FaqService
   ]
 })
