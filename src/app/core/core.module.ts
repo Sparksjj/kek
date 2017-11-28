@@ -1,7 +1,4 @@
-import {
-  AuthenticatedHttpService,
-  ServerLocationInterceptor
-} from './../auth/auth-http.service';
+import { ServerLocationInterceptor } from './../auth/auth-http.service';
 import { AppMemoryService } from './app-memory.service';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationService } from './pagination/pagination.service';
@@ -139,7 +136,6 @@ import { CustomQuillDirective } from './custom-quill.directive';
     Team2Service,
     NewsService,
     RoadmapService,
-
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerLocationInterceptor,
