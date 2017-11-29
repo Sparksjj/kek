@@ -29,7 +29,7 @@
               <th>Удалить</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody [sortablejs]="items" [sortablejsOptions]="simpleOptions">
 
 
             <ng-template ngFor let-item [ngForOf]="items">
@@ -89,13 +89,7 @@
           </tbody>
         </table>
 
-        <pagination [lastPage]="paginationInfo?.last_page" [currentPage]="paginationInfo?.current_page" [total]="paginationInfo?.total"
-          [type]="data.urls.show" [query]="currentQuery" [perPage]="paginationInfo?.per_page" [showNavigation]="true" *ngIf="paginationInfo?.last_page && paginationInfo?.current_page && paginationInfo?.last_page > 1">
-        </pagination>
-
       </mat-card-content>
-
-      <ms-loading-overlay [isLoading]="loadUpdate"></ms-loading-overlay>
     </mat-card>
   </div>
 </div>
