@@ -41,7 +41,7 @@ export class ShowTeam2Component implements OnInit, OnDestroy {
     private http: ApplicationHttpClient,
     private data: Team2Service,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
   ) {}
 
