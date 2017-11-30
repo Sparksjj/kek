@@ -8,7 +8,24 @@
 @import 'styles/_inbox.scss';
 @import 'styles/_calendar.scss';
 @import 'styles/_misc.scss';
-
+.sorded_tr {
+  cursor: pointer;
+  position: relative;
+  th {
+    cursor: pointer;
+    position: relative;
+    .sort_icon {
+      position: absolute;
+      right: 0;
+      height: 16px;
+      top: 6px;
+    }
+    &.selected {
+      font-weight: bold;
+      color: #444;
+    }
+  }
+}
 .err_top {
   text-align: center;
   padding: 10px;

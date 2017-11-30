@@ -1,0 +1,173 @@
+<ms-loading *ngIf="load"></ms-loading>
+
+<div class="err_top" style="text-align: center" *ngIf="error && !load">
+  {{error}}
+</div>
+
+<div fxLayout="column" *ngIf="!load">
+  <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
+    <mat-card fxFlex>
+      <mat-card-title>
+        <span *ngIf="items?.length > 0; else no_items">Все {{data.names.ru2}}
+          <button type="button" mat-raised-button color="primary" [disabled]="loadUploading" (click)="uploading({export: 'pdf'})">Pdf</button>
+          <button type="button" mat-raised-button color="primary" [disabled]="loadUploading" (click)="uploading({export: 'xls'})">Xls</button>
+        </span>
+        <ng-template #no_items>Нет {{data.names.ru3}}</ng-template>
+      </mat-card-title>
+
+      <mat-divider *ngIf="items?.length > 0"></mat-divider>
+
+      <mat-card-content fxLayout="row" fxLayoutWrap fxLayoutAlign="space-around stretch" style="margin-top: 30px">
+
+        <table class="table table-hover table-striped table-condensed table-bordered" *ngIf="items?.length > 0">
+          <thead>
+
+            <tr class="sorded_tr">
+
+              <th (click)="sort('id')" [ngClass]="{'selected': currentQuery.sort.indexOf('id') == 0}">
+                Id
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('id') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('country')" [ngClass]="{'selected': currentQuery.sort.indexOf('country') == 0}">
+                Страна
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('country') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('email')" [ngClass]="{'selected': currentQuery.sort.indexOf('email') == 0}">
+                Email
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('email') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('name')" [ngClass]="{'selected': currentQuery.sort.indexOf('name') == 0}">
+                Имя
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('name') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('language')" [ngClass]="{'selected': currentQuery.sort.indexOf('language') == 0}">
+                Язык
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('language') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('utm_campaign')" [ngClass]="{'selected': currentQuery.sort.indexOf('utm_campaign') == 0}">
+                campaign
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('utm_campaign') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('utm_content')" [ngClass]="{'selected': currentQuery.sort.indexOf('utm_content') == 0}">
+                content
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('utm_content') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('utm_medium')" [ngClass]="{'selected': currentQuery.sort.indexOf('utm_medium') == 0}">
+                medium
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('utm_medium') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('utm_source')" [ngClass]="{'selected': currentQuery.sort.indexOf('utm_source') == 0}">
+                source
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('utm_source') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('verified')" [ngClass]="{'selected': currentQuery.sort.indexOf('verified') == 0}">
+                Подтвержденный
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('verified') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('created_at')" [ngClass]="{'selected': currentQuery.sort.indexOf('created_at') == 0}">
+                Дата создания
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('created_at') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+            </tr>
+
+          </thead>
+          <tbody>
+
+            <ng-template ngFor let-item [ngForOf]="items">
+
+              <tr style="cursor: pointer; position: relative">
+
+                <td>
+                  {{item?.id}}
+                </td>
+
+                <td>
+                  {{item?.country || '-'}}
+                </td>
+
+                <td>
+                  {{item?.email || '-'}}
+                </td>
+
+                <td>
+                  {{item?.name || '-'}}
+                </td>
+
+                <td>
+                  {{item?.language || '-'}}
+                </td>
+
+                <td>
+                  {{item?.utm_campaign || '-'}}
+                </td>
+
+                <td>
+                  {{item?.utm_content || '-'}}
+                </td>
+
+                <td>
+                  {{item?.utm_medium || '-'}}
+                </td>
+
+                <td>
+                  {{item?.utm_source || '-'}}
+                </td>
+
+                <td>
+                  <mat-icon [color]="item?.verified ? 'primary' : 'warn'">
+                    {{item?.verified ? 'check_circle' : 'close'}}
+                  </mat-icon>
+                </td>
+
+                <td>
+                  {{item?.created_at || '-'}}
+                </td>
+
+              </tr>
+
+            </ng-template>
+
+          </tbody>
+        </table>
+
+        <pagination [lastPage]="paginationInfo.last_page" [currentPage]="paginationInfo?.current_page" [total]="paginationInfo?.total"
+          [type]="data.urls.show" [query]="currentQuery" [perPage]="paginationInfo?.per_page" [showNavigation]="true" *ngIf="paginationInfo?.last_page && paginationInfo?.current_page && paginationInfo?.last_page > 1">
+        </pagination>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,3 +1,6 @@
+import { UnloadingService } from './unloading.service';
+import { EmailService } from './../custom/email/email.service';
+import { IndexEmailComponent } from './../custom/email/index-email/index-email.component';
 import { ServerLocationInterceptor } from './../auth/auth-http.service';
 import { AppMemoryService } from './app-memory.service';
 import { PaginationComponent } from './pagination/pagination.component';
@@ -122,7 +125,8 @@ import { CustomQuillDirective } from './custom-quill.directive';
     CreateRoadmapComponent,
     ShowRoadmapComponent,
     IndexRoadmapComponent,
-    CustomQuillDirective
+    CustomQuillDirective,
+    IndexEmailComponent
   ],
   providers: [
     SidenavService,
@@ -135,6 +139,8 @@ import { CustomQuillDirective } from './custom-quill.directive';
     TeamService,
     Team2Service,
     NewsService,
+    EmailService,
+    UnloadingService,
     RoadmapService,
     {
       provide: HTTP_INTERCEPTORS,

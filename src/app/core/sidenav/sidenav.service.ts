@@ -35,6 +35,7 @@ export class SidenavService {
     menu.addItem('Новости', 'local_activity', '/news', 2);
 
     menu.addItem('Faq', 'local_library', '/faq', 3);
+    menu.addItem('Подписки', 'add_alert', '/email', 4);
     /*
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');
     menu.addItem('Chat', 'chat', '/apps/chat', 2, '14', '#E15C74');

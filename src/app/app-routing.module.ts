@@ -1,3 +1,4 @@
+import { IndexEmailComponent } from './custom/email/index-email/index-email.component';
 import { IndexFaqComponent } from './custom/faq/index-faq/index-faq.component';
 import { CreateFaqComponent } from './custom/faq/create-faq/create-faq.component';
 import { ShowFaqComponent } from './custom/faq/show-faq/show-faq.component';
@@ -130,6 +131,11 @@ const routes: Routes = [
       {
         path: 'faq/:id',
         component: ShowFaqComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'email',
+        component: IndexEmailComponent,
         pathMatch: 'full'
       }
     ]
