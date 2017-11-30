@@ -28,7 +28,9 @@ td {
     padding: 10px;
   }
 }
-
+.mat-icon {
+  -webkit-text-fill-color: currentColor; // fix icons color bug in safari
+}
 .err_border {
   border: 1px solid red;
 }
