@@ -26,16 +26,92 @@ export class SidenavService {
     const menu = this;
 
     // menu.addItem('Dashboard', 'dashboard', '/', 1);
-    let first = menu.addItem('Главная страница', 'layers', null, 1);
-    menu.addSubItem(first, 'Приложения', '/app', 1);
-    menu.addSubItem(first, 'Команда участников', '/team', 2);
-    menu.addSubItem(first, 'Команда советников', '/team2', 3);
-    menu.addSubItem(first, 'План', '/roadmap', 6);
+    const first = menu.addItem(
+      'Главная страница',
+      'layers',
+      null,
+      1,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.team', 'admin.app', 'admin.roadmap']
+    );
+    menu.addSubItem(
+      first,
+      'Приложения',
+      '/app',
+      'contacts',
+      1,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.app']
+    );
+    menu.addSubItem(
+      first,
+      'Команда участников',
+      'contacts',
+      '/team',
+      2,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.team']
+    );
+    menu.addSubItem(
+      first,
+      'Команда советников',
+      'contacts',
+      '/team2',
+      3,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.team']
+    );
+    menu.addSubItem(
+      first,
+      'План',
+      'contacts',
+      '/roadmap',
+      6,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.roadmap']
+    );
 
-    menu.addItem('Новости', 'local_activity', '/news', 2);
+    menu.addItem(
+      'Новости',
+      'local_activity',
+      '/news',
+      2,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.news']
+    );
 
-    menu.addItem('Faq', 'local_library', '/faq', 3);
-    menu.addItem('Подписки', 'add_alert', '/email', 4);
+    menu.addItem(
+      'Faq',
+      'local_library',
+      '/faq',
+      3,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.faq']
+    );
+    menu.addItem(
+      'Подписки',
+      'add_alert',
+      '/email',
+      4,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.email-list']
+    );
     /*
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');
     menu.addItem('Chat', 'chat', '/apps/chat', 2, '14', '#E15C74');
@@ -146,11 +222,13 @@ export class SidenavService {
     position: number,
     badge?: string,
     badgeColor?: string,
-    customClass?: string
+    customClass?: string,
+    permission?: string[]
   ) {
     const item = new SidenavItem({
       name: name,
       icon: icon,
+      permission: permission,
       route: route,
       subItems: [],
       position: position || 99,
@@ -165,9 +243,20 @@ export class SidenavService {
     return item;
   }
 
-  addSubItem(parent: SidenavItem, name: string, route: any, position: number) {
+  addSubItem(
+    parent: SidenavItem,
+    name: string,
+    icon: string,
+    route: any,
+    position: number,
+    badge?: string,
+    badgeColor?: string,
+    customClass?: string,
+    permission?: string[]
+  ) {
     const item = new SidenavItem({
       name: name,
+      permission: permission,
       route: route,
       parent: parent,
       subItems: [],

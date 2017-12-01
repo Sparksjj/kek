@@ -7,12 +7,14 @@ export class SidenavItem {
   position: number;
   badge: string;
   badgeColor: string;
+  permission: string[];
   customClass: string;
 
   constructor(model: any = null) {
     if (model) {
       this.name = model.name;
       this.icon = model.icon;
+      this.permission = model.permission;
       this.route = model.route;
       this.parent = model.parent;
       this.subItems = this.mapSubItems(model.subItems);

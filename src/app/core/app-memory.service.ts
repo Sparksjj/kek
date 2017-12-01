@@ -11,6 +11,7 @@ import 'rxjs/add/operator/pairwise';
 @Injectable()
 export class AppMemoryService {
   public userSubject = new BehaviorSubject(null);
+  public roles: any = {};
   public user: User | null;
   public urls = {
     previousUrl: {
@@ -124,11 +125,15 @@ export class AppMemoryService {
     });
   }
   getUser() {
+    this.roles = {};
     if (this.authService.isLoggedIn) {
-      this.http.Get('users/self', {}).subscribe(
+      this.http.Get('admin/user/self', {}).subscribe(
         (res: any) => {
           console.log(res);
           this.user = res;
+          this.user.roles.forEach(el => {
+            this.roles[el.name] = true;
+          });
           this.userSubject.next(null);
         },
         (err: any) => {
