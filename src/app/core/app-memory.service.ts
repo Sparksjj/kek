@@ -1,3 +1,7 @@
+import { User } from './classes/user';
+import { ApplicationHttpClient } from './http-client';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { AuthService } from './../auth/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
@@ -6,6 +10,8 @@ import 'rxjs/add/operator/pairwise';
 
 @Injectable()
 export class AppMemoryService {
+  public userSubject = new BehaviorSubject(null);
+  public user: User | null;
   public urls = {
     previousUrl: {
       url: '',
@@ -73,7 +79,20 @@ export class AppMemoryService {
       ]
     }
   };
-  constructor(private snackBar: MatSnackBar, private router: Router) {
+  constructor(
+    protected http: ApplicationHttpClient,
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {
+    this.getUser();
+    authService.changeLoginSubject.subscribe((islogged: any) => {
+      if (islogged === null) {
+        return;
+      }
+      this.getUser();
+    });
+
     this.router.events
       .filter(e => e instanceof NavigationEnd)
       .pairwise()
@@ -103,5 +122,24 @@ export class AppMemoryService {
     this.snackBar.open(text, action, {
       duration: duration
     });
+  }
+  getUser() {
+    if (this.authService.isLoggedIn) {
+      this.http.Get('users/self', {}).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.user = res;
+          this.userSubject.next(null);
+        },
+        (err: any) => {
+          console.log(err);
+          this.user = null;
+          this.userSubject.next(null);
+        }
+      );
+    } else {
+      this.user = null;
+      this.userSubject.next(null);
+    }
   }
 }

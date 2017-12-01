@@ -1,3 +1,4 @@
+import { SocketService } from './socket.service';
 import { UnloadingService } from './unloading.service';
 import { EmailService } from './../custom/email/email.service';
 import { IndexEmailComponent } from './../custom/email/index-email/index-email.component';
@@ -141,6 +142,7 @@ import { CustomQuillDirective } from './custom-quill.directive';
     NewsService,
     EmailService,
     UnloadingService,
+    SocketService,
     RoadmapService,
     {
       provide: HTTP_INTERCEPTORS,

@@ -10,6 +10,7 @@ import {
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { concat } from 'rxjs/operator/concat';
 
 export interface IRequestOptions {
   headers?: HttpHeaders;

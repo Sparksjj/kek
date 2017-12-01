@@ -6,5 +6,7 @@
 export const environment = {
   production: false,
   googleApi: '',
-  api: 'https://iqeon.stage.farm/api/v1/'
+  api: 'https://iqeon.stage.farm/api/v1/',
+  socketUrl: 'http://iqeon.stage.farm',
+  socketPort: ':6001'
 };

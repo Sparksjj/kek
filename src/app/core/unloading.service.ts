@@ -1,5 +1,5 @@
+import { SocketService } from './socket.service';
 import { ApplicationHttpClient } from './http-client';
-/* import { SocetService } from './../PushServices/socet.service'; */
 import { Injectable } from '@angular/core';
 import { AppMemoryService } from './app-memory.service';
 
@@ -7,27 +7,28 @@ import { AppMemoryService } from './app-memory.service';
 export class UnloadingService {
   constructor(
     protected http: ApplicationHttpClient,
-    /* private socetService: SocetService, */
+    private socketService: SocketService,
     public appMemory: AppMemoryService
   ) {}
 
   public exportAsFile(url: string, query: any) {
-    const sub = this.http.Get(url, query);
-    sub.subscribe(
-      res => {
-        this.appMemory.openSimpleSnackbar(
-          'Отчет в процессе генерации, скачка файла начнется автоматически.'
-        );
-      },
-      err => {
-        this.appMemory.openSimpleSnackbar(err.statusText);
-      }
-    );
-    return sub;
+    return this.http
+      .Get(url, { params: query })
+      .toPromise()
+      .then(
+        res => {
+          this.appMemory.openSimpleSnackbar(
+            'Отчет в процессе генерации, скачка файла начнется автоматически.'
+          );
+        },
+        err => {
+          this.appMemory.openSimpleSnackbar(err.statusText);
+        }
+      );
   }
 
-  /*   subscribeUrlPush() {
-    this.socetService.UserPush().subscribe((data: any) => {
+  subscribeUrlPush() {
+    this.socketService.UserPush().subscribe((data: any) => {
       if (data.data && data.data.export && data.data.src) {
         const link = document.createElement('a');
         link.href = data.data.src;
@@ -36,5 +37,5 @@ export class UnloadingService {
         link.remove();
       }
     });
-  } */
+  }
 }
