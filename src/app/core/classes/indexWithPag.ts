@@ -12,10 +12,15 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
   public load = true;
   public error: string;
   public sub: Subscription;
+  public today = new Date();
+  public end = new Date();
+  public minDate = new Date();
   public currentQuery = {
     page: 1,
     sort: 'id-asc',
-    count: 20
+    count: 20,
+    dateFrom: undefined,
+    dateTo: undefined
   };
 
   constructor(
@@ -30,6 +35,8 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
     this.sub = this.activatedRoute.queryParams.subscribe((params: any) => {
       this.currentQuery.page = params['page'] || 1;
       this.currentQuery.sort = params['sort'] || 'id-asc';
+      this.currentQuery.dateFrom = params['dateFrom'];
+      this.currentQuery.dateTo = params['dateTo'];
       this.load = true;
       this.getItems();
     });

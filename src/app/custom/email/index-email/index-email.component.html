@@ -7,6 +7,34 @@
 <div fxLayout="column" *ngIf="!load">
   <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
     <mat-card fxFlex>
+
+      <div style="text-align: right; width: 100%; height: 4px; font-size: 12px">
+        <mat-input-container style="margin-right: 15px">
+          <input matInput [(ngModel)]="currentQuery.dateFrom" placeholder="Показать от:" [max-date]="minDate" date-only="true" (valueChanged)="currentQuery.page = 1; refresh()"
+            ngui-datetime-picker/>
+          <mat-icon matPrefix class="pointer" style="padding-right: 5px; position: relative;
+          top: 4px;">
+            today
+          </mat-icon>
+          <mat-icon class="pointer" style="position: relative; top: 4px;" matSuffix *ngIf="currentQuery.dateFrom" (click)="currentQuery.dateFrom = undefined; currentQuery.page = 1; refresh()">
+            clear
+          </mat-icon>
+        </mat-input-container>
+
+        <mat-input-container style="margin-right: 15px">
+          <input matInput [(ngModel)]="currentQuery.dateTo" placeholder="Показать до:" [min-date]="currentQuery.dateFrom" date-only="true"
+            (valueChanged)="currentQuery.page = 1; refresh()" ngui-datetime-picker/>
+          <mat-icon matPrefix class="pointer" style="padding-right: 5px; position: relative;
+          top: 4px;">
+            today
+          </mat-icon>
+          <mat-icon style="position: relative; top: 4px;" class="pointer" matSuffix *ngIf="currentQuery.dateTo" (click)="currentQuery.dateTo = undefined; currentQuery.page = 1; refresh()">
+            clear
+          </mat-icon>
+        </mat-input-container>
+      </div>
+
+
       <mat-card-title>
         <span *ngIf="items?.length > 0; else no_items">Все {{data.names.ru2}}
           <button type="button" mat-raised-button color="primary" [disabled]="loadUploading" (click)="uploading({export: 'xls'})">Xls</button>

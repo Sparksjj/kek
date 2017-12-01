@@ -41,11 +41,13 @@ export class IndexEmailComponent extends IndexWithPagComponent<Email> {
         }
       );
     }
+    this.refresh();
+  }
+  refresh() {
     this.router.navigate([this.data.urls.index], {
       queryParams: this.currentQuery
     });
   }
-
   uploading(qyery: any) {
     this.loadUploading = true;
     this.unloadingService.exportAsFile(this.data.urls.api, qyery).then(

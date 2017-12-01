@@ -8,6 +8,41 @@
 @import 'styles/_inbox.scss';
 @import 'styles/_calendar.scss';
 @import 'styles/_misc.scss';
+.pointer {
+  cursor: pointer;
+}
+.date-inline {
+  position: relative;
+  top: -5px;
+  margin-left: 10px;
+}
+table .mat-icon-button {
+  line-height: 23px;
+}
+table button.mat-icon-button {
+  height: 19px;
+}
+.ngui-datetime-picker .select-current-time {
+  display: none;
+}
+.mat-input-wrapper {
+  margin-bottom: 0 !important;
+}
+.ngui-datetime-picker .select-current-time {
+  top: 7px !important;
+}
+.ngui-datetime-picker {
+  text-align: left !important;
+
+  .month span {
+    vertical-align: middle;
+  }
+
+  .month .prev_next {
+    line-height: 1 !important;
+  }
+}
+
 .sorded_tr {
   cursor: pointer;
   position: relative;
