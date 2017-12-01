@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
           this.authService.login(res.access_token, true);
-          this.router.navigate([''], {});
+          this.router.navigate(['/home'], {});
         },
         err => {
           console.log(err);

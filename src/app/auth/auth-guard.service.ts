@@ -40,7 +40,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   checkLogin(url: string): boolean {
     if (this.authService.isLoggedIn && !this.authService.isGuest) {
       if (url == '/login') {
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/home');
         return false;
       }
       return true;

@@ -49,6 +49,11 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'home',
+        component: HomeComponent,
+        pathMatch: 'full'
+      },
+      {
         path: 'newApp',
         component: CreateAppComponent,
         pathMatch: 'full'
