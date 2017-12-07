@@ -77,24 +77,19 @@
 
           <div class="demo-tabs mat-elevation-z2 tabs3" style="margin-bottom: 40px" [ngClass]="{'err_border': newItemForm.submitted && !item.contents2.ru}">
 
-            <mat-tab-group (selectChange)="focusInput('.tabs3 .ql-editor')">
-              <mat-tab label="RU">
-                <div fxLayout="column">
-                  <div class="editor-container mat-elevation-z16">
-                    <quill-editor [modules]="appMemory.defaultModules.modules" #editorRu [msCustomQuill]="editorRu" placeholder="Введите текст новости на русском языке"
-                      name="content_ru23" required [(ngModel)]="item.contents2.ru"></quill-editor>
-                  </div>
-                </div>
-              </mat-tab>
+            <mat-tab-group (selectChange)="focusInput('.tabs3 .ql-editor'); tabActive = $event.index">
 
-              <mat-tab label="EN">
-                <div fxLayout="column">
-                  <div class="editor-container mat-elevation-z16">
-                    <quill-editor [modules]="appMemory.defaultModules.modules" #editorEn [msCustomQuill]="editorEn" placeholder="Введите текст новости на английском языке"
-                      name="content_en312" required [(ngModel)]="item.contents2.en"></quill-editor>
+              <ng-container *ngFor="let tab of tabs; let i = index">
+                <mat-tab label="{{tabs[i].toUpperCase()}}">
+                  <div fxLayout="column">
+                    <div class="editor-container mat-elevation-z16">
+                      <quill-editor [modules]="appMemory.defaultModules.modules" #editor [msCustomQuill]="editor" [placeholder]="'Введите текст новости на ' + tabs[i] + ' языке'"
+                        name="{{'content_' + tabs[i]}}" required [(ngModel)]="item.contents2[tabs[i]]" *ngIf="i === tabActive"></quill-editor>
+                    </div>
                   </div>
-                </div>
-              </mat-tab>
+                </mat-tab>
+              </ng-container>
+
             </mat-tab-group>
           </div>
 

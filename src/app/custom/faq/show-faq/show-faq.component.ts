@@ -1,18 +1,19 @@
-import { Faq, Contents } from './../../../core/classes/faq';
-import { routeAnimation } from './../../../route.animation';
-import { AppMemoryService } from './../../../core/app-memory.service';
-import { FaqService } from './../faq.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
   Component,
+  OnDestroy,
   OnInit,
   ViewChild,
-  OnDestroy,
   ViewChildren
 } from '@angular/core';
+import { Contents, Faq } from './../../../core/classes/faq';
+import { Subject, Subscription } from 'rxjs';
+
+import { AppMemoryService } from './../../../core/app-memory.service';
 import { ApplicationHttpClient } from './../../../core/http-client';
-import { Router, Params, ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Subscription, Subject } from 'rxjs';
+import { FaqService } from './../faq.service';
+import { routeAnimation } from './../../../route.animation';
 declare var $: any;
 
 @Component({
@@ -36,6 +37,9 @@ export class ShowFaqComponent implements OnInit, OnDestroy {
   public id: string | number;
   public load = true;
   public imgErr = false;
+
+  tabs = ['ru', 'en'];
+  tabActive = 0;
 
   constructor(
     private http: ApplicationHttpClient,

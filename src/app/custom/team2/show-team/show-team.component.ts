@@ -1,18 +1,20 @@
-import { Team } from './../../../core/classes/team';
-import { routeAnimation } from './../../../route.animation';
-import { AppMemoryService } from './../../../core/app-memory.service';
-import { Team2Service } from './../team.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
   Component,
+  OnDestroy,
   OnInit,
   ViewChild,
-  OnDestroy,
   ViewChildren
 } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+
+import { AppMemoryService } from './../../../core/app-memory.service';
 import { ApplicationHttpClient } from './../../../core/http-client';
-import { Router, Params, ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Subscription, Subject } from 'rxjs';
+import { Team } from './../../../core/classes/team';
+import { Team2Service } from './../team.service';
+import { routeAnimation } from './../../../route.animation';
+
 declare var $: any;
 
 @Component({
@@ -36,6 +38,9 @@ export class ShowTeam2Component implements OnInit, OnDestroy {
   public id: string | number;
   public load = true;
   public imgErr = false;
+
+  tabs = ['ru', 'en'];
+  tabActive = 0;
 
   constructor(
     private http: ApplicationHttpClient,
@@ -112,6 +117,7 @@ export class ShowTeam2Component implements OnInit, OnDestroy {
       .Post(this.data.urls.api + '/' + this.item.id + '/image', formData)
       .subscribe(
         res => {
+          this.tabActive = 0;
           this.load = false;
           this.appMemory.openSimpleSnackbar();
         },

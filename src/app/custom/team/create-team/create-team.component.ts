@@ -1,18 +1,19 @@
-import { Team } from './../../../core/classes/team';
-import { routeAnimation } from './../../../route.animation';
-import { AppMemoryService } from './../../../core/app-memory.service';
-import { TeamService } from './../team.service';
-
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
   Component,
+  OnDestroy,
   OnInit,
   ViewChild,
-  OnDestroy,
   ViewChildren
 } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+
+import { AppMemoryService } from './../../../core/app-memory.service';
 import { ApplicationHttpClient } from './../../../core/http-client';
-import { Router, Params, ActivatedRoute } from '@angular/router';
-import { Subscription, Subject } from 'rxjs';
+import { Team } from './../../../core/classes/team';
+import { TeamService } from './../team.service';
+import { routeAnimation } from './../../../route.animation';
+
 declare var $: any;
 
 @Component({
@@ -36,6 +37,9 @@ export class CreateTeamComponent implements OnInit {
   public id: string | number;
   public load = false;
   public imgErr = false;
+
+  tabs = ['ru', 'en'];
+  tabActive = 0;
 
   constructor(
     private http: ApplicationHttpClient,

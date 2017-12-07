@@ -1,17 +1,19 @@
-import { Faq } from './../../../core/classes/faq';
-import { routeAnimation } from './../../../route.animation';
-import { AppMemoryService } from './../../../core/app-memory.service';
-import { FaqService } from './../faq.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
   Component,
+  OnDestroy,
   OnInit,
   ViewChild,
-  OnDestroy,
   ViewChildren
 } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+
+import { AppMemoryService } from './../../../core/app-memory.service';
 import { ApplicationHttpClient } from './../../../core/http-client';
-import { Router, Params, ActivatedRoute } from '@angular/router';
-import { Subscription, Subject } from 'rxjs';
+import { Faq } from './../../../core/classes/faq';
+import { FaqService } from './../faq.service';
+import { routeAnimation } from './../../../route.animation';
+
 declare var $: any;
 
 @Component({
@@ -35,6 +37,9 @@ export class CreateFaqComponent implements OnInit {
   public id: string | number;
   public load = false;
   public imgErr = false;
+
+  tabs = ['ru', 'en'];
+  tabActive = 0;
 
   constructor(
     private http: ApplicationHttpClient,
@@ -63,6 +68,7 @@ export class CreateFaqComponent implements OnInit {
     this.load = true;
     this.http.Post(this.data.urls.api, formData).subscribe(
       res => {
+        this.tabActive = 0;
         this.load = false;
         this.router.navigate([this.data.urls.index]);
         this.appMemory.openSimpleSnackbar();

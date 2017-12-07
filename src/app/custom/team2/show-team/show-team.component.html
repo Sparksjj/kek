@@ -74,25 +74,19 @@
           <mat-card-title [ngClass]="{'err_color': newItemForm.submitted && (!item.posts.ru || !item.posts.en)}">Пост</mat-card-title>
 
           <div class="demo-tabs mat-elevation-z2 tabs2" [ngClass]="{'err_border': newItemForm.submitted && !item.posts.ru}" style="margin-bottom: 40px">
-            <mat-tab-group (selectChange)="focusInput('.tabs2 .ql-editor')">
 
-              <mat-tab label="RU">
-                <div fxLayout="column">
-                  <div class="editor-container mat-elevation-z16">
-                    <quill-editor [modules]="appMemory.defaultModules.modules" #editorRu [msCustomQuill]="editorRu" placeholder="Введите текст на русском языке"
-                      name="content_ru2543" required [(ngModel)]="item.posts.ru"></quill-editor>
-                  </div>
-                </div>
-              </mat-tab>
+            <mat-tab-group (selectChange)="focusInput('.tabs2 .ql-editor'); tabActive = $event.index">
 
-              <mat-tab label="EN">
-                <div fxLayout="column">
-                  <div class="editor-container mat-elevation-z16">
-                    <quill-editor [modules]="appMemory.defaultModules.modules" #editorEn [msCustomQuill]="editorEn" placeholder="Введите текст на английском языке"
-                      name="content_en312312" required [(ngModel)]="item.posts.en"></quill-editor>
+              <ng-container *ngFor="let tab of tabs; let i = index">
+                <mat-tab label="{{tabs[i].toUpperCase()}}">
+                  <div fxLayout="column">
+                    <div class="editor-container mat-elevation-z16">
+                      <quill-editor [modules]="appMemory.defaultModules.modules" #editor [msCustomQuill]="editor" [placeholder]="'Введите текст на ' + tabs[i] + ' языке'"
+                        name="{{'content_' + tabs[i]}}" required [(ngModel)]="item.posts[tabs[i]]" *ngIf="i === tabActive"></quill-editor>
+                    </div>
                   </div>
-                </div>
-              </mat-tab>
+                </mat-tab>
+              </ng-container>
 
             </mat-tab-group>
           </div>

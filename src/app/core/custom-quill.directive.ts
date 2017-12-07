@@ -1,9 +1,9 @@
 import {
+  AfterViewInit,
   Directive,
   ElementRef,
-  Input,
-  AfterViewInit,
-  HostListener
+  HostListener,
+  Input
 } from '@angular/core';
 
 @Directive({
@@ -28,9 +28,10 @@ export class CustomQuillDirective implements AfterViewInit {
     position: absolute;
     top: 0;bottom: 0;
     border: none;
+    resize: none;
     display:none`;
     this.txtArea.style.cssText = cssText;
-    /* 
+    /*
     let htmlEditor = this.msCustomQuill.quillEditor.addContainer('ql-custom');
     htmlEditor.appendChild(this.txtArea); */
   }

@@ -1,19 +1,20 @@
-import { routeAnimation } from './../../../route.animation';
-import { AppMemoryService } from './../../../core/app-memory.service';
-import { News, Content, Contents } from './../../../core/classes/news';
-import { NewsService } from './../news.service';
-
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
   Component,
+  OnDestroy,
   OnInit,
   ViewChild,
-  OnDestroy,
   ViewChildren
 } from '@angular/core';
+import { Content, Contents, News } from './../../../core/classes/news';
+import { Subject, Subscription } from 'rxjs';
+
+import { AppMemoryService } from './../../../core/app-memory.service';
 import { ApplicationHttpClient } from './../../../core/http-client';
-import { Router, Params, ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Subscription, Subject } from 'rxjs';
+import { NewsService } from './../news.service';
+import { routeAnimation } from './../../../route.animation';
+
 declare var $: any;
 
 @Component({
@@ -38,6 +39,9 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
   public load = true;
   public imgErr = false;
 
+  tabs = ['ru', 'en'];
+  tabActive = 0;
+
   constructor(
     private http: ApplicationHttpClient,
     private data: NewsService,
@@ -57,6 +61,10 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
     if (this.paramsSub) {
       this.paramsSub.unsubscribe();
     }
+  }
+
+  debug(e) {
+    console.log(e);
   }
 
   getItem() {
@@ -117,6 +125,7 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
       .Post(this.data.urls.api + '/' + this.item.id + '/image', formData)
       .subscribe(
         res => {
+          this.tabActive = 0;
           this.load = false;
           this.appMemory.openSimpleSnackbar();
         },

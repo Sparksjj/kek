@@ -1,12 +1,14 @@
-import { User } from './classes/user';
-import { ApplicationHttpClient } from './http-client';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { AuthService } from './../auth/auth.service';
-import { Router, NavigationEnd } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/pairwise';
+
+import { NavigationEnd, Router } from '@angular/router';
+
+import { ApplicationHttpClient } from './http-client';
+import { AuthService } from './../auth/auth.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
+import { User } from './classes/user';
 
 @Injectable()
 export class AppMemoryService {
