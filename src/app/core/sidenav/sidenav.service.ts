@@ -1,8 +1,10 @@
+import * as _ from 'lodash';
+
+import { BehaviorSubject, Observable } from 'rxjs';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+
 import { Injectable } from '@angular/core';
 import { SidenavItem } from './sidenav-item/sidenav-item.model';
-import { BehaviorSubject, Observable } from 'rxjs';
-import * as _ from 'lodash';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 @Injectable()
 export class SidenavService {
@@ -39,8 +41,8 @@ export class SidenavService {
     menu.addSubItem(
       first,
       'Приложения',
-      '/app',
       'contacts',
+      '/app',
       1,
       undefined,
       undefined,

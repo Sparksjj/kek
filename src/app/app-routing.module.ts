@@ -1,27 +1,28 @@
+import { RouterModule, Routes } from '@angular/router';
+
+import { AdminComponent } from './core/admin/admin.component';
+import { AuthGuard } from './auth/auth-guard.service';
+import { CreateAppComponent } from './custom/app/create-app/create-app.component';
+import { CreateFaqComponent } from './custom/faq/create-faq/create-faq.component';
+import { CreateNewsComponent } from './custom/news/create-news/create-news.component';
+import { CreateRoadmapComponent } from './custom/roadmap/create-roadmap/create-roadmap.component';
+import { CreateTeam2Component } from './custom/team2/create-team/create-team.component';
+import { CreateTeamComponent } from './custom/team/create-team/create-team.component';
+import { HomeComponent } from './custom/home/home.component';
+import { IndexAppComponent } from './custom/app/index-app/index-app.component';
 import { IndexEmailComponent } from './custom/email/index-email/index-email.component';
 import { IndexFaqComponent } from './custom/faq/index-faq/index-faq.component';
-import { CreateFaqComponent } from './custom/faq/create-faq/create-faq.component';
-import { ShowFaqComponent } from './custom/faq/show-faq/show-faq.component';
-import { IndexRoadmapComponent } from './custom/roadmap/index-roadmap/index-roadmap.component';
-import { CreateRoadmapComponent } from './custom/roadmap/create-roadmap/create-roadmap.component';
-import { ShowRoadmapComponent } from './custom/roadmap/show-roadmap/show-roadmap.component';
-import { CreateNewsComponent } from './custom/news/create-news/create-news.component';
 import { IndexNewsComponent } from './custom/news/index-news/index-news.component';
-import { CreateAppComponent } from './custom/app/create-app/create-app.component';
-import { IndexAppComponent } from './custom/app/index-app/index-app.component';
-import { HomeComponent } from './custom/home/home.component';
-import { AuthGuard } from './auth/auth-guard.service';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './core/admin/admin.component';
-import { ShowAppComponent } from './custom/app/show-app/show-app.component';
-import { IndexTeamComponent } from './custom/team/index-team/index-team.component';
-import { CreateTeamComponent } from './custom/team/create-team/create-team.component';
-import { ShowTeamComponent } from './custom/team/show-team/show-team.component';
+import { IndexRoadmapComponent } from './custom/roadmap/index-roadmap/index-roadmap.component';
 import { IndexTeam2Component } from './custom/team2/index-team/index-team.component';
-import { CreateTeam2Component } from './custom/team2/create-team/create-team.component';
-import { ShowTeam2Component } from './custom/team2/show-team/show-team.component';
+import { IndexTeamComponent } from './custom/team/index-team/index-team.component';
+import { NgModule } from '@angular/core';
+import { ShowAppComponent } from './custom/app/show-app/show-app.component';
+import { ShowFaqComponent } from './custom/faq/show-faq/show-faq.component';
 import { ShowNewsComponent } from './custom/news/show-news/show-news.component';
+import { ShowRoadmapComponent } from './custom/roadmap/show-roadmap/show-roadmap.component';
+import { ShowTeam2Component } from './custom/team2/show-team/show-team.component';
+import { ShowTeamComponent } from './custom/team/show-team/show-team.component';
 
 const routes: Routes = [
   /*   {
@@ -40,7 +41,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'app',
+        redirectTo: 'home',
         pathMatch: 'full'
       },
       {
