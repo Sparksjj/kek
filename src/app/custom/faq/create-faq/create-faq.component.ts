@@ -38,7 +38,7 @@ export class CreateFaqComponent implements OnInit {
   public load = false;
   public imgErr = false;
 
-  tabs = ['ru', 'en'];
+  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
   tabActive = 0;
 
   constructor(
@@ -59,11 +59,43 @@ export class CreateFaqComponent implements OnInit {
 
     const formData: FormData = new FormData();
 
-    formData.append('questions[ru]', this.item.questions.ru);
-    formData.append('questions[en]', this.item.questions.en);
+    this.item.questions.ru
+      ? formData.append('questions[ru]', this.item.questions.ru)
+      : console.log();
+    this.item.questions.en
+      ? formData.append('questions[en]', this.item.questions.en)
+      : console.log();
+    this.item.questions.cn
+      ? formData.append('questions[cn]', this.item.questions.cn)
+      : console.log();
+    this.item.questions.es
+      ? formData.append('questions[es]', this.item.questions.es)
+      : console.log();
+    this.item.questions.vn
+      ? formData.append('questions[vn]', this.item.questions.vn)
+      : console.log();
+    this.item.questions.kp
+      ? formData.append('questions[kp]', this.item.questions.kp)
+      : console.log();
 
-    formData.append('answers[ru]', this.item.contents2.ru);
-    formData.append('answers[en]', this.item.contents2.en);
+    this.item.contents2.ru
+      ? formData.append('answers[ru]', this.item.contents2.ru)
+      : console.log();
+    this.item.contents2.en
+      ? formData.append('answers[en]', this.item.contents2.en)
+      : console.log();
+    this.item.contents2.cn
+      ? formData.append('answers[cn]', this.item.contents2.cn)
+      : console.log();
+    this.item.contents2.es
+      ? formData.append('answers[es]', this.item.contents2.es)
+      : console.log();
+    this.item.contents2.vn
+      ? formData.append('answers[vn]', this.item.contents2.vn)
+      : console.log();
+    this.item.contents2.kp
+      ? formData.append('answers[kp]', this.item.contents2.kp)
+      : console.log();
 
     this.load = true;
     this.http.Post(this.data.urls.api, formData).subscribe(

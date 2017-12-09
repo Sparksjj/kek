@@ -36,6 +36,7 @@ export class ShowRoadmapComponent implements OnInit, OnDestroy {
   public id: string | number;
   public load = true;
   public imgErr = false;
+  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
 
   constructor(
     private http: ApplicationHttpClient,
@@ -82,11 +83,43 @@ export class ShowRoadmapComponent implements OnInit, OnDestroy {
 
     const formData: FormData = new FormData();
 
-    formData.append('quarters[ru]', this.item.quarters.ru);
-    formData.append('quarters[en]', this.item.quarters.en);
+    this.item.quarters.ru
+      ? formData.append('quarters[ru]', this.item.quarters.ru)
+      : console.log();
+    this.item.quarters.en
+      ? formData.append('quarters[en]', this.item.quarters.en)
+      : console.log();
+    this.item.quarters.cn
+      ? formData.append('quarters[cn]', this.item.quarters.cn)
+      : console.log();
+    this.item.quarters.es
+      ? formData.append('quarters[es]', this.item.quarters.es)
+      : console.log();
+    this.item.quarters.vn
+      ? formData.append('quarters[vn]', this.item.quarters.vn)
+      : console.log();
+    this.item.quarters.kp
+      ? formData.append('quarters[kp]', this.item.quarters.kp)
+      : console.log();
 
-    formData.append('descriptions[ru]', this.item.descriptions.ru);
-    formData.append('descriptions[en]', this.item.descriptions.en);
+    this.item.descriptions.ru
+      ? formData.append('descriptions[ru]', this.item.descriptions.ru)
+      : console.log();
+    this.item.descriptions.en
+      ? formData.append('descriptions[en]', this.item.descriptions.en)
+      : console.log();
+    this.item.descriptions.cn
+      ? formData.append('descriptions[cn]', this.item.descriptions.cn)
+      : console.log();
+    this.item.descriptions.es
+      ? formData.append('descriptions[es]', this.item.descriptions.es)
+      : console.log();
+    this.item.descriptions.vn
+      ? formData.append('descriptions[vn]', this.item.descriptions.vn)
+      : console.log();
+    this.item.descriptions.kp
+      ? formData.append('descriptions[kp]', this.item.descriptions.kp)
+      : console.log();
 
     formData.append('year', this.item.year.toString());
     formData.append('status', this.item.selectedStatus);

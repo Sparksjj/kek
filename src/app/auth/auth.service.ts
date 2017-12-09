@@ -8,8 +8,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthService {
-  isLoggedIn: boolean = false;
-  isGuest: boolean = false;
+  isLoggedIn = false;
+  isGuest = false;
   private token: string;
 
   changeLoginSubject = new BehaviorSubject(null);

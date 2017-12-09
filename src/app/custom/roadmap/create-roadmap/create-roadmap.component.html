@@ -22,52 +22,39 @@
 
         <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)">
 
-          <mat-card-title [ngClass]="{'err_color': newItemForm.submitted && (!item.quarters.ru || !item.quarters.en)}">Квартал</mat-card-title>
+          <mat-card-title>Квартал</mat-card-title>
 
-          <div class="demo-tabs mat-elevation-z2 tabs1" [ngClass]="{'err_border': newItemForm.submitted && !item.quarters.ru}" style="margin-bottom: 40px">
+          <div class="demo-tabs mat-elevation-z2 tabs1" style="margin-bottom: 40px">
             <mat-tab-group (selectChange)="focusInput('.tabs1 textarea')">
 
-              <mat-tab label="RU" style="border-color: red">
-                <div fxLayout="column" style="margin: 20px">
-                  <mat-input-container fxFlex>
-                    <textarea rows="3" maxlength="225" matInput placeholder="(ru)" name="title_ru" [(ngModel)]="item.quarters.ru" required autofocus></textarea>
-                  </mat-input-container>
-                </div>
-              </mat-tab>
-
-              <mat-tab label="EN">
-                <div fxLayout="column" style="margin: 20px">
-                  <mat-input-container fxFlex>
-                    <textarea rows="3" maxlength="225" matInput placeholder="(en)" name="title_en" [(ngModel)]="item.quarters.en" required></textarea>
-                  </mat-input-container>
-                </div>
-              </mat-tab>
+              <ng-container *ngFor="let tab of tabs; let i = index">
+                <mat-tab label="{{tabs[i].toUpperCase()}}" style="border-color: red">
+                  <div fxLayout="column" style="margin: 20px">
+                    <mat-input-container fxFlex>
+                      <textarea rows="3" matInput placeholder="{{tabs[i].toUpperCase()}}" [name]="'title_' + tabs[i]" [(ngModel)]="item.quarters[tabs[i]]" autofocus></textarea>
+                    </mat-input-container>
+                  </div>
+                </mat-tab>
+              </ng-container>
 
             </mat-tab-group>
           </div>
 
-          <mat-card-title [ngClass]="{'err_color': newItemForm.submitted && (!item.descriptions.ru || !item.descriptions.en)}">Описание</mat-card-title>
+          <mat-card-title>Описание</mat-card-title>
 
-          <div class="demo-tabs mat-elevation-z2 tabs2" [ngClass]="{'err_border': newItemForm.submitted && !item.descriptions.ru}"
+          <div class="demo-tabs mat-elevation-z2 tabs2"
             style="margin-bottom: 40px">
             <mat-tab-group (selectChange)="focusInput('.tabs2 textarea')">
 
-              <mat-tab label="RU" style="border-color: red">
-                <div fxLayout="column" style="margin: 20px">
-                  <mat-input-container fxFlex>
-                    <textarea rows="3" maxlength="225" matInput placeholder="(ru)" name="title_ru2" [(ngModel)]="item.descriptions.ru" required
-                      autofocus></textarea>
-                  </mat-input-container>
-                </div>
-              </mat-tab>
-
-              <mat-tab label="EN">
-                <div fxLayout="column" style="margin: 20px">
-                  <mat-input-container fxFlex>
-                    <textarea rows="3" maxlength="225" matInput placeholder="(en)" name="title_en2" [(ngModel)]="item.descriptions.en" required></textarea>
-                  </mat-input-container>
-                </div>
-              </mat-tab>
+              <ng-container *ngFor="let tab of tabs; let i = index">
+                <mat-tab label="{{tabs[i].toUpperCase()}}" style="border-color: red">
+                  <div fxLayout="column" style="margin: 20px">
+                    <mat-input-container fxFlex>
+                      <textarea rows="3" matInput placeholder="{{tabs[i].toUpperCase()}}" [name]="'descriptions_' + tabs[i]" [(ngModel)]="item.descriptions[tabs[i]]" autofocus></textarea>
+                    </mat-input-container>
+                  </div>
+                </mat-tab>
+              </ng-container>
 
             </mat-tab-group>
           </div>
@@ -87,7 +74,7 @@
               Публиковать?
             </mat-checkbox> -->
             <mat-form-field>
-              <mat-select placeholder="Status" name="status" [(ngModel)]="item.selectedStatus">
+              <mat-select placeholder="Status" name="status" [(ngModel)]="item.selectedStatus" required>
                 <mat-option *ngFor="let value of data?.roadStatus" [value]="value">
                   {{ value }}
                 </mat-option>

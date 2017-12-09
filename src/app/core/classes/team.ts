@@ -20,14 +20,26 @@ export class Team {
 export class Names {
   en: string;
   ru: string;
+  cn: string;
+  es: string;
+  vn: string;
+  kp: string;
 }
 
 export class Posts {
   en: string;
   ru: string;
+  cn: string;
+  es: string;
+  vn: string;
+  kp: string;
 }
 
 export class Descriptions {
   en: string;
   ru: string;
+  cn: string;
+  es: string;
+  vn: string;
+  kp: string;
 }

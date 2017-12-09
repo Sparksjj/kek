@@ -11,11 +11,19 @@ export class Faq {
 export class Questions {
   en: string;
   ru: string;
+  cn: string;
+  es: string;
+  vn: string;
+  kp: string;
 }
 
 export class Contents {
   en: string;
   ru: string;
+  cn: string;
+  es: string;
+  vn: string;
+  kp: string;
 }
 
 export class Content {

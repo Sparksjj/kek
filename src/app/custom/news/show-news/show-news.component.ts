@@ -39,7 +39,7 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
   public load = true;
   public imgErr = false;
 
-  tabs = ['ru', 'en'];
+  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
   tabActive = 0;
 
   constructor(
@@ -109,14 +109,62 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
       );
     }
 
-    formData.append('titles[ru]', this.item.titles.ru);
-    formData.append('titles[en]', this.item.titles.en);
+    this.item.titles.ru
+      ? formData.append('titles[ru]', this.item.titles.ru)
+      : console.log();
+    this.item.titles.en
+      ? formData.append('titles[en]', this.item.titles.en)
+      : console.log();
+    this.item.titles.cn
+      ? formData.append('titles[cn]', this.item.titles.cn)
+      : console.log();
+    this.item.titles.es
+      ? formData.append('titles[es]', this.item.titles.es)
+      : console.log();
+    this.item.titles.vn
+      ? formData.append('titles[vn]', this.item.titles.vn)
+      : console.log();
+    this.item.titles.kp
+      ? formData.append('titles[kp]', this.item.titles.kp)
+      : console.log();
 
-    formData.append('short_contents[ru]', this.item.short_contents.ru);
-    formData.append('short_contents[en]', this.item.short_contents.en);
+    this.item.short_contents.ru
+      ? formData.append('short_contents[ru]', this.item.short_contents.ru)
+      : console.log();
+    this.item.short_contents.en
+      ? formData.append('short_contents[en]', this.item.short_contents.en)
+      : console.log();
+    this.item.short_contents.cn
+      ? formData.append('short_contents[cn]', this.item.short_contents.cn)
+      : console.log();
+    this.item.short_contents.es
+      ? formData.append('short_contents[es]', this.item.short_contents.es)
+      : console.log();
+    this.item.short_contents.vn
+      ? formData.append('short_contents[vn]', this.item.short_contents.vn)
+      : console.log();
+    this.item.short_contents.kp
+      ? formData.append('short_contents[kp]', this.item.short_contents.kp)
+      : console.log();
 
-    formData.append('contents[ru]', this.item.contents2.ru);
-    formData.append('contents[en]', this.item.contents2.en);
+    this.item.contents2.ru
+      ? formData.append('contents[ru]', this.item.contents2.ru)
+      : console.log();
+    this.item.contents2.en
+      ? formData.append('contents[en]', this.item.contents2.en)
+      : console.log();
+    this.item.contents2.cn
+      ? formData.append('contents[cn]', this.item.contents2.cn)
+      : console.log();
+    this.item.contents2.es
+      ? formData.append('contents[es]', this.item.contents2.es)
+      : console.log();
+    this.item.contents2.vn
+      ? formData.append('contents[vn]', this.item.contents2.vn)
+      : console.log();
+    this.item.contents2.kp
+      ? formData.append('contents[kp]', this.item.contents2.kp)
+      : console.log();
 
     formData.append('active', this.item.active ? '1' : '0');
 
