@@ -31,7 +31,7 @@
                 <mat-tab label="{{tabs[i].toUpperCase()}}" style="border-color: red">
                   <div fxLayout="column" style="margin: 20px">
                     <mat-input-container fxFlex>
-                      <textarea rows="3" matInput placeholder="{{tabs[i].toUpperCase()}}" [name]="'title_' + tabs[i]" [(ngModel)]="item.names[tabs[i]]"></textarea>
+                      <textarea rows="3" matInput placeholder="{{tabs[i].toUpperCase()}}" [name]="'name_' + tabs[i]" [(ngModel)]="item.names[tabs[i]]"></textarea>
                     </mat-input-container>
                   </div>
                 </mat-tab>
@@ -50,7 +50,7 @@
                 <mat-tab label="{{tabs[i].toUpperCase()}}" style="border-color: red">
                   <div fxLayout="column" style="margin: 20px">
                     <mat-input-container fxFlex>
-                      <textarea rows="3" matInput placeholder="{{tabs[i].toUpperCase()}}" [name]="'title_' + tabs[i]" [(ngModel)]="item.descriptions[tabs[i]]"></textarea>
+                      <textarea rows="3" matInput placeholder="{{tabs[i].toUpperCase()}}" [name]="'description_' + tabs[i]" [(ngModel)]="item.descriptions[tabs[i]]"></textarea>
                     </mat-input-container>
                   </div>
                 </mat-tab>
