@@ -114,6 +114,16 @@ export class SidenavService {
       undefined,
       ['admin.email-list']
     );
+    menu.addItem(
+      'Шаблоны',
+      'assignment',
+      '/template',
+      5,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.template']
+    );
     /*
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');
     menu.addItem('Chat', 'chat', '/apps/chat', 2, '14', '#E15C74');

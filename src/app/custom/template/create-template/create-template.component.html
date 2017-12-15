@@ -1,0 +1,104 @@
+<ms-loading *ngIf="load"></ms-loading>
+<div class="err_top"
+     style="text-align: center"
+     *ngIf="error && !load">
+  {{error}}
+</div>
+
+<div fxLayout="column"
+     *ngIf="!load">
+  <div fxLayout="row"
+       fxLayoutAlign="center stretch"
+       style="margin: 24px 0;">
+    <mat-card fxFlex>
+
+      <mat-card-title class="text-center">Новое {{data.names.ru1}}
+        <div style="float: left; margin-top: -7px">
+          <button mat-mini-fab
+                  [routerLink]="[(appMemory?.urls?.previousUrl?.url || data.urls.index)]"
+                  [queryParams]="appMemory?.urls?.previousUrl?.query"
+                  color="primary">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+      </mat-card-title>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content fxLayout="row"
+                        fxLayoutAlign="space-around stretch"
+                        style="margin: 30px 0">
+
+        <form #newItemForm="ngForm"
+              fxFlex="100%"
+              (ngSubmit)="saveItem(newItemForm)">
+
+          <mat-card-title>Ключ</mat-card-title>
+
+          <div class="demo-tabs mat-elevation-z2 tabs1"
+               style="margin-bottom: 40px">
+            <div fxLayout="column"
+                 style="margin: 20px">
+              <mat-input-container fxFlex>
+                <textarea rows="3"
+                          matInput
+                          [name]="'key'"
+                          [(ngModel)]="item.key"
+                          autofocus></textarea>
+              </mat-input-container>
+            </div>
+          </div>
+
+          <mat-card-title>Описание</mat-card-title>
+
+          <div class="demo-tabs mat-elevation-z2 tabs2"
+               style="margin-bottom: 40px">
+            <div fxLayout="column"
+                 style="margin: 20px">
+              <mat-input-container fxFlex>
+                <textarea rows="3"
+                          matInput
+                          [name]="'description'"
+                          [(ngModel)]="item.description"></textarea>
+              </mat-input-container>
+            </div>
+          </div>
+
+          <mat-card-title>Полное описание</mat-card-title>
+
+          <div class="demo-tabs mat-elevation-z2 tabs3"
+               style="margin-bottom: 40px">
+
+            <mat-tab-group (selectChange)="focusInput('.tabs3 .ql-editor'); tabActive = $event.index">
+
+              <ng-container *ngFor="let tab of tabs; let i = index">
+                <mat-tab label="{{tabs[i].toUpperCase()}}">
+                  <div fxLayout="column">
+                    <div class="editor-container mat-elevation-z16">
+                      <angular-tinymce name="{{'content_' + tabs[i]}}"
+                                       [(ngModel)]="item.contents2[tabs[i]]"
+                                       *ngIf="i === tabActive"></angular-tinymce>
+                    </div>
+                  </div>
+                </mat-tab>
+              </ng-container>
+
+            </mat-tab-group>
+          </div>
+
+          <ms-parse422 [obj]="errorObj"></ms-parse422>
+
+          <div class="text-center">
+            <button [disabled]="newItemForm.submitted && newItemForm.invalid"
+                    type="submit"
+                    mat-raised-button
+                    color="primary">Сохранить</button>
+          </div>
+
+        </form>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>

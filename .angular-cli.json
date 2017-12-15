@@ -7,7 +7,11 @@
     {
       "root": "src",
       "outDir": "dist",
-      "assets": ["assets", "favicon.ico"],
+      "assets": [
+        "assets",
+        "favicon.ico",
+        { "glob": "**/*", "input": "./assets/tinymce", "output": "./" }
+      ],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -28,7 +32,9 @@
         "./app/core/highlightjs/highlight.pack.js",
         "../node_modules/css-element-queries/src/ResizeSensor.js",
         "js/echo.js",
-        "js/socket.io.js"
+        "js/socket.io.js",
+        "../node_modules/tinymce/tinymce.js",
+        "../node_modules/tinymce/themes/modern/theme.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

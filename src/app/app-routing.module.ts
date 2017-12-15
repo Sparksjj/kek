@@ -8,6 +8,7 @@ import { CreateNewsComponent } from './custom/news/create-news/create-news.compo
 import { CreateRoadmapComponent } from './custom/roadmap/create-roadmap/create-roadmap.component';
 import { CreateTeam2Component } from './custom/team2/create-team/create-team.component';
 import { CreateTeamComponent } from './custom/team/create-team/create-team.component';
+import { CreateTemplateComponent } from './custom/template/create-template/create-template.component';
 import { HomeComponent } from './custom/home/home.component';
 import { IndexAppComponent } from './custom/app/index-app/index-app.component';
 import { IndexEmailComponent } from './custom/email/index-email/index-email.component';
@@ -16,6 +17,7 @@ import { IndexNewsComponent } from './custom/news/index-news/index-news.componen
 import { IndexRoadmapComponent } from './custom/roadmap/index-roadmap/index-roadmap.component';
 import { IndexTeam2Component } from './custom/team2/index-team/index-team.component';
 import { IndexTeamComponent } from './custom/team/index-team/index-team.component';
+import { IndexTemplateComponent } from './custom/template/index-template/index-template.component';
 import { NgModule } from '@angular/core';
 import { ShowAppComponent } from './custom/app/show-app/show-app.component';
 import { ShowFaqComponent } from './custom/faq/show-faq/show-faq.component';
@@ -23,6 +25,7 @@ import { ShowNewsComponent } from './custom/news/show-news/show-news.component';
 import { ShowRoadmapComponent } from './custom/roadmap/show-roadmap/show-roadmap.component';
 import { ShowTeam2Component } from './custom/team2/show-team/show-team.component';
 import { ShowTeamComponent } from './custom/team/show-team/show-team.component';
+import { ShowTemplateComponent } from './custom/template/show-template/show-template.component';
 
 const routes: Routes = [
   /*   {
@@ -142,6 +145,21 @@ const routes: Routes = [
       {
         path: 'email',
         component: IndexEmailComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'template',
+        component: IndexTemplateComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'newTemplate',
+        component: CreateTemplateComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'template/:id',
+        component: ShowTemplateComponent,
         pathMatch: 'full'
       }
     ]

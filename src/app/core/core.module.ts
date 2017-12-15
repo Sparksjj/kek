@@ -1,75 +1,81 @@
-import { SocketService } from './socket.service';
-import { UnloadingService } from './unloading.service';
-import { EmailService } from './../custom/email/email.service';
-import { IndexEmailComponent } from './../custom/email/index-email/index-email.component';
-import { ServerLocationInterceptor } from './../auth/auth-http.service';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+  HttpInterceptor
+} from '@angular/common/http';
+import { Http, HttpModule } from '@angular/http';
+import { NguiDatetime, NguiDatetimePickerModule } from '@ngui/datetime-picker';
+import { TinyMceModule, tinymceDefaultSettings } from 'angular-tinymce';
+
+import { AdminComponent } from './admin/admin.component';
 import { AppMemoryService } from './app-memory.service';
+import { AppService } from '../custom/app/app.service';
+import { ApplicationHttpClient } from './http-client';
+import { BreadcrumbService } from './breadcrumb/breadcrumb.service';
+import { BreadcrumbsComponent } from './breadcrumb/breadcrumb.component';
+import { ClickOutsideDirective } from './utils/click-outside.directive';
+import { CommonModule } from '@angular/common';
+import { CreateAppComponent } from '../custom/app/create-app/create-app.component';
+import { CreateFaqComponent } from '../custom/faq/create-faq/create-faq.component';
+import { CreateNewsComponent } from '../custom/news/create-news/create-news.component';
+import { CreateRoadmapComponent } from '../custom/roadmap/create-roadmap/create-roadmap.component';
+import { CreateTeam2Component } from '../custom/team2/create-team/create-team.component';
+import { CreateTeamComponent } from '../custom/team/create-team/create-team.component';
+import { CreateTemplateComponent } from '../custom/template/create-template/create-template.component';
+import { CustomQuillDirective } from './custom-quill.directive';
+import { EmailService } from './../custom/email/email.service';
+import { FaqService } from '../custom/faq/faq.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ForObjPipe } from './for-obj.pipe';
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from '../custom/home/home.component';
+import { IconSidenavDirective } from './sidenav/icon-sidenav.directive';
+import { IndexAppComponent } from '../custom/app/index-app/index-app.component';
+import { IndexEmailComponent } from './../custom/email/index-email/index-email.component';
+import { IndexFaqComponent } from '../custom/faq/index-faq/index-faq.component';
+import { IndexNewsComponent } from '../custom/news/index-news/index-news.component';
+import { IndexRoadmapComponent } from '../custom/roadmap/index-roadmap/index-roadmap.component';
+import { IndexTeam2Component } from '../custom/team2/index-team/index-team.component';
+import { IndexTeamComponent } from '../custom/team/index-team/index-team.component';
+import { IndexTemplateComponent } from '../custom/template/index-template/index-template.component';
+import { LoadingComponent } from './loading/loading.component';
+import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
+import { MaterialComponentsModule } from '../material-components.module';
+import { MediaReplayService } from './sidenav/mediareplay/media-replay.service';
+import { NewsService } from '../custom/news/news.service';
+import { NgModule } from '@angular/core';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationService } from './pagination/pagination.service';
-import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Parse422Component } from '../custom/parse422/parse422.component';
+import { QuickpanelComponent } from './quickpanel/quickpanel.component';
+import { QuillModule } from 'ngx-quill';
+import { RoadmapService } from '../custom/roadmap/roadmap.service';
+import { RouterModule } from '@angular/router';
+import { ScrollbarModule } from './scrollbar/scrollbar.module';
+import { SearchBarComponent } from './toolbar/search-bar/search-bar.component';
+import { SearchComponent } from './toolbar/search/search.component';
+import { ServerLocationInterceptor } from './../auth/auth-http.service';
+import { ShowAppComponent } from '../custom/app/show-app/show-app.component';
+import { ShowFaqComponent } from '../custom/faq/show-faq/show-faq.component';
+import { ShowNewsComponent } from '../custom/news/show-news/show-news.component';
+import { ShowRoadmapComponent } from '../custom/roadmap/show-roadmap/show-roadmap.component';
+import { ShowTeam2Component } from '../custom/team2/show-team/show-team.component';
+import { ShowTeamComponent } from '../custom/team/show-team/show-team.component';
+import { ShowTemplateComponent } from '../custom/template/show-template/show-template.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SidenavItemComponent } from './sidenav/sidenav-item/sidenav-item.component';
-import { IconSidenavDirective } from './sidenav/icon-sidenav.directive';
-import { SearchComponent } from './toolbar/search/search.component';
-import { BreadcrumbsComponent } from './breadcrumb/breadcrumb.component';
-import { AdminComponent } from './admin/admin.component';
-import { QuickpanelComponent } from './quickpanel/quickpanel.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { ToolbarUserButtonComponent } from './toolbar/toolbar-user-button/toolbar-user-button.component';
-import { ClickOutsideDirective } from './utils/click-outside.directive';
-import { SearchBarComponent } from './toolbar/search-bar/search-bar.component';
-import { ToolbarNotificationsComponent } from './toolbar/toolbar-notifications/toolbar-notifications.component';
 import { SidenavService } from './sidenav/sidenav.service';
-import { MediaReplayService } from './sidenav/mediareplay/media-replay.service';
-import { BreadcrumbService } from './breadcrumb/breadcrumb.service';
-import { MaterialComponentsModule } from '../material-components.module';
-import { RouterModule } from '@angular/router';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
-import { ScrollbarModule } from './scrollbar/scrollbar.module';
-import { ApplicationHttpClient } from './http-client';
-import { TextMaskModule } from 'angular2-text-mask';
-import { HttpModule, Http } from '@angular/http';
-import {
-  HttpClientModule,
-  HttpClient,
-  HttpInterceptor,
-  HTTP_INTERCEPTORS
-} from '@angular/common/http';
-import { Parse422Component } from '../custom/parse422/parse422.component';
-import { ForObjPipe } from './for-obj.pipe';
-import { HomeComponent } from '../custom/home/home.component';
-import { IndexAppComponent } from '../custom/app/index-app/index-app.component';
-import { LoadingComponent } from './loading/loading.component';
-import { AppService } from '../custom/app/app.service';
-import { ShowAppComponent } from '../custom/app/show-app/show-app.component';
-import { CreateAppComponent } from '../custom/app/create-app/create-app.component';
-import { IndexTeamComponent } from '../custom/team/index-team/index-team.component';
-import { ShowTeamComponent } from '../custom/team/show-team/show-team.component';
-import { CreateTeamComponent } from '../custom/team/create-team/create-team.component';
-import { IndexTeam2Component } from '../custom/team2/index-team/index-team.component';
-import { ShowTeam2Component } from '../custom/team2/show-team/show-team.component';
-import { CreateTeam2Component } from '../custom/team2/create-team/create-team.component';
-import { IndexNewsComponent } from '../custom/news/index-news/index-news.component';
-import { ShowNewsComponent } from '../custom/news/show-news/show-news.component';
-import { CreateNewsComponent } from '../custom/news/create-news/create-news.component';
-import { TeamService } from '../custom/team/team.service';
-import { Team2Service } from '../custom/team2/team.service';
-import { NewsService } from '../custom/news/news.service';
-import { QuillModule } from 'ngx-quill';
-import { IndexFaqComponent } from '../custom/faq/index-faq/index-faq.component';
-import { ShowFaqComponent } from '../custom/faq/show-faq/show-faq.component';
-import { CreateFaqComponent } from '../custom/faq/create-faq/create-faq.component';
-import { CreateRoadmapComponent } from '../custom/roadmap/create-roadmap/create-roadmap.component';
-import { ShowRoadmapComponent } from '../custom/roadmap/show-roadmap/show-roadmap.component';
-import { IndexRoadmapComponent } from '../custom/roadmap/index-roadmap/index-roadmap.component';
-import { RoadmapService } from '../custom/roadmap/roadmap.service';
-import { FaqService } from '../custom/faq/faq.service';
+import { SocketService } from './socket.service';
 import { SortablejsModule } from 'angular-sortablejs';
-import { CustomQuillDirective } from './custom-quill.directive';
-import { NguiDatetimePickerModule, NguiDatetime } from '@ngui/datetime-picker';
+import { Team2Service } from '../custom/team2/team.service';
+import { TeamService } from '../custom/team/team.service';
+import { TemplateService } from '../custom/template/template.service';
+import { TextMaskModule } from 'angular2-text-mask';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ToolbarNotificationsComponent } from './toolbar/toolbar-notifications/toolbar-notifications.component';
+import { ToolbarUserButtonComponent } from './toolbar/toolbar-user-button/toolbar-user-button.component';
+import { UnloadingService } from './unloading.service';
 
 NguiDatetime.daysOfWeek = [
   { fullName: 'Воскресенье', shortName: 'Вс' },
@@ -119,13 +125,28 @@ NguiDatetime.firstDayOfWeek = 1;
     HttpClientModule,
     QuillModule,
     NguiDatetimePickerModule,
-    SortablejsModule
+    SortablejsModule,
+    TinyMceModule.forRoot({
+      menubar: 'false',
+      theme: 'modern',
+      height: 500,
+      plugins:
+        'code autolink visualblocks visualchars fullscreen image link media template charmap hr pagebreak nonbreaking anchor toc advlist lists textcolor wordcount colorpicker textpattern help',
+      toolbar:
+        'formatselect | bold italic strikethrough forecolor backcolor | image link | alignleft aligncenter alignright alignjustify  | numlist bullist  | removeformat | code',
+      tinymceScriptURL: 'assets/tinymce/tinymce.min.js',
+      relative_url: true,
+      skin_url: '/assets/tinymce/skins/lightgray',
+      theme_url: '/assets/tinymce/themes/modern/theme.min.js',
+      branding: false
+    })
   ],
   exports: [
     MaterialComponentsModule,
     HttpModule,
     FlexLayoutModule,
-    Parse422Component
+    Parse422Component,
+    TinyMceModule
   ],
   declarations: [
     SidenavComponent,
@@ -165,7 +186,10 @@ NguiDatetime.firstDayOfWeek = 1;
     ShowRoadmapComponent,
     IndexRoadmapComponent,
     CustomQuillDirective,
-    IndexEmailComponent
+    IndexEmailComponent,
+    CreateTemplateComponent,
+    ShowTemplateComponent,
+    IndexTemplateComponent
   ],
   providers: [
     SidenavService,
@@ -182,6 +206,7 @@ NguiDatetime.firstDayOfWeek = 1;
     UnloadingService,
     SocketService,
     RoadmapService,
+    TemplateService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerLocationInterceptor,
