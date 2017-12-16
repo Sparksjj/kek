@@ -57,10 +57,11 @@ export class IndexTemplateComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
+
   deleteItem(item: any) {
     this.error = '';
     this.load = true;
-    this.http.Delete(this.data.urls.api + '/' + item.id).subscribe(
+    this.http.Delete(this.data.urls.api + '/' + item.key).subscribe(
       res => {
         this.getItems();
         this.appMemory.openSimpleSnackbar();

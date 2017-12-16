@@ -10,7 +10,7 @@
       <mat-card-title>
         <span *ngIf="items?.length > 0; else no_items">Все {{data.names.ru2}}</span>
         <ng-template #no_items>Нет {{data.names.ru3}}</ng-template>
-        <!-- <a [routerLink]="[data.urls.create]" md-button color="primary">Создать {{data.names.ru1}}</a> -->
+        <a [routerLink]="[data.urls.create]" md-button color="primary">Создать {{data.names.ru1}}</a>
       </mat-card-title>
 
       <mat-divider *ngIf="items?.length > 0"></mat-divider>
@@ -22,6 +22,7 @@
             <tr>
               <th>Ключ</th>
               <th>Описание</th>
+              <th>Удалить?</th>
             </tr>
           </thead>
           <tbody>
@@ -39,6 +40,22 @@
                 <td>
                   {{item?.description}}
                   <a [routerLink]="[data.urls.show, item?.key]"></a>
+                </td>
+
+                <td>
+
+                  <button mat-icon-button *ngIf="item?.shure" (click)="$event.stopPropagation(); item.shure = false">
+                    Нет
+                  </button>
+
+                  <button style="float: left" mat-icon-button color="warn" *ngIf="item?.shure" color="warn" (click)="$event.stopPropagation(); deleteItem(item); item.shure = false">
+                    Да
+                  </button>
+
+                  <button color="warn" *ngIf="!item?.shure" mat-icon-button (click)="$event.stopPropagation(); item.shure = true">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+
                 </td>
 
               </tr>

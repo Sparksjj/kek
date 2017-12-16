@@ -12,7 +12,7 @@ export class TemplateService {
     api: 'admin/template',
     show: '/template',
     index: '/template',
-    create: '/newЕemplate',
+    create: '/newTemplate',
     paggination: 'template'
   };
 
