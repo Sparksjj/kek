@@ -69,7 +69,9 @@ export class CreateTeam2Component implements OnInit {
       this.image1.nativeElement.files[0].name
     );
 
-    formData.append('linkedin', this.item.linkedin);
+    this.item.linkedin
+      ? formData.append('linkedin', this.item.linkedin)
+      : console.log();
 
     this.item.descriptions.ru
       ? formData.append('descriptions[ru]', this.item.descriptions.ru)

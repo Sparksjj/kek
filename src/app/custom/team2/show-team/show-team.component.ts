@@ -98,7 +98,9 @@ export class ShowTeam2Component implements OnInit, OnDestroy {
       );
     }
 
-    formData.append('linkedin', this.item.linkedin);
+    this.item.linkedin
+      ? formData.append('linkedin', this.item.linkedin)
+      : console.log();
 
     this.item.descriptions.ru
       ? formData.append('descriptions[ru]', this.item.descriptions.ru)
