@@ -29,7 +29,7 @@ export class UnloadingService {
 
   public exportAsFilePost(url: string, query: any) {
     return this.http
-      .Post(url, { params: query })
+      .Post(url, query)
       .toPromise()
       .then(
         res => {
