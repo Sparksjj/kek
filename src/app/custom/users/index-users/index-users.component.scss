@@ -2,6 +2,10 @@
   display: block;
 }
 
-/* td:not(:first-of-type) {
+td {
+  font-size: 90%;
+}
+
+.balance-num {
   word-break: break-word;
-} */
+}

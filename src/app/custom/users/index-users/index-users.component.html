@@ -72,13 +72,6 @@
                 </mat-icon>
               </th>
 
-              <th (click)="sort('language')" [ngClass]="{'selected': currentQuery.sort.indexOf('language') == 0}">
-                Язык
-                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('language') == 0">
-                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
-                </mat-icon>
-              </th>
-
               <th (click)="sort('utm_campaign')" [ngClass]="{'selected': currentQuery.sort.indexOf('utm_campaign') == 0}">
                 campaign
                 <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('utm_campaign') == 0">
@@ -165,10 +158,6 @@
                 </td>
 
                 <td>
-                  {{item?.source?.language || '-'}}
-                </td>
-
-                <td>
                   {{item?.source?.utm_campaign || '-'}}
                 </td>
 
@@ -184,19 +173,19 @@
                   {{item?.source?.utm_source || '-'}}
                 </td>
 
-                <td>
+                <td class="balance-num">
                   {{item?.bitcoin_balance || '-'}}
                 </td>
 
-                <td>
+                <td class="balance-num">
                   {{item?.sum_transactions?.btc || '-'}}
                 </td>
 
-                <td>
+                <td class="balance-num">
                   {{item?.ethereum_balance || '-'}}
                 </td>
 
-                <td>
+                <td class="balance-num">
                   {{item?.token_balance || '-'}}
                 </td>
 
