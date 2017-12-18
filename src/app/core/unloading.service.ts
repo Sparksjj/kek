@@ -28,6 +28,14 @@ export class UnloadingService {
   }
 
   public exportAsFilePost(url: string, query: any) {
+    if (query.from) {
+      query.from = query.from.toString();
+    }
+
+    if (query.from) {
+      query.to = query.to.toString();
+    }
+
     return this.http
       .Post(url, query)
       .toPromise()
