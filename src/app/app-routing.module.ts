@@ -18,6 +18,7 @@ import { IndexRoadmapComponent } from './custom/roadmap/index-roadmap/index-road
 import { IndexTeam2Component } from './custom/team2/index-team/index-team.component';
 import { IndexTeamComponent } from './custom/team/index-team/index-team.component';
 import { IndexTemplateComponent } from './custom/template/index-template/index-template.component';
+import { IndexUsersComponent } from './custom/users/index-users/index-users.component';
 import { NgModule } from '@angular/core';
 import { ShowAppComponent } from './custom/app/show-app/show-app.component';
 import { ShowFaqComponent } from './custom/faq/show-faq/show-faq.component';
@@ -160,6 +161,11 @@ const routes: Routes = [
       {
         path: 'template/:id',
         component: ShowTemplateComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'users',
+        component: IndexUsersComponent,
         pathMatch: 'full'
       }
     ]

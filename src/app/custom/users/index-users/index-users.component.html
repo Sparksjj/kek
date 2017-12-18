@@ -37,7 +37,7 @@
 
       <mat-card-title>
         <span *ngIf="items?.length > 0; else no_items">Все {{data.names.ru2}}
-          <button type="button" mat-raised-button color="primary" [disabled]="loadUploading" (click)="uploading({export: 'xls'})">Xls</button>
+          <button type="button" mat-raised-button color="primary" [disabled]="loadUploading" (click)="uploading()">Xls</button>
         </span>
         <ng-template #no_items>Нет {{data.names.ru3}}</ng-template>
       </mat-card-title>
@@ -58,13 +58,6 @@
                 </mat-icon>
               </th>
 
-              <th (click)="sort('country')" [ngClass]="{'selected': currentQuery.sort.indexOf('country') == 0}">
-                Страна
-                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('country') == 0">
-                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
-                </mat-icon>
-              </th>
-
               <th (click)="sort('email')" [ngClass]="{'selected': currentQuery.sort.indexOf('email') == 0}">
                 Email
                 <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('email') == 0">
@@ -72,9 +65,9 @@
                 </mat-icon>
               </th>
 
-              <th (click)="sort('name')" [ngClass]="{'selected': currentQuery.sort.indexOf('name') == 0}">
-                Имя
-                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('name') == 0">
+              <th (click)="sort('country')" [ngClass]="{'selected': currentQuery.sort.indexOf('country') == 0}">
+                Страна
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('country') == 0">
                   {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
                 </mat-icon>
               </th>
@@ -114,9 +107,31 @@
                 </mat-icon>
               </th>
 
-              <th (click)="sort('verified')" [ngClass]="{'selected': currentQuery.sort.indexOf('verified') == 0}">
-                Подтвержденный
-                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('verified') == 0">
+
+              <th (click)="sort('bitcoin_balance')" [ngClass]="{'selected': currentQuery.sort.indexOf('bitcoin_balance') == 0}">
+                bitcoins
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('bitcoin_balance') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th>
+                bitcoins paid
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('btc') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('ethereum_balance')" [ngClass]="{'selected': currentQuery.sort.indexOf('ethereum_balance') == 0}">
+                ethereum
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('ethereum_balance') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('token_balance')" [ngClass]="{'selected': currentQuery.sort.indexOf('token_balance') == 0}">
+                tokens
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('token_balance') == 0">
                   {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
                 </mat-icon>
               </th>
@@ -142,41 +157,47 @@
                 </td>
 
                 <td>
-                  {{item?.country || '-'}}
-                </td>
-
-                <td>
                   {{item?.email || '-'}}
                 </td>
 
                 <td>
-                  {{item?.name || '-'}}
+                  {{item?.source?.country || '-'}}
                 </td>
 
                 <td>
-                  {{item?.language || '-'}}
+                  {{item?.source?.language || '-'}}
                 </td>
 
                 <td>
-                  {{item?.utm_campaign || '-'}}
+                  {{item?.source?.utm_campaign || '-'}}
                 </td>
 
                 <td>
-                  {{item?.utm_content || '-'}}
+                  {{item?.source?.utm_content || '-'}}
                 </td>
 
                 <td>
-                  {{item?.utm_medium || '-'}}
+                  {{item?.source?.utm_medium || '-'}}
                 </td>
 
                 <td>
-                  {{item?.utm_source || '-'}}
+                  {{item?.source?.utm_source || '-'}}
                 </td>
 
                 <td>
-                  <mat-icon [color]="item?.verified ? 'primary' : 'warn'">
-                    {{item?.verified ? 'check_circle' : 'close'}}
-                  </mat-icon>
+                  {{item?.bitcoin_balance || '-'}}
+                </td>
+
+                <td>
+                  {{item?.sum_transactions?.btc || '-'}}
+                </td>
+
+                <td>
+                  {{item?.ethereum_balance || '-'}}
+                </td>
+
+                <td>
+                  {{item?.token_balance || '-'}}
                 </td>
 
                 <td>

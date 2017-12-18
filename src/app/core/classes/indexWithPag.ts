@@ -1,9 +1,10 @@
-import { CrudService } from './crud-service';
-import { AppMemoryService } from '../../core/app-memory.service';
-import { Pagination } from './pagination';
-import { ApplicationHttpClient } from '../../core/http-client';
-import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { AppMemoryService } from '../../core/app-memory.service';
+import { ApplicationHttpClient } from '../../core/http-client';
+import { CrudService } from './crud-service';
+import { Pagination } from './pagination';
 import { Subscription } from 'rxjs';
 
 export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
@@ -19,8 +20,8 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
     page: 1,
     sort: 'id-asc',
     count: 20,
-    dateFrom: undefined,
-    dateTo: undefined
+    from: undefined,
+    to: undefined
   };
 
   constructor(
@@ -35,9 +36,17 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
     this.sub = this.activatedRoute.queryParams.subscribe((params: any) => {
       this.currentQuery.page = params['page'] || 1;
       this.currentQuery.sort = params['sort'] || 'id-asc';
-      this.currentQuery.dateFrom = params['dateFrom'];
-      this.currentQuery.dateTo = params['dateTo'];
+
+      if (this.currentQuery.from) {
+        this.currentQuery.from = params['from'];
+      }
+
+      if (this.currentQuery.to) {
+        this.currentQuery.to = params['to'];
+      }
+
       this.load = true;
+      console.log('THIS.CURRENTQUERY', this.currentQuery);
       this.getItems();
     });
   }
@@ -48,6 +57,10 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
     }
   }
   getItems() {
+    Object.keys(this.currentQuery).forEach(
+      key =>
+        this.currentQuery[key] === undefined && delete this.currentQuery[key]
+    );
     this.error = '';
     this.http
       .Get<any>(this.data.urls.api, { params: this.currentQuery })

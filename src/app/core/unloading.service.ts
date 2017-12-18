@@ -1,7 +1,7 @@
-import { SocketService } from './socket.service';
+import { AppMemoryService } from './app-memory.service';
 import { ApplicationHttpClient } from './http-client';
 import { Injectable } from '@angular/core';
-import { AppMemoryService } from './app-memory.service';
+import { SocketService } from './socket.service';
 
 @Injectable()
 export class UnloadingService {
@@ -14,6 +14,22 @@ export class UnloadingService {
   public exportAsFile(url: string, query: any) {
     return this.http
       .Get(url, { params: query })
+      .toPromise()
+      .then(
+        res => {
+          this.appMemory.openSimpleSnackbar(
+            'Отчет в процессе генерации, скачка файла начнется автоматически.'
+          );
+        },
+        err => {
+          this.appMemory.openSimpleSnackbar(err.statusText);
+        }
+      );
+  }
+
+  public exportAsFilePost(url: string, query: any) {
+    return this.http
+      .Post(url, { params: query })
       .toPromise()
       .then(
         res => {

@@ -105,24 +105,34 @@ export class SidenavService {
       ['admin.faq']
     );
     menu.addItem(
+      'Шаблоны',
+      'assignment',
+      '/template',
+      4,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.template']
+    );
+    menu.addItem(
       'Подписки',
       'add_alert',
       '/email',
-      4,
+      5,
       undefined,
       undefined,
       undefined,
       ['admin.email-list']
     );
     menu.addItem(
-      'Шаблоны',
-      'assignment',
-      '/template',
-      5,
+      'Пользователи',
+      'person',
+      '/users',
+      7,
       undefined,
       undefined,
       undefined,
-      ['admin.template']
+      ['admin.user']
     );
     /*
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');

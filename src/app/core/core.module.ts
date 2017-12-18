@@ -39,6 +39,7 @@ import { IndexRoadmapComponent } from '../custom/roadmap/index-roadmap/index-roa
 import { IndexTeam2Component } from '../custom/team2/index-team/index-team.component';
 import { IndexTeamComponent } from '../custom/team/index-team/index-team.component';
 import { IndexTemplateComponent } from '../custom/template/index-template/index-template.component';
+import { IndexUsersComponent } from '../custom/users/index-users/index-users.component';
 import { LoadingComponent } from './loading/loading.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 import { MaterialComponentsModule } from '../material-components.module';
@@ -76,6 +77,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ToolbarNotificationsComponent } from './toolbar/toolbar-notifications/toolbar-notifications.component';
 import { ToolbarUserButtonComponent } from './toolbar/toolbar-user-button/toolbar-user-button.component';
 import { UnloadingService } from './unloading.service';
+import { UsersService } from '../custom/users/users.service';
 
 NguiDatetime.daysOfWeek = [
   { fullName: 'Воскресенье', shortName: 'Вс' },
@@ -189,7 +191,8 @@ NguiDatetime.firstDayOfWeek = 1;
     IndexEmailComponent,
     CreateTemplateComponent,
     ShowTemplateComponent,
-    IndexTemplateComponent
+    IndexTemplateComponent,
+    IndexUsersComponent
   ],
   providers: [
     SidenavService,
@@ -207,6 +210,7 @@ NguiDatetime.firstDayOfWeek = 1;
     SocketService,
     RoadmapService,
     TemplateService,
+    UsersService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerLocationInterceptor,
