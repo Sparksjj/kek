@@ -12,8 +12,11 @@ export class UnloadingService {
   ) {}
 
   public exportAsFile(url: string, query: any) {
+    const queryCopy = Object.assign({}, query);
+    queryCopy.export = 'xls';
+
     return this.http
-      .Get(url, { params: query })
+      .Get(url, { params: queryCopy })
       .toPromise()
       .then(
         res => {

@@ -37,7 +37,7 @@
 
       <mat-card-title>
         <span *ngIf="items?.length > 0; else no_items">Все {{data.names.ru2}}
-          <button type="button" mat-raised-button color="primary" [disabled]="loadUploading" (click)="uploading({export: 'xls'})">Xls</button>
+          <button type="button" mat-raised-button color="primary" [disabled]="loadUploading" (click)="uploading(currentQuery)">Xls</button>
         </span>
         <ng-template #no_items>Нет {{data.names.ru3}}</ng-template>
       </mat-card-title>
