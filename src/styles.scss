@@ -41,6 +41,14 @@ table button.mat-icon-button {
   .month .prev_next {
     line-height: 1 !important;
   }
+
+  .days .day.selectable.weekend {
+    color: inherit !important;
+  }
+
+  .day-of-week.weekend {
+    color: inherit !important;
+  }
 }
 
 .sorded_tr {
