@@ -45,6 +45,18 @@ export class IndexUsersComponent extends IndexWithPagComponent<Email> {
     this.refresh();
   }
   refresh() {
+    if (this.currentQuery.fromDate) {
+      this.currentQuery.from = this.currentQuery.fromDate.toString();
+    } else {
+      this.currentQuery.from = undefined;
+    }
+
+    if (this.currentQuery.toDate) {
+      this.currentQuery.to = this.currentQuery.toDate.toString();
+    } else {
+      this.currentQuery.to = undefined;
+    }
+
     this.router.navigate([this.data.urls.index], {
       queryParams: this.currentQuery
     });

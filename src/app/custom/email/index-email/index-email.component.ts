@@ -1,13 +1,14 @@
-import { UnloadingService } from './../../../core/unloading.service';
-import { Email } from './../../../core/classes/email';
-import { AppMemoryService } from './../../../core/app-memory.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Injector, OnInit } from '@angular/core';
+
+import { AppMemoryService } from './../../../core/app-memory.service';
 import { ApplicationHttpClient } from './../../../core/http-client';
+import { Email } from './../../../core/classes/email';
 import { EmailService } from './../email.service';
+import { IndexWithPagComponent } from './../../../core/classes/indexWithPag';
 import { Pagination } from './../../../core/classes/pagination';
 import { Subscription } from 'rxjs';
-import { IndexWithPagComponent } from './../../../core/classes/indexWithPag';
-import { Component, OnInit, Injector } from '@angular/core';
+import { UnloadingService } from './../../../core/unloading.service';
 
 @Component({
   selector: 'ms-index-email',
@@ -44,6 +45,19 @@ export class IndexEmailComponent extends IndexWithPagComponent<Email> {
     this.refresh();
   }
   refresh() {
+    console.log(this.currentQuery.from);
+    if (this.currentQuery.fromDate) {
+      this.currentQuery.from = this.currentQuery.fromDate.toString();
+    } else {
+      this.currentQuery.from = undefined;
+    }
+
+    if (this.currentQuery.toDate) {
+      this.currentQuery.to = this.currentQuery.toDate.toString();
+    } else {
+      this.currentQuery.to = undefined;
+    }
+
     this.router.navigate([this.data.urls.index], {
       queryParams: this.currentQuery
     });

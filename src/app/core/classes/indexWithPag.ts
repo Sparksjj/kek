@@ -21,7 +21,9 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
     sort: 'id-asc',
     count: 20,
     from: undefined,
-    to: undefined
+    to: undefined,
+    fromDate: undefined,
+    toDate: undefined
   };
 
   constructor(
