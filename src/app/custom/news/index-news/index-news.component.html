@@ -16,7 +16,6 @@
       <mat-divider *ngIf="items?.length > 0"></mat-divider>
 
       <mat-card-content fxLayout="row" fxLayoutWrap fxLayoutAlign="space-around stretch" style="margin-top: 30px">
-
         <table class="table table-hover table-striped table-condensed table-bordered" *ngIf="items?.length > 0">
           <thead>
             <tr>
@@ -30,11 +29,9 @@
             </tr>
           </thead>
           <tbody>
-
-
             <ng-template ngFor let-item [ngForOf]="items">
-
               <tr style="cursor: pointer; position: relative">
+
                 <td class="avatar-cell">
                   <img class="avatar" [src]="item?.image">
                   <a [routerLink]="[data.urls.show, item?.id]"></a>
@@ -68,7 +65,6 @@
                 </td>
 
                 <td>
-
                   <button mat-icon-button *ngIf="item?.shure" (click)="$event.stopPropagation(); item.shure = false">
                     Нет
                   </button>
@@ -80,19 +76,15 @@
                   <button color="warn" *ngIf="!item?.shure" mat-icon-button (click)="$event.stopPropagation(); item.shure = true">
                     <mat-icon>cancel</mat-icon>
                   </button>
-
                 </td>
               </tr>
-
             </ng-template>
-
           </tbody>
         </table>
 
         <pagination [lastPage]="paginationInfo?.last_page" [currentPage]="paginationInfo?.current_page" [total]="paginationInfo?.total"
           [type]="data.urls.show" [query]="currentQuery" [perPage]="paginationInfo?.per_page" [showNavigation]="true" *ngIf="paginationInfo?.last_page && paginationInfo?.current_page && paginationInfo?.last_page > 1">
         </pagination>
-
       </mat-card-content>
 
       <ms-loading-overlay [isLoading]="loadUpdate"></ms-loading-overlay>

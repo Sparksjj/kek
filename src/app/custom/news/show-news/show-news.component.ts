@@ -63,10 +63,6 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
     }
   }
 
-  debug(e) {
-    console.log(e);
-  }
-
   getItem() {
     this.http.Get<News>(this.data.urls.api + '/' + this.id).subscribe(
       res => {
