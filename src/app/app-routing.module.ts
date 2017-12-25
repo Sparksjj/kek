@@ -4,6 +4,7 @@ import { AdminComponent } from './core/admin/admin.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { CreateAppComponent } from './custom/app/create-app/create-app.component';
 import { CreateFaqComponent } from './custom/faq/create-faq/create-faq.component';
+import { CreateMediaComponent } from './custom/media/create-media/create-media.component';
 import { CreateNewsComponent } from './custom/news/create-news/create-news.component';
 import { CreatePartnersComponent } from './custom/partners/create-partners/create-partners.component';
 import { CreateRoadmapComponent } from './custom/roadmap/create-roadmap/create-roadmap.component';
@@ -14,6 +15,7 @@ import { HomeComponent } from './custom/home/home.component';
 import { IndexAppComponent } from './custom/app/index-app/index-app.component';
 import { IndexEmailComponent } from './custom/email/index-email/index-email.component';
 import { IndexFaqComponent } from './custom/faq/index-faq/index-faq.component';
+import { IndexMediaComponent } from './custom/media/index-media/index-media.component';
 import { IndexNewsComponent } from './custom/news/index-news/index-news.component';
 import { IndexPartnersComponent } from './custom/partners/index-partners/index-partners.component';
 import { IndexRoadmapComponent } from './custom/roadmap/index-roadmap/index-roadmap.component';
@@ -24,6 +26,7 @@ import { IndexUsersComponent } from './custom/users/index-users/index-users.comp
 import { NgModule } from '@angular/core';
 import { ShowAppComponent } from './custom/app/show-app/show-app.component';
 import { ShowFaqComponent } from './custom/faq/show-faq/show-faq.component';
+import { ShowMediaComponent } from './custom/media/show-media/show-media.component';
 import { ShowNewsComponent } from './custom/news/show-news/show-news.component';
 import { ShowPartnersComponent } from './custom/partners/show-partners/show-partners.component';
 import { ShowRoadmapComponent } from './custom/roadmap/show-roadmap/show-roadmap.component';
@@ -114,6 +117,21 @@ const routes: Routes = [
       {
         path: 'partners/:id',
         component: ShowPartnersComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'media',
+        component: IndexMediaComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'newMedia',
+        component: CreateMediaComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'media/:id',
+        component: ShowMediaComponent,
         pathMatch: 'full'
       },
       {

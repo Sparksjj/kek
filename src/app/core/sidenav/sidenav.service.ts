@@ -91,9 +91,19 @@ export class SidenavService {
       undefined,
       undefined,
       undefined,
-      ['admin.roadmap']
+      ['admin.partner']
     );
-
+    menu.addSubItem(
+      first,
+      'Медиа',
+      'media',
+      '/media',
+      6,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.refnews']
+    );
     menu.addItem(
       'Новости',
       'local_activity',
