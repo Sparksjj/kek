@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { CreateAppComponent } from '../custom/app/create-app/create-app.component';
 import { CreateFaqComponent } from '../custom/faq/create-faq/create-faq.component';
 import { CreateNewsComponent } from '../custom/news/create-news/create-news.component';
+import { CreatePartnersComponent } from '../custom/partners/create-partners/create-partners.component';
 import { CreateRoadmapComponent } from '../custom/roadmap/create-roadmap/create-roadmap.component';
 import { CreateTeam2Component } from '../custom/team2/create-team/create-team.component';
 import { CreateTeamComponent } from '../custom/team/create-team/create-team.component';
@@ -35,6 +36,7 @@ import { IndexAppComponent } from '../custom/app/index-app/index-app.component';
 import { IndexEmailComponent } from './../custom/email/index-email/index-email.component';
 import { IndexFaqComponent } from '../custom/faq/index-faq/index-faq.component';
 import { IndexNewsComponent } from '../custom/news/index-news/index-news.component';
+import { IndexPartnersComponent } from '../custom/partners/index-partners/index-partners.component';
 import { IndexRoadmapComponent } from '../custom/roadmap/index-roadmap/index-roadmap.component';
 import { IndexTeam2Component } from '../custom/team2/index-team/index-team.component';
 import { IndexTeamComponent } from '../custom/team/index-team/index-team.component';
@@ -49,6 +51,7 @@ import { NgModule } from '@angular/core';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationService } from './pagination/pagination.service';
 import { Parse422Component } from '../custom/parse422/parse422.component';
+import { PartnersService } from '../custom/partners/partners.service';
 import { QuickpanelComponent } from './quickpanel/quickpanel.component';
 import { QuillModule } from 'ngx-quill';
 import { RoadmapService } from '../custom/roadmap/roadmap.service';
@@ -60,6 +63,7 @@ import { ServerLocationInterceptor } from './../auth/auth-http.service';
 import { ShowAppComponent } from '../custom/app/show-app/show-app.component';
 import { ShowFaqComponent } from '../custom/faq/show-faq/show-faq.component';
 import { ShowNewsComponent } from '../custom/news/show-news/show-news.component';
+import { ShowPartnersComponent } from '../custom/partners/show-partners/show-partners.component';
 import { ShowRoadmapComponent } from '../custom/roadmap/show-roadmap/show-roadmap.component';
 import { ShowTeam2Component } from '../custom/team2/show-team/show-team.component';
 import { ShowTeamComponent } from '../custom/team/show-team/show-team.component';
@@ -192,7 +196,10 @@ NguiDatetime.firstDayOfWeek = 1;
     CreateTemplateComponent,
     ShowTemplateComponent,
     IndexTemplateComponent,
-    IndexUsersComponent
+    IndexUsersComponent,
+    CreatePartnersComponent,
+    IndexPartnersComponent,
+    ShowPartnersComponent
   ],
   providers: [
     SidenavService,
@@ -211,6 +218,7 @@ NguiDatetime.firstDayOfWeek = 1;
     RoadmapService,
     TemplateService,
     UsersService,
+    PartnersService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerLocationInterceptor,

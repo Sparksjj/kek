@@ -5,6 +5,7 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { CreateAppComponent } from './custom/app/create-app/create-app.component';
 import { CreateFaqComponent } from './custom/faq/create-faq/create-faq.component';
 import { CreateNewsComponent } from './custom/news/create-news/create-news.component';
+import { CreatePartnersComponent } from './custom/partners/create-partners/create-partners.component';
 import { CreateRoadmapComponent } from './custom/roadmap/create-roadmap/create-roadmap.component';
 import { CreateTeam2Component } from './custom/team2/create-team/create-team.component';
 import { CreateTeamComponent } from './custom/team/create-team/create-team.component';
@@ -14,6 +15,7 @@ import { IndexAppComponent } from './custom/app/index-app/index-app.component';
 import { IndexEmailComponent } from './custom/email/index-email/index-email.component';
 import { IndexFaqComponent } from './custom/faq/index-faq/index-faq.component';
 import { IndexNewsComponent } from './custom/news/index-news/index-news.component';
+import { IndexPartnersComponent } from './custom/partners/index-partners/index-partners.component';
 import { IndexRoadmapComponent } from './custom/roadmap/index-roadmap/index-roadmap.component';
 import { IndexTeam2Component } from './custom/team2/index-team/index-team.component';
 import { IndexTeamComponent } from './custom/team/index-team/index-team.component';
@@ -23,6 +25,7 @@ import { NgModule } from '@angular/core';
 import { ShowAppComponent } from './custom/app/show-app/show-app.component';
 import { ShowFaqComponent } from './custom/faq/show-faq/show-faq.component';
 import { ShowNewsComponent } from './custom/news/show-news/show-news.component';
+import { ShowPartnersComponent } from './custom/partners/show-partners/show-partners.component';
 import { ShowRoadmapComponent } from './custom/roadmap/show-roadmap/show-roadmap.component';
 import { ShowTeam2Component } from './custom/team2/show-team/show-team.component';
 import { ShowTeamComponent } from './custom/team/show-team/show-team.component';
@@ -96,6 +99,21 @@ const routes: Routes = [
       {
         path: 'team2/:id',
         component: ShowTeam2Component,
+        pathMatch: 'full'
+      },
+      {
+        path: 'partners',
+        component: IndexPartnersComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'newPartner',
+        component: CreatePartnersComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'partners/:id',
+        component: ShowPartnersComponent,
         pathMatch: 'full'
       },
       {

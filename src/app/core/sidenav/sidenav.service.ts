@@ -82,6 +82,17 @@ export class SidenavService {
       undefined,
       ['admin.roadmap']
     );
+    menu.addSubItem(
+      first,
+      'Партнеры',
+      'partners',
+      '/partners',
+      6,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.roadmap']
+    );
 
     menu.addItem(
       'Новости',
