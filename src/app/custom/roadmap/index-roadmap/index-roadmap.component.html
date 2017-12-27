@@ -51,8 +51,8 @@
                 </td>
 
                 <td>
-                  <mat-icon [color]="item?.active ? 'primary' : 'warn'">
-                    {{item?.active ? 'check_circle' : 'close'}}
+                  <mat-icon [color]="'primary'">
+                    {{item?.status === 'past' ? 'check_circle' : item?.status === 'now' ? 'play_circle_filled' : 'remove_circle'}}
                   </mat-icon>
                   <a [routerLink]="[data.urls.show, item?.id]"></a>
                 </td>
@@ -83,7 +83,7 @@
 
           </tbody>
         </table>
-        <!-- 
+        <!--
         <pagination [lastPage]="paginationInfo?.last_page" [currentPage]="paginationInfo?.current_page" [total]="paginationInfo?.total"
           [type]="data.urls.show" [query]="currentQuery" [perPage]="paginationInfo?.per_page" [showNavigation]="true" *ngIf="paginationInfo?.last_page && paginationInfo?.current_page && paginationInfo?.last_page > 1">
         </pagination> -->
