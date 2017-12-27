@@ -72,6 +72,7 @@ import { ShowRoadmapComponent } from '../custom/roadmap/show-roadmap/show-roadma
 import { ShowTeam2Component } from '../custom/team2/show-team/show-team.component';
 import { ShowTeamComponent } from '../custom/team/show-team/show-team.component';
 import { ShowTemplateComponent } from '../custom/template/show-template/show-template.component';
+import { ShowUsersComponent } from '../custom/users/show-users/show-users.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SidenavItemComponent } from './sidenav/sidenav-item/sidenav-item.component';
 import { SidenavService } from './sidenav/sidenav.service';
@@ -201,6 +202,7 @@ NguiDatetime.firstDayOfWeek = 1;
     ShowTemplateComponent,
     IndexTemplateComponent,
     IndexUsersComponent,
+    ShowUsersComponent,
     CreatePartnersComponent,
     IndexPartnersComponent,
     ShowPartnersComponent,

@@ -48,7 +48,6 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
       }
 
       this.load = true;
-      console.log('THIS.CURRENTQUERY', this.currentQuery);
       this.getItems();
     });
   }

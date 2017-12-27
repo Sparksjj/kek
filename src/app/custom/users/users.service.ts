@@ -7,7 +7,7 @@ export class UsersService extends CrudService {
     super(
       {
         en: 'users',
-        ru1: 'пользователи',
+        ru1: 'Пользователь',
         ru2: 'пользователи',
         ru3: 'пользователи',
         ru4: 'пользователи'

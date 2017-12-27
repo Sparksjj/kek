@@ -33,6 +33,7 @@ import { ShowRoadmapComponent } from './custom/roadmap/show-roadmap/show-roadmap
 import { ShowTeam2Component } from './custom/team2/show-team/show-team.component';
 import { ShowTeamComponent } from './custom/team/show-team/show-team.component';
 import { ShowTemplateComponent } from './custom/template/show-template/show-template.component';
+import { ShowUsersComponent } from './custom/users/show-users/show-users.component';
 
 const routes: Routes = [
   /*   {
@@ -202,6 +203,11 @@ const routes: Routes = [
       {
         path: 'users',
         component: IndexUsersComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'users/:id',
+        component: ShowUsersComponent,
         pathMatch: 'full'
       }
     ]
