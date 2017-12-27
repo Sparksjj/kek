@@ -42,7 +42,6 @@
     "smooth-scrollbar": "8.2.4",
     "sortablejs": "1.6.0",
     "tinymce": "4.7.4",
-    "uglify-es": "3.2.2",
     "zone.js": "0.8.18"
   },
   "devDependencies": {
