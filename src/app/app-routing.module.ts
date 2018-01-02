@@ -13,6 +13,7 @@ import { CreateTeamComponent } from './custom/team/create-team/create-team.compo
 import { CreateTemplateComponent } from './custom/template/create-template/create-template.component';
 import { HomeComponent } from './custom/home/home.component';
 import { IndexAppComponent } from './custom/app/index-app/index-app.component';
+import { IndexDictionaryComponent } from './custom/dictionary/index-dictionary.component';
 import { IndexEmailComponent } from './custom/email/index-email/index-email.component';
 import { IndexFaqComponent } from './custom/faq/index-faq/index-faq.component';
 import { IndexMediaComponent } from './custom/media/index-media/index-media.component';
@@ -208,6 +209,11 @@ const routes: Routes = [
       {
         path: 'users/:id',
         component: ShowUsersComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'dictionary',
+        component: IndexDictionaryComponent,
         pathMatch: 'full'
       }
     ]

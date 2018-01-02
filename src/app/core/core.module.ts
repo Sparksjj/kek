@@ -34,6 +34,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from '../custom/home/home.component';
 import { IconSidenavDirective } from './sidenav/icon-sidenav.directive';
 import { IndexAppComponent } from '../custom/app/index-app/index-app.component';
+import { IndexDictionaryComponent } from '../custom/dictionary/index-dictionary.component';
 import { IndexEmailComponent } from './../custom/email/index-email/index-email.component';
 import { IndexFaqComponent } from '../custom/faq/index-faq/index-faq.component';
 import { IndexMediaComponent } from '../custom/media/index-media/index-media.component';
@@ -149,7 +150,12 @@ NguiDatetime.firstDayOfWeek = 1;
       relative_url: true,
       skin_url: '/assets/tinymce/skins/lightgray',
       theme_url: '/assets/tinymce/themes/modern/theme.min.js',
-      branding: false
+      branding: false,
+      mode: 'textareas',
+      orce_br_newlines: false,
+      force_p_newlines: false,
+      forced_root_block: '',
+      apply_source_formatting: false
     })
   ],
   exports: [
@@ -208,7 +214,8 @@ NguiDatetime.firstDayOfWeek = 1;
     ShowPartnersComponent,
     IndexMediaComponent,
     CreateMediaComponent,
-    ShowMediaComponent
+    ShowMediaComponent,
+    IndexDictionaryComponent
   ],
   providers: [
     SidenavService,

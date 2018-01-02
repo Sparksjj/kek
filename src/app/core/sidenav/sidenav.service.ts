@@ -155,6 +155,16 @@ export class SidenavService {
       undefined,
       ['admin.user']
     );
+    menu.addItem(
+      'Переводы',
+      'list',
+      '/dictionary',
+      8,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.dictionary']
+    );
     /*
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');
     menu.addItem('Chat', 'chat', '/apps/chat', 2, '14', '#E15C74');
