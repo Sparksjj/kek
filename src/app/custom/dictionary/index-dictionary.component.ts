@@ -98,6 +98,7 @@ export class IndexDictionaryComponent implements OnInit, OnDestroy {
   // }
 
   public saveItem(form: any) {
+    this.error = undefined;
     this.errorObj = undefined;
     this.fileErr = false;
 
