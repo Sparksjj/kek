@@ -172,8 +172,8 @@ export class SidenavService {
       9,
       undefined,
       undefined,
-      undefined
-      /* ['admin.dictionary'] */
+      undefined,
+      ['admin.common-push']
     );
     menu.addItem(
       'Роуд-шоу',
@@ -182,8 +182,8 @@ export class SidenavService {
       10,
       undefined,
       undefined,
-      undefined
-      /* ['admin.dictionary'] */
+      undefined,
+      ['admin.road-show']
     );
     /*
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');
