@@ -1,3 +1,6 @@
+import { ShowRoadshowComponent } from './custom/roadshow/show-roadshow/show-roadshow.component';
+import { CreateRoadshowComponent } from './custom/roadshow/create-roadshow/create-roadshow.component';
+import { IndexRoadshowComponent } from './custom/roadshow/index-roadshow/index-roadshow.component';
 import { PushComponent } from './custom/push/push.component';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -135,6 +138,21 @@ const routes: Routes = [
       {
         path: 'media/:id',
         component: ShowMediaComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'roadshow',
+        component: IndexRoadshowComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'newRoadshow',
+        component: CreateRoadshowComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'roadshow/:id',
+        component: ShowRoadshowComponent,
         pathMatch: 'full',
       },
       {

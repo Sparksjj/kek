@@ -169,7 +169,17 @@ export class SidenavService {
       'Нотификации',
       'send',
       '/push',
-      8,
+      9,
+      undefined,
+      undefined,
+      undefined
+      /* ['admin.dictionary'] */
+    );
+    menu.addItem(
+      'Роуд-шоу',
+      'timelapse',
+      '/roadshow',
+      10,
       undefined,
       undefined,
       undefined

@@ -6,104 +6,69 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { Content, Contents, News } from './../../../core/classes/news';
 import { Subject, Subscription } from 'rxjs';
 
 import { AppMemoryService } from './../../../core/app-memory.service';
 import { ApplicationHttpClient } from './../../../core/http-client';
-import { DomSanitizer } from '@angular/platform-browser';
-import { NewsService } from './../news.service';
+import { Media } from '../../../core/classes/media';
+import { RoadshowService } from './../roadshow.service';
 import { routeAnimation } from './../../../route.animation';
+import { DatePipe } from '@angular/common';
 
 declare var $: any;
 
 @Component({
-  selector: 'ms-show-news',
-  templateUrl: './show-news.component.html',
-  styleUrls: ['./show-news.component.scss'],
+  selector: 'ms-create-media',
+  templateUrl: './create-roadshow.component.html',
+  styleUrls: ['./create-roadshow.component.scss'],
   host: {
     '[@routeAnimation]': 'true',
   },
   animations: [routeAnimation],
+  providers: [RoadshowService, DatePipe],
 })
-export class ShowNewsComponent implements OnInit, OnDestroy {
+export class CreateRoadshowComponent implements OnInit {
   @ViewChild('image1') image1;
-  @ViewChild('image2') image2;
-  @ViewChild('image3') image3;
-
+  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
+  tabActive = 0;
   private paramsSub: Subscription;
   public error: string;
   public errorObj: any;
-  public item: News = new News();
+  public item: Media = new Media();
   public id: string | number;
-  public load = true;
+  public load = false;
   public imgErr = false;
 
-  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
-  tabActive = 0;
-
   constructor(
+    private datePipe: DatePipe,
     private http: ApplicationHttpClient,
-    private data: NewsService,
-    private activatedRoute: ActivatedRoute,
+    private data: RoadshowService,
     private appMemory: AppMemoryService,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.paramsSub = this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
-      this.getItem();
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.paramsSub) {
-      this.paramsSub.unsubscribe();
-    }
-  }
-
-  getItem() {
-    this.http.Get<News>(this.data.urls.api + '/' + this.id).subscribe(
-      res => {
-        res.contents2 = new Contents();
-
-        if (res.contents) {
-          res.contents.forEach(el => {
-            res.contents2[el.language] = el.content;
-          });
-        }
-        this.item = res;
-        this.load = false;
-      },
-      err => {
-        console.log(err);
-        this.router.navigate([this.data.urls.show]);
-        this.load = false;
-      }
-    );
+    this.item.date = new Date();
   }
 
   saveItem(form: any) {
-    this.errorObj = undefined;
     this.imgErr = false;
+    this.errorObj = undefined;
     if (form.invalid) {
       return;
     }
 
     const formData: FormData = new FormData();
 
-    if (this.item.change_img) {
-      if (!this.image1.nativeElement.files[0]) {
-        this.imgErr = true;
-        return;
-      }
-      formData.append(
-        'image',
-        this.image1.nativeElement.files[0],
-        this.image1.nativeElement.files[0].name
-      );
+    if (!this.image1.nativeElement.files[0]) {
+      this.imgErr = true;
+      return;
     }
+
+    if (this.item.date.toString().length > 10) {
+      this.item.date = this.datePipe.transform(this.item.date, 'yyyy-MM-dd');
+    }
+    formData.append('date', this.item.date);
 
     this.item.titles.ru
       ? formData.append('titles[ru]', this.item.titles.ru)
@@ -143,51 +108,37 @@ export class ShowNewsComponent implements OnInit, OnDestroy {
       ? formData.append('short_contents[kp]', this.item.short_contents.kp)
       : console.log();
 
-    this.item.contents2.ru
-      ? formData.append('contents[ru]', this.item.contents2.ru)
-      : console.log();
-    this.item.contents2.en
-      ? formData.append('contents[en]', this.item.contents2.en)
-      : console.log();
-    this.item.contents2.cn
-      ? formData.append('contents[cn]', this.item.contents2.cn)
-      : console.log();
-    this.item.contents2.es
-      ? formData.append('contents[es]', this.item.contents2.es)
-      : console.log();
-    this.item.contents2.vn
-      ? formData.append('contents[vn]', this.item.contents2.vn)
-      : console.log();
-    this.item.contents2.kp
-      ? formData.append('contents[kp]', this.item.contents2.kp)
-      : console.log();
-
+    formData.append('link', this.item.link);
     formData.append('active', this.item.active ? '1' : '0');
 
+    formData.append(
+      'image',
+      this.image1.nativeElement.files[0],
+      this.image1.nativeElement.files[0].name
+    );
+
     this.load = true;
-    this.http
-      .Post(this.data.urls.api + '/' + this.item.id + '/image', formData)
-      .subscribe(
-        res => {
-          this.tabActive = 0;
-          this.load = false;
-          this.appMemory.openSimpleSnackbar();
-        },
-        err => {
-          if (err.status === 422) {
-            this.errorObj = err.error.errors || { err: [err.error.error] };
-          } else if (err.status === 413) {
-            /*           this.contentLarge = true;
+    this.http.Post(this.data.urls.api, formData).subscribe(
+      res => {
+        this.load = false;
+        this.router.navigate([this.data.urls.index]);
+        this.appMemory.openSimpleSnackbar();
+      },
+      err => {
+        if (err.status === 422) {
+          this.errorObj = err.error.errors || { err: [err.error.error] };
+        } else if (err.status === 413) {
+          /*this.contentLarge = true;
           this.load = false;
           setTimeout(() => {
             $('.main-container').scrollTop(10000);
           }, 100); */
-          } else {
-            this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
-          }
-          this.load = false;
+        } else {
+          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
         }
-      );
+        this.load = false;
+      }
+    );
   }
 
   onChange(event, img: string) {

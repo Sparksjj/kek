@@ -1,3 +1,6 @@
+import { ShowRoadshowComponent } from './../custom/roadshow/show-roadshow/show-roadshow.component';
+import { CreateRoadshowComponent } from './../custom/roadshow/create-roadshow/create-roadshow.component';
+import { IndexRoadshowComponent } from './../custom/roadshow/index-roadshow/index-roadshow.component';
 import { PushComponent } from './../custom/push/push.component';
 import {
   HTTP_INTERCEPTORS,
@@ -218,6 +221,9 @@ NguiDatetime.firstDayOfWeek = 1;
     ShowMediaComponent,
     PushComponent,
     IndexDictionaryComponent,
+    IndexRoadshowComponent,
+    CreateRoadshowComponent,
+    ShowRoadshowComponent,
   ],
   providers: [
     SidenavService,
