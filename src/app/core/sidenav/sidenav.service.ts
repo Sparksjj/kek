@@ -165,6 +165,16 @@ export class SidenavService {
       undefined,
       ['admin.dictionary']
     );
+    menu.addItem(
+      'Нотификации',
+      'send',
+      '/push',
+      8,
+      undefined,
+      undefined,
+      undefined
+      /* ['admin.dictionary'] */
+    );
     /*
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');
     menu.addItem('Chat', 'chat', '/apps/chat', 2, '14', '#E15C74');
@@ -287,7 +297,7 @@ export class SidenavService {
       position: position || 99,
       badge: badge || null,
       badgeColor: badgeColor || null,
-      customClass: customClass || null
+      customClass: customClass || null,
     });
 
     this._items.push(item);
@@ -313,7 +323,7 @@ export class SidenavService {
       route: route,
       parent: parent,
       subItems: [],
-      position: position || 99
+      position: position || 99,
     });
 
     parent.subItems.push(item);
