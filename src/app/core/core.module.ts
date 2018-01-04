@@ -1,8 +1,9 @@
+import { PushComponent } from './../custom/push/push.component';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
   HttpClientModule,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
 import { Http, HttpModule } from '@angular/http';
 import { NguiDatetime, NguiDatetimePickerModule } from '@ngui/datetime-picker';
@@ -96,7 +97,7 @@ NguiDatetime.daysOfWeek = [
   { fullName: 'Среда', shortName: 'Ср' },
   { fullName: 'Четверг', shortName: 'Чт' },
   { fullName: 'Пятница', shortName: 'Пт' },
-  { fullName: 'Суббота', shortName: 'Сб' }
+  { fullName: 'Суббота', shortName: 'Сб' },
 ];
 NguiDatetime.months = [
   { fullName: 'Январь', shortName: 'Янв' },
@@ -110,7 +111,7 @@ NguiDatetime.months = [
   { fullName: 'Сентябрь', shortName: 'Сен' },
   { fullName: 'Октябрь', shortName: 'Окт' },
   { fullName: 'Ноябрь', shortName: 'Ноя' },
-  { fullName: 'Декабрь', shortName: 'Дек' }
+  { fullName: 'Декабрь', shortName: 'Дек' },
 ];
 NguiDatetime.locale = {
   date: 'дата',
@@ -120,7 +121,7 @@ NguiDatetime.locale = {
   day: 'день',
   hour: 'часы',
   minute: 'мин.',
-  currentTime: 'текущее время'
+  currentTime: 'текущее время',
 };
 
 NguiDatetime.firstDayOfWeek = 1;
@@ -155,15 +156,15 @@ NguiDatetime.firstDayOfWeek = 1;
       orce_br_newlines: false,
       force_p_newlines: false,
       forced_root_block: '',
-      apply_source_formatting: false
-    })
+      apply_source_formatting: false,
+    }),
   ],
   exports: [
     MaterialComponentsModule,
     HttpModule,
     FlexLayoutModule,
     Parse422Component,
-    TinyMceModule
+    TinyMceModule,
   ],
   declarations: [
     SidenavComponent,
@@ -215,7 +216,8 @@ NguiDatetime.firstDayOfWeek = 1;
     IndexMediaComponent,
     CreateMediaComponent,
     ShowMediaComponent,
-    IndexDictionaryComponent
+    PushComponent,
+    IndexDictionaryComponent,
   ],
   providers: [
     SidenavService,
@@ -239,9 +241,9 @@ NguiDatetime.firstDayOfWeek = 1;
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerLocationInterceptor,
-      multi: true
+      multi: true,
     },
-    FaqService
-  ]
+    FaqService,
+  ],
 })
 export class CoreModule {}

@@ -1,3 +1,4 @@
+import { PushComponent } from './custom/push/push.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminComponent } from './core/admin/admin.component';
@@ -54,180 +55,185 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'app',
         component: IndexAppComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'home',
         component: HomeComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'newApp',
         component: CreateAppComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'app/:id',
         component: ShowAppComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'team',
         component: IndexTeamComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'newTeam',
         component: CreateTeamComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'team/:id',
         component: ShowTeamComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'team2',
         component: IndexTeam2Component,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'newTeam2',
         component: CreateTeam2Component,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'team2/:id',
         component: ShowTeam2Component,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'partners',
         component: IndexPartnersComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'newPartner',
         component: CreatePartnersComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'partners/:id',
         component: ShowPartnersComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'media',
         component: IndexMediaComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'newMedia',
         component: CreateMediaComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'media/:id',
         component: ShowMediaComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'news',
         component: IndexNewsComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'newNews',
         component: CreateNewsComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'news/:id',
         component: ShowNewsComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'roadmap',
         component: IndexRoadmapComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'newRoadmap',
         component: CreateRoadmapComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'roadmap/:id',
         component: ShowRoadmapComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'faq',
         component: IndexFaqComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'newFaq',
         component: CreateFaqComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'faq/:id',
         component: ShowFaqComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'email',
         component: IndexEmailComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'template',
         component: IndexTemplateComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'newTemplate',
         component: CreateTemplateComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'template/:id',
         component: ShowTemplateComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'users',
         component: IndexUsersComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'users/:id',
         component: ShowUsersComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'dictionary',
         component: IndexDictionaryComponent,
-        pathMatch: 'full'
-      }
-    ]
+        pathMatch: 'full',
+      },
+      {
+        path: 'push',
+        component: PushComponent,
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '**',
     redirectTo: 'login',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [],
 })
 export class RoutingModule {}

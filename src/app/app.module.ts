@@ -24,9 +24,9 @@ import { LoginRoutingModule } from './auth/login-routing.module';
     BrowserAnimationsModule,
     CoreModule,
     ScrollbarModule,
-    LoginRoutingModule
+    LoginRoutingModule,
   ],
   providers: [MatIconRegistry],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

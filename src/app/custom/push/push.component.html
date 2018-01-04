@@ -1,0 +1,52 @@
+<ms-loading *ngIf="load"></ms-loading>
+<div class="err_top" style="text-align: center" *ngIf="error && !load">
+  {{error}}
+</div>
+
+<div fxLayout="column" *ngIf="!load">
+  <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
+    <mat-card fxFlex>
+
+      <mat-card-title class="text-center">Отправить нотификацию</mat-card-title>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content fxLayout="row" fxLayoutAlign="space-around stretch" style="margin: 30px 0">
+
+        <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)">
+
+          <mat-card-title>Заголовок</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <input matInput placeholder="Заголовок" name="title" [(ngModel)]="item.title" required>
+            </mat-input-container>
+          </div>
+          <br>
+          <mat-card-title>Тело сообщения</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <textarea rows="3" matInput placeholder="Текст" name="body" [(ngModel)]="item.body" required></textarea>
+            </mat-input-container>
+          </div>
+          <br>
+          <mat-card-title>Url</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <input matInput placeholder="Ссылка" name="link" [(ngModel)]="item.url" required>
+            </mat-input-container>
+          </div>
+          <br>
+
+          <ms-parse422 [obj]="errorObj"></ms-parse422>
+
+          <div class="text-center">
+            <button [disabled]="newItemForm.submitted && newItemForm.invalid" type="submit" mat-raised-button color="primary">Сохранить</button>
+          </div>
+
+        </form>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>
