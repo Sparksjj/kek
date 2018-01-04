@@ -4,7 +4,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 
@@ -21,9 +21,9 @@ declare var $: any;
   templateUrl: './show-users.component.html',
   styleUrls: ['./show-users.component.scss'],
   host: {
-    '[@routeAnimation]': 'true'
+    '[@routeAnimation]': 'true',
   },
-  animations: [routeAnimation]
+  animations: [routeAnimation],
 })
 export class ShowUsersComponent implements OnInit, OnDestroy {
   @ViewChild('image1') image1;
@@ -84,7 +84,7 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
     const body = {
       email: undefined as string,
       password: undefined as string,
-      password_confirmation: undefined as string
+      password_confirmation: undefined as string,
     };
 
     if (this.item.email !== this.initialEmail) {
@@ -97,7 +97,7 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
     }
 
     this.load = true;
-    this.http.Post('admin/user/' + this.item.id, body).subscribe(
+    this.http.Post(`admin/user/${this.item.id}/update`, body).subscribe(
       res => {
         this.load = false;
         this.appMemory.openSimpleSnackbar();
