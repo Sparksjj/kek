@@ -104,6 +104,17 @@ export class SidenavService {
       undefined,
       ['admin.refnews']
     );
+    menu.addSubItem(
+      first,
+      'Роуд-шоу',
+      'timelapse',
+      '/roadshow',
+      7,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.road-show']
+    );
     menu.addItem(
       'Новости',
       'local_activity',
@@ -174,16 +185,6 @@ export class SidenavService {
       undefined,
       undefined,
       ['admin.common-push']
-    );
-    menu.addItem(
-      'Роуд-шоу',
-      'timelapse',
-      '/roadshow',
-      10,
-      undefined,
-      undefined,
-      undefined,
-      ['admin.road-show']
     );
     /*
     menu.addItem('Inbox', 'mail', '/apps/inbox', 1, '22', '#7986CC');
