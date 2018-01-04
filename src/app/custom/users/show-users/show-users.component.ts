@@ -97,7 +97,7 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
     }
 
     this.load = true;
-    this.http.Post(`user/${this.item.id}/update`, body).subscribe(
+    this.http.Post(`admin/user/${this.item.id}/update`, body).subscribe(
       res => {
         this.load = false;
         this.appMemory.openSimpleSnackbar();
