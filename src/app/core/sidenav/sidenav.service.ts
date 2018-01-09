@@ -115,38 +115,19 @@ export class SidenavService {
       undefined,
       ['admin.road-show']
     );
-    menu.addItem(
-      'Новости',
-      'local_activity',
-      '/news',
+
+    const second = menu.addItem(
+      'Отчеты',
+      'add_alert',
+      null,
       2,
       undefined,
       undefined,
       undefined,
-      ['admin.news']
+      ['admin.email-list', 'admin.user']
     );
-
-    menu.addItem(
-      'Faq',
-      'local_library',
-      '/faq',
-      3,
-      undefined,
-      undefined,
-      undefined,
-      ['admin.faq']
-    );
-    menu.addItem(
-      'Шаблоны',
-      'assignment',
-      '/template',
-      4,
-      undefined,
-      undefined,
-      undefined,
-      ['admin.template']
-    );
-    menu.addItem(
+    menu.addSubItem(
+      second,
       'Подписки',
       'add_alert',
       '/email',
@@ -156,7 +137,8 @@ export class SidenavService {
       undefined,
       ['admin.email-list']
     );
-    menu.addItem(
+    menu.addSubItem(
+      second,
       'Пользователи',
       'person',
       '/users',
@@ -166,11 +148,53 @@ export class SidenavService {
       undefined,
       ['admin.user']
     );
+    menu.addSubItem(
+      second,
+      'Транзакции',
+      'details',
+      '/transaction',
+      8,
+      undefined,
+      undefined,
+      undefined
+      // ['admin.transaction']
+    );
+
+    menu.addItem(
+      'Новости',
+      'local_activity',
+      '/news',
+      3,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.news']
+    );
+    menu.addItem(
+      'Faq',
+      'local_library',
+      '/faq',
+      4,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.faq']
+    );
+    menu.addItem(
+      'Шаблоны',
+      'assignment',
+      '/template',
+      5,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.template']
+    );
     menu.addItem(
       'Переводы',
       'list',
       '/dictionary',
-      8,
+      6,
       undefined,
       undefined,
       undefined,
@@ -180,7 +204,7 @@ export class SidenavService {
       'Нотификации',
       'send',
       '/push',
-      9,
+      7,
       undefined,
       undefined,
       undefined,
