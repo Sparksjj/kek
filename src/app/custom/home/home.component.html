@@ -1,9 +1,66 @@
 <div fxLayout="column">
   <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
-    <mat-card fxFlex>
-      <mat-card-title style="text-align: center">
+    <mat-card fxFlex fxLayoutWrap>
+      <mat-card-title fxFlex="100%" style="text-align: center">
         Welcome to Iqeon cms
       </mat-card-title>
+
+
+      <mat-list class="demo-list mat-elevation-z2" fxFlex="100%" fxLayoutWrap>
+
+        <mat-list-item fxFlex="50%">
+          <mat-icon mat-list-avatar>group</mat-icon>
+          <h3 mat-line>{{items?.registrations}}</h3>
+          <p mat-line>
+            <span class="subline">Oбщее кол-во регистраций</span>
+          </p>
+        </mat-list-item>
+
+        <mat-list-item fxFlex="50%">
+          <mat-icon mat-list-avatar>trending_up</mat-icon>
+          <h3 mat-line>{{items?.transactions}}</h3>
+          <p mat-line>
+            <span class="subline">Кол-во транзакций</span>
+          </p>
+        </mat-list-item>
+
+        <mat-list-item fxFlex="50%">
+          <mat-icon mat-list-avatar>group_add</mat-icon>
+          <h3 mat-line>{{items?.investors}}</h3>
+          <p mat-line>
+            <span class="subline">Кол-во инвесторов</span>
+          </p>
+        </mat-list-item>
+
+        <mat-list-item fxFlex="50%">
+          <mat-icon mat-list-avatar>attach_money</mat-icon>
+          <h3 mat-line>{{items?.tokens}}</h3>
+          <p mat-line>
+            <span class="subline">Общая сумма инвестиции в токенах без бонусов</span>
+          </p>
+        </mat-list-item>
+
+
+
+
+        <mat-list-item fxFlex="50%">
+          <mat-icon mat-list-avatar>stars</mat-icon>
+          <h3 mat-line>{{items?.btc}}</h3>
+          <p mat-line>
+            <span class="subline">Общее кол-во по BTC</span>
+          </p>
+        </mat-list-item>
+
+        <mat-list-item fxFlex="50%">
+          <mat-icon mat-list-avatar>stars</mat-icon>
+          <h3 mat-line>{{items?.eth}}</h3>
+          <p mat-line>
+            <span class="subline">Общее кол-во по ETH</span>
+          </p>
+        </mat-list-item>
+
+      </mat-list>
+
     </mat-card>
   </div>
 </div>
