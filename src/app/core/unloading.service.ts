@@ -35,7 +35,7 @@ export class UnloadingService {
       query.from = query.from.toString();
     }
 
-    if (query.from) {
+    if (query.to) {
       query.to = query.to.toString();
     }
 
