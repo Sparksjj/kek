@@ -10,14 +10,14 @@ export class UsersService extends CrudService {
         ru1: 'Пользователь',
         ru2: 'пользователи',
         ru3: 'пользователи',
-        ru4: 'пользователи'
+        ru4: 'пользователи',
       },
       {
-        api: 'admin/users',
+        api: 'admin/user',
         show: '/users',
         index: '/users',
         create: '/users',
-        paggination: 'users'
+        paggination: 'users',
       }
     );
   }

@@ -70,7 +70,7 @@ export class TransactionComponent extends IndexWithPagComponent<Transaction> {
   }
   uploading(qyery: any) {
     this.loadUploading = true;
-    this.unloadingService.exportAsFile(this.data.urls.api, qyery).then(
+    this.unloadingService.exportAsFilePost(this.data.urls.api, qyery).then(
       () => {
         this.loadUploading = false;
       },
