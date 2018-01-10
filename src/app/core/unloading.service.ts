@@ -38,7 +38,7 @@ export class UnloadingService {
     if (query.to) {
       query.to = query.to.toString();
     }
-
+    url += '/xls';
     return this.http
       .Post(url, query)
       .toPromise()
