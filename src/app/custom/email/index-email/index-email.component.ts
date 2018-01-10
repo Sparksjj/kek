@@ -13,7 +13,7 @@ import { UnloadingService } from './../../../core/unloading.service';
 @Component({
   selector: 'ms-index-email',
   templateUrl: './index-email.component.html',
-  styleUrls: ['./index-email.component.scss']
+  styleUrls: ['./index-email.component.scss'],
 })
 export class IndexEmailComponent extends IndexWithPagComponent<Email> {
   public loadUploading = false;
@@ -59,12 +59,12 @@ export class IndexEmailComponent extends IndexWithPagComponent<Email> {
     }
 
     this.router.navigate([this.data.urls.index], {
-      queryParams: this.currentQuery
+      queryParams: this.currentQuery,
     });
   }
   uploading(qyery: any) {
     this.loadUploading = true;
-    this.unloadingService.exportAsFile(this.data.urls.api, qyery).then(
+    this.unloadingService.exportAsFile(this.data.urls.api + '/xls', qyery).then(
       () => {
         this.loadUploading = false;
       },
