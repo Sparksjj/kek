@@ -8,7 +8,7 @@ import { AppMemoryService } from '../../core/app-memory.service';
 import { ApplicationHttpClient } from '../../core/http-client';
 import { IndexWithPagComponent } from '../../core/classes/indexWithPag';
 import { Pagination } from '../../core/classes/pagination';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';;
 import { UnloadingService } from '../../core/unloading.service';
 
 @Component({

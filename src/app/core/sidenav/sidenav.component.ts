@@ -3,7 +3,7 @@ import { SidenavItem } from './sidenav-item/sidenav-item.model';
 import { SidenavService } from './sidenav.service';
 import * as _ from 'lodash';
 import { Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';;
 import { BreadcrumbService } from '../breadcrumb/breadcrumb.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 

@@ -5,7 +5,7 @@ import { App } from './../../../core/classes/app';
 import { AppMemoryService } from './../../../core/app-memory.service';
 import { ApplicationHttpClient } from './../../../core/http-client';
 import { Pagination } from './../../../core/classes/pagination';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';;
 import { TemplateService } from '../template.service';
 import { routeAnimation } from './../../../route.animation';
 

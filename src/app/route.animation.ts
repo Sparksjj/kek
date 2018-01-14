@@ -1,4 +1,11 @@
-import { transition, style, trigger, animate, state, group } from "@angular/animations";
+import {
+  animate,
+  group,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 /*
 Deprecated until Opacity works again
@@ -28,20 +35,25 @@ export let routeAnimation = trigger('routeAnimation', [
     style({
       opacity: 0,
     }),
-    animate('400ms 150ms ease-in-out', style({
-      opacity: 1,
-    }))
+    animate(
+      '400ms 150ms ease-in-out',
+      style({
+        opacity: 1,
+      })
+    ),
   ]),
 ]);
-
 
 export let fadeInAnimation = trigger('fadeInAnimation', [
   transition('void => *', [
     style({
       opacity: 0,
     }),
-    animate('400ms 150ms ease-in-out', style({
-      opacity: 1,
-    }))
+    animate(
+      '400ms 150ms ease-in-out',
+      style({
+        opacity: 1,
+      })
+    ),
   ]),
 ]);

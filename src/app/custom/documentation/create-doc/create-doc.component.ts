@@ -22,6 +22,9 @@ declare var $: any;
   selector: 'ms-create-doc',
   templateUrl: './create-doc.component.html',
   styleUrls: ['./create-doc.component.scss'],
+  host: {
+    '[@routeAnimation]': 'true',
+  },
   animations: [routeAnimation],
 })
 export class CreateDocComponent implements OnInit {

@@ -6,7 +6,7 @@ import { ApplicationHttpClient } from './../../../core/http-client';
 import { Email } from './../../../core/classes/email';
 import { IndexWithPagComponent } from './../../../core/classes/indexWithPag';
 import { Pagination } from './../../../core/classes/pagination';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';;
 import { UnloadingService } from './../../../core/unloading.service';
 import { UsersService } from './../users.service';
 

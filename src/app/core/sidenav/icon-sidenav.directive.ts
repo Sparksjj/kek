@@ -1,25 +1,31 @@
-import {Directive, HostBinding, HostListener, Inject, OnInit, OnDestroy} from '@angular/core';
-import { SidenavService } from "./sidenav.service";
-import { SidenavItem } from "./sidenav-item/sidenav-item.model";
-import {MediaChange, ObservableMedia} from "@angular/flex-layout";
-import { Subscription } from "rxjs";
-import {MediaReplayService} from "./mediareplay/media-replay.service";
+import {
+  Directive,
+  HostBinding,
+  HostListener,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+
+import { MediaReplayService } from './mediareplay/media-replay.service';
+import { SidenavItem } from './sidenav-item/sidenav-item.model';
+import { SidenavService } from './sidenav.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Directive({
-  selector: '[msIconSidenav]'
+  selector: '[msIconSidenav]',
 })
 export class IconSidenavDirective implements OnInit, OnDestroy {
-
   private _mediaSubscription: Subscription;
-  isMobile: boolean = false;
+  isMobile = false;
 
   @HostBinding('class.icon-sidenav')
   get isIconSidenav(): boolean {
     return this.sidenavService.isIconSidenav;
   }
 
-  @HostBinding('class.collapsed')
-  collapsed: boolean;
+  @HostBinding('class.collapsed') collapsed: boolean;
 
   currentlyOpen: SidenavItem[];
 
@@ -45,12 +51,14 @@ export class IconSidenavDirective implements OnInit, OnDestroy {
   constructor(
     private sidenavService: SidenavService,
     private mediaReplayService: MediaReplayService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this._mediaSubscription = this.mediaReplayService.media$.subscribe((change: MediaChange) => {
-      this.isMobile = (change.mqAlias == 'xs') || (change.mqAlias == 'sm');
-    });
+    this._mediaSubscription = this.mediaReplayService.media$.subscribe(
+      (change: MediaChange) => {
+        this.isMobile = change.mqAlias == 'xs' || change.mqAlias == 'sm';
+      }
+    );
   }
 
   ngOnDestroy() {

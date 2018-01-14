@@ -5,7 +5,7 @@ import { AppMemoryService } from '../../core/app-memory.service';
 import { ApplicationHttpClient } from '../../core/http-client';
 import { CrudService } from './crud-service';
 import { Pagination } from './pagination';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';;
 
 export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
   public items: T[];

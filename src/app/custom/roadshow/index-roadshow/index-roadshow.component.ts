@@ -7,7 +7,7 @@ import { ApplicationHttpClient } from './../../../core/http-client';
 import { Pagination } from './../../../core/classes/pagination';
 import { Partner } from './../../../core/classes/partner';
 import { SortablejsOptions } from 'angular-sortablejs';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';;
 import { routeAnimation } from './../../../route.animation';
 
 @Component({

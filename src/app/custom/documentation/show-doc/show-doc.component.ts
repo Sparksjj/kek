@@ -23,6 +23,9 @@ declare var $: any;
   selector: 'ms-show-doc',
   templateUrl: './show-doc.component.html',
   styleUrls: ['./show-doc.component.scss'],
+  host: {
+    '[@routeAnimation]': 'true',
+  },
   animations: [routeAnimation],
 })
 export class ShowDocComponent implements OnInit, OnDestroy {
