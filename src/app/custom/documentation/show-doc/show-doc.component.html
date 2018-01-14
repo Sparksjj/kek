@@ -50,7 +50,7 @@
                 <mat-tab label="{{tabs[i].toUpperCase()}}">
                   <div fxLayout="column" style="margin: 30px">
                     <div class="item-doclink" *ngIf="item?.files">
-                      <a [href]="item?.files[tabs[i]]">{{item?.files[tabs[i]]}}</a>
+                      <a [href]="item?.files[tabs[i]]" target="_blank" rel="noopener">{{item?.files[tabs[i]]}}</a>
                       <span *ngIf="!item?.files[tabs[i]]">Документ не прикрёплен</span>
                     </div>
 
@@ -68,7 +68,7 @@
 
           <mat-card-title>Изображение</mat-card-title>
 
-          <a [href]="item?.image" target="_blank">
+          <a [href]="item?.image" target="_blank" rel="noopener">
             <img class="item-image" [src]="item?.image" alt="">
           </a>
 
