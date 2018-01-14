@@ -68,8 +68,7 @@ export class CreateDocComponent implements OnInit {
       if (this.docInput.toArray()[i].nativeElement.files.length) {
         formData.append(
           `docs[${this.tabs[i]}]`,
-          this.docInput.toArray()[i].nativeElement.files[0],
-          this.docInput.toArray()[i].nativeElement.files[0].name
+          this.docInput.toArray()[i].nativeElement.files[0]
         );
         pass = true;
         this.docErr = false;
