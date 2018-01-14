@@ -115,6 +115,17 @@ export class SidenavService {
       undefined,
       ['admin.road-show']
     );
+    menu.addSubItem(
+      first,
+      'Документы',
+      'attach_file',
+      '/documents',
+      8,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.documentation']
+    );
     menu.addItem(
       'Новости',
       'local_activity',

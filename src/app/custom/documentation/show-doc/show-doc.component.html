@@ -1,0 +1,104 @@
+<ms-loading *ngIf="load"></ms-loading>
+<div class="err_top" style="text-align: center" *ngIf="error && !load">
+  {{error}}
+</div>
+
+<div fxLayout="column" *ngIf="!load">
+  <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
+    <mat-card fxFlex>
+
+      <mat-card-title class="text-center">Изменить {{data.names.ru1}}
+        <div style="float: left; margin-top: -7px">
+          <button mat-mini-fab [routerLink]="[(appMemory?.urls?.previousUrl?.url || data.urls.index)]" [queryParams]="appMemory?.urls?.previousUrl?.query"
+            color="primary">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+      </mat-card-title>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content fxLayout="row" fxLayoutAlign="space-around stretch" style="margin: 30px 0">
+
+        <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)">
+
+          <mat-card-title>Заголовок</mat-card-title>
+
+          <div class="demo-tabs mat-elevation-z2 tabs1" style="margin-bottom: 40px">
+            <mat-tab-group (selectChange)="focusInput('.tabs1 textarea')">
+
+              <ng-container *ngFor="let tab of tabs; let i = index">
+                <mat-tab label="{{tabs[i].toUpperCase()}}" style="border-color: red">
+                  <div fxLayout="column" style="margin: 20px">
+                    <mat-input-container fxFlex>
+                      <textarea rows="3" matInput placeholder="{{tabs[i].toUpperCase()}}" [name]="'title_' + tabs[i]" [(ngModel)]="item.names[tabs[i]]" autofocus></textarea>
+                    </mat-input-container>
+                  </div>
+                </mat-tab>
+              </ng-container>
+
+            </mat-tab-group>
+          </div>
+
+          <mat-card-title>Документ</mat-card-title>
+
+          <div class="demo-tabs mat-elevation-z2 tabs3" style="margin-bottom: 40px">
+
+            <mat-tab-group (selectChange)="focusInput('.tabs3 .ql-editor'); tabActive = $event.index">
+
+              <ng-container *ngFor="let tab of tabs; let i = index">
+                <mat-tab label="{{tabs[i].toUpperCase()}}">
+                  <div fxLayout="column" style="margin: 30px">
+                    <div class="item-doclink" *ngIf="item?.files">
+                      <a [href]="item?.files[tabs[i]]">{{item?.files[tabs[i]]}}</a>
+                      <span *ngIf="!item?.files[tabs[i]]">Документ не прикрёплен</span>
+                    </div>
+
+                    <div fxFlex>
+                      <input #docInput type="file" name="{{'file_' + tabs[i]}}" required accept="application/pdf" (change)="changeListner2($event)">
+                    </div>
+                    <div *ngIf="docErr" style="color: red">Добавьте документ</div>
+                    <div *ngIf="docLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер вложения превышает 1Mb</div>
+                  </div>
+                </mat-tab>
+              </ng-container>
+
+            </mat-tab-group>
+          </div>
+
+          <mat-card-title>Изображение</mat-card-title>
+
+          <a [href]="item?.image" target="_blank">
+            <img class="item-image" [src]="item?.image" alt="">
+          </a>
+
+          <mat-card-title style="margin-bottom: 30px">
+            <button (click)="item.change_img = !item.change_img"
+                    type="button"
+                    mat-raised-button
+                    color="primary">
+              {{ item.change_img ? 'Отменить изменение' : 'Изменить картинку' }}
+            </button>
+          </mat-card-title>
+
+          <div fxLayout="column" style="margin-bottom: 30px" *ngIf="item.change_img">
+            <div fxFlex>
+              <input #image1 type="file" name="bg" required accept="image/jpeg,image/png,image/gif" (change)="changeListner($event); imgErr = false; imgLarge = false ">
+            </div>
+            <div *ngIf="imgErr" style="color: red">Добавьте изображение</div>
+            <div *ngIf="imgLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
+          </div>
+
+          <ms-parse422 [obj]="errorObj"></ms-parse422>
+
+          <div class="text-center">
+            <button [disabled]="newItemForm.submitted && newItemForm.invalid" type="submit" mat-raised-button color="primary">Сохранить</button>
+          </div>
+
+        </form>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>

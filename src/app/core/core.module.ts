@@ -1,7 +1,3 @@
-import { ShowRoadshowComponent } from './../custom/roadshow/show-roadshow/show-roadshow.component';
-import { CreateRoadshowComponent } from './../custom/roadshow/create-roadshow/create-roadshow.component';
-import { IndexRoadshowComponent } from './../custom/roadshow/index-roadshow/index-roadshow.component';
-import { PushComponent } from './../custom/push/push.component';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
@@ -21,15 +17,18 @@ import { BreadcrumbsComponent } from './breadcrumb/breadcrumb.component';
 import { ClickOutsideDirective } from './utils/click-outside.directive';
 import { CommonModule } from '@angular/common';
 import { CreateAppComponent } from '../custom/app/create-app/create-app.component';
+import { CreateDocComponent } from '../custom/documentation/create-doc/create-doc.component';
 import { CreateFaqComponent } from '../custom/faq/create-faq/create-faq.component';
 import { CreateMediaComponent } from '../custom/media/create-media/create-media.component';
 import { CreateNewsComponent } from '../custom/news/create-news/create-news.component';
 import { CreatePartnersComponent } from '../custom/partners/create-partners/create-partners.component';
 import { CreateRoadmapComponent } from '../custom/roadmap/create-roadmap/create-roadmap.component';
+import { CreateRoadshowComponent } from './../custom/roadshow/create-roadshow/create-roadshow.component';
 import { CreateTeam2Component } from '../custom/team2/create-team/create-team.component';
 import { CreateTeamComponent } from '../custom/team/create-team/create-team.component';
 import { CreateTemplateComponent } from '../custom/template/create-template/create-template.component';
 import { CustomQuillDirective } from './custom-quill.directive';
+import { DocService } from '../custom/documentation/doc.service';
 import { EmailService } from './../custom/email/email.service';
 import { FaqService } from '../custom/faq/faq.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -39,12 +38,14 @@ import { HomeComponent } from '../custom/home/home.component';
 import { IconSidenavDirective } from './sidenav/icon-sidenav.directive';
 import { IndexAppComponent } from '../custom/app/index-app/index-app.component';
 import { IndexDictionaryComponent } from '../custom/dictionary/index-dictionary.component';
+import { IndexDocComponent } from '../custom/documentation/index-doc/index-doc.component';
 import { IndexEmailComponent } from './../custom/email/index-email/index-email.component';
 import { IndexFaqComponent } from '../custom/faq/index-faq/index-faq.component';
 import { IndexMediaComponent } from '../custom/media/index-media/index-media.component';
 import { IndexNewsComponent } from '../custom/news/index-news/index-news.component';
 import { IndexPartnersComponent } from '../custom/partners/index-partners/index-partners.component';
 import { IndexRoadmapComponent } from '../custom/roadmap/index-roadmap/index-roadmap.component';
+import { IndexRoadshowComponent } from './../custom/roadshow/index-roadshow/index-roadshow.component';
 import { IndexTeam2Component } from '../custom/team2/index-team/index-team.component';
 import { IndexTeamComponent } from '../custom/team/index-team/index-team.component';
 import { IndexTemplateComponent } from '../custom/template/index-template/index-template.component';
@@ -60,6 +61,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { PaginationService } from './pagination/pagination.service';
 import { Parse422Component } from '../custom/parse422/parse422.component';
 import { PartnersService } from '../custom/partners/partners.service';
+import { PushComponent } from './../custom/push/push.component';
 import { QuickpanelComponent } from './quickpanel/quickpanel.component';
 import { QuillModule } from 'ngx-quill';
 import { RoadmapService } from '../custom/roadmap/roadmap.service';
@@ -69,11 +71,13 @@ import { SearchBarComponent } from './toolbar/search-bar/search-bar.component';
 import { SearchComponent } from './toolbar/search/search.component';
 import { ServerLocationInterceptor } from './../auth/auth-http.service';
 import { ShowAppComponent } from '../custom/app/show-app/show-app.component';
+import { ShowDocComponent } from '../custom/documentation/show-doc/show-doc.component';
 import { ShowFaqComponent } from '../custom/faq/show-faq/show-faq.component';
 import { ShowMediaComponent } from '../custom/media/show-media/show-media.component';
 import { ShowNewsComponent } from '../custom/news/show-news/show-news.component';
 import { ShowPartnersComponent } from '../custom/partners/show-partners/show-partners.component';
 import { ShowRoadmapComponent } from '../custom/roadmap/show-roadmap/show-roadmap.component';
+import { ShowRoadshowComponent } from './../custom/roadshow/show-roadshow/show-roadshow.component';
 import { ShowTeam2Component } from '../custom/team2/show-team/show-team.component';
 import { ShowTeamComponent } from '../custom/team/show-team/show-team.component';
 import { ShowTemplateComponent } from '../custom/template/show-template/show-template.component';
@@ -224,6 +228,9 @@ NguiDatetime.firstDayOfWeek = 1;
     IndexRoadshowComponent,
     CreateRoadshowComponent,
     ShowRoadshowComponent,
+    ShowDocComponent,
+    IndexDocComponent,
+    CreateDocComponent,
   ],
   providers: [
     SidenavService,
@@ -244,6 +251,7 @@ NguiDatetime.firstDayOfWeek = 1;
     UsersService,
     MediaService,
     PartnersService,
+    DocService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerLocationInterceptor,
