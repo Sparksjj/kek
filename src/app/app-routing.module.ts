@@ -42,6 +42,7 @@ import { ShowTeam2Component } from './custom/team2/show-team/show-team.component
 import { ShowTeamComponent } from './custom/team/show-team/show-team.component';
 import { ShowTemplateComponent } from './custom/template/show-template/show-template.component';
 import { ShowUsersComponent } from './custom/users/show-users/show-users.component';
+import { TransactionComponent } from './custom/transaction/transaction.component';
 
 const routes: Routes = [
   /*   {
@@ -256,6 +257,10 @@ const routes: Routes = [
       {
         path: 'newDocument',
         component: CreateDocComponent,
+      },
+      {
+        path: 'transaction',
+        component: TransactionComponent,
         pathMatch: 'full',
       },
     ],

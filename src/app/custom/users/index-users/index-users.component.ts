@@ -13,7 +13,7 @@ import { UsersService } from './../users.service';
 @Component({
   selector: 'ms-index-users',
   templateUrl: './index-users.component.html',
-  styleUrls: ['./index-users.component.scss']
+  styleUrls: ['./index-users.component.scss'],
 })
 export class IndexUsersComponent extends IndexWithPagComponent<Email> {
   public loadUploading = false;
@@ -58,12 +58,12 @@ export class IndexUsersComponent extends IndexWithPagComponent<Email> {
     }
 
     this.router.navigate([this.data.urls.index], {
-      queryParams: this.currentQuery
+      queryParams: this.currentQuery,
     });
   }
   uploading(qyery: any) {
     this.loadUploading = true;
-    this.unloadingService.exportAsFilePost('admin/user/xls', qyery).then(
+    this.unloadingService.exportAsFilePost(this.data.urls.api, qyery).then(
       () => {
         this.loadUploading = false;
       },

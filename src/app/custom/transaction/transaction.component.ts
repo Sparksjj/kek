@@ -1,25 +1,31 @@
+import { Transaction } from './../../core/classes/transaction';
+import { routeAnimation } from './../../route.animation';
+import { TransactionService } from './transaction.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Injector, OnInit } from '@angular/core';
 
-import { AppMemoryService } from './../../../core/app-memory.service';
-import { ApplicationHttpClient } from './../../../core/http-client';
-import { Email } from './../../../core/classes/email';
-import { EmailService } from './../email.service';
-import { IndexWithPagComponent } from './../../../core/classes/indexWithPag';
-import { Pagination } from './../../../core/classes/pagination';
+import { AppMemoryService } from '../../core/app-memory.service';
+import { ApplicationHttpClient } from '../../core/http-client';
+import { IndexWithPagComponent } from '../../core/classes/indexWithPag';
+import { Pagination } from '../../core/classes/pagination';
 import { Subscription } from 'rxjs';
-import { UnloadingService } from './../../../core/unloading.service';
+import { UnloadingService } from '../../core/unloading.service';
 
 @Component({
-  selector: 'ms-index-email',
-  templateUrl: './index-email.component.html',
-  styleUrls: ['./index-email.component.scss'],
+  selector: 'ms-transaction',
+  templateUrl: './transaction.component.html',
+  styleUrls: ['./transaction.component.scss'],
+  host: {
+    '[@routeAnimation]': 'true',
+  },
+  animations: [routeAnimation],
+  providers: [TransactionService],
 })
-export class IndexEmailComponent extends IndexWithPagComponent<Email> {
+export class TransactionComponent extends IndexWithPagComponent<Transaction> {
   public loadUploading = false;
   constructor(
     protected http: ApplicationHttpClient,
-    protected data: EmailService,
+    protected data: TransactionService,
     protected activatedRoute: ActivatedRoute,
     protected appMemory: AppMemoryService,
     protected router: Router,

@@ -96,6 +96,7 @@ import { ToolbarNotificationsComponent } from './toolbar/toolbar-notifications/t
 import { ToolbarUserButtonComponent } from './toolbar/toolbar-user-button/toolbar-user-button.component';
 import { UnloadingService } from './unloading.service';
 import { UsersService } from '../custom/users/users.service';
+import { TransactionComponent } from '../custom/transaction/transaction.component';
 
 NguiDatetime.daysOfWeek = [
   { fullName: 'Воскресенье', shortName: 'Вс' },
@@ -220,6 +221,7 @@ NguiDatetime.firstDayOfWeek = 1;
     CreatePartnersComponent,
     IndexPartnersComponent,
     ShowPartnersComponent,
+    TransactionComponent,
     IndexMediaComponent,
     CreateMediaComponent,
     ShowMediaComponent,

@@ -23,7 +23,7 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
     from: undefined,
     to: undefined,
     fromDate: undefined,
-    toDate: undefined
+    toDate: undefined,
   };
 
   constructor(
@@ -39,12 +39,14 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
       this.currentQuery.page = params['page'] || 1;
       this.currentQuery.sort = params['sort'] || 'id-asc';
 
-      if (this.currentQuery.from) {
+      if (params['from']) {
         this.currentQuery.from = params['from'];
+        this.currentQuery.fromDate = params['from'];
       }
 
-      if (this.currentQuery.to) {
+      if (params['from']) {
         this.currentQuery.to = params['to'];
+        this.currentQuery.toDate = params['to'];
       }
 
       this.load = true;

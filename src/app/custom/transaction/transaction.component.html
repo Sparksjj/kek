@@ -1,0 +1,156 @@
+<ms-loading *ngIf="load"></ms-loading>
+
+<div class="err_top" style="text-align: center" *ngIf="error && !load">
+  {{error}}
+</div>
+
+<div fxLayout="column" *ngIf="!load">
+  <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
+    <mat-card fxFlex>
+
+      <div style="text-align: right; width: 100%; height: 4px; font-size: 12px">
+        <mat-input-container style="margin-right: 15px">
+          <input matInput [(ngModel)]="currentQuery.fromDate" placeholder="Показать от:" [max-date]="minDate" date-only="true" (valueChanged)="currentQuery.page = 1; refresh()"
+            ngui-datetime-picker/>
+          <mat-icon matPrefix class="pointer" style="padding-right: 5px; position: relative;
+          top: 4px;">
+            today
+          </mat-icon>
+          <mat-icon class="pointer" style="position: relative; top: 4px;" matSuffix *ngIf="currentQuery.from" (click)="currentQuery.from = undefined; currentQuery.page = 1; refresh()">
+            clear
+          </mat-icon>
+        </mat-input-container>
+
+        <mat-input-container style="margin-right: 15px">
+          <input matInput [(ngModel)]="currentQuery.toDate" placeholder="Показать до:" [min-date]="currentQuery.from" date-only="true"
+            (valueChanged)="currentQuery.page = 1; refresh()" ngui-datetime-picker/>
+          <mat-icon matPrefix class="pointer" style="padding-right: 5px; position: relative;
+          top: 4px;">
+            today
+          </mat-icon>
+          <mat-icon style="position: relative; top: 4px;" class="pointer" matSuffix *ngIf="currentQuery.to" (click)="currentQuery.to = undefined; currentQuery.page = 1; refresh()">
+            clear
+          </mat-icon>
+        </mat-input-container>
+      </div>
+
+
+      <mat-card-title>
+        <span *ngIf="items?.length > 0; else no_items">Все {{data.names.ru2}}
+          <button type="button" mat-raised-button color="primary" [disabled]="loadUploading" (click)="uploading(currentQuery)">Xls</button>
+        </span>
+        <ng-template #no_items>Нет {{data.names.ru3}}</ng-template>
+      </mat-card-title>
+
+      <mat-divider *ngIf="items?.length > 0"></mat-divider>
+
+      <mat-card-content fxLayout="row" fxLayoutWrap fxLayoutAlign="space-around stretch" style="margin-top: 30px">
+
+        <table class="table table-hover table-striped table-condensed table-bordered" *ngIf="items?.length > 0">
+          <thead>
+
+            <tr class="sorded_tr">
+
+              <th>
+                Id
+              </th>
+
+              <th>
+                Step
+              </th>
+
+              <th>
+                Тип
+              </th>
+
+              <th>
+                Значение
+              </th>
+
+              <th>
+                Токены
+              </th>
+
+
+
+              <!--
+              <th (click)="sort('id')" [ngClass]="{'selected': currentQuery.sort.indexOf('id') == 0}">
+                Id
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('id') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('step')" [ngClass]="{'selected': currentQuery.sort.indexOf('step') == 0}">
+                Step
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('step') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('type')" [ngClass]="{'selected': currentQuery.sort.indexOf('type') == 0}">
+                Тип
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('type') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('value')" [ngClass]="{'selected': currentQuery.sort.indexOf('value') == 0}">
+                Значение
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('value') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th>
+
+              <th (click)="sort('token')" [ngClass]="{'selected': currentQuery.sort.indexOf('token') == 0}">
+                Токены
+                <mat-icon class="sort_icon" *ngIf="currentQuery.sort.indexOf('token') == 0">
+                  {{currentQuery.sort.indexOf('desc') > -1 ? 'keyboard_arrow_up':'keyboard_arrow_down'}}
+                </mat-icon>
+              </th> -->
+
+
+            </tr>
+
+          </thead>
+          <tbody>
+
+            <ng-template ngFor let-item [ngForOf]="items">
+
+              <tr style="cursor: pointer; position: relative">
+
+                <td>
+                  {{item?.id}}
+                </td>
+
+                <td>
+                  {{item?.step || '-'}}
+                </td>
+
+                <td>
+                  {{item?.type || '-'}}
+                </td>
+
+                <td>
+                  {{item?.value}}
+                </td>
+
+                <td>
+                  {{item?.token}}
+                </td>
+
+              </tr>
+
+            </ng-template>
+
+          </tbody>
+        </table>
+
+        <pagination [lastPage]="paginationInfo.last_page" [currentPage]="paginationInfo?.current_page" [total]="paginationInfo?.total"
+          [type]="data.urls.show" [query]="currentQuery" [perPage]="paginationInfo?.per_page" [showNavigation]="true" *ngIf="paginationInfo?.last_page && paginationInfo?.current_page && paginationInfo?.last_page > 1">
+        </pagination>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
