@@ -6,6 +6,7 @@ export class Doc {
   image: string;
   docs: any[];
   change_img: boolean;
+  onclick: string;
 }
 
 export class Names {

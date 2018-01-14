@@ -23,7 +23,6 @@
         <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)">
 
           <mat-card-title>Заголовок</mat-card-title>
-
           <div class="demo-tabs mat-elevation-z2 tabs1" style="margin-bottom: 40px">
             <mat-tab-group (selectChange)="focusInput('.tabs1 textarea')">
 
@@ -41,7 +40,6 @@
           </div>
 
           <mat-card-title>Документ</mat-card-title>
-
           <div class="demo-tabs mat-elevation-z2 tabs3" style="margin-bottom: 40px">
 
             <mat-tab-group (selectChange)="focusInput('.tabs3 .ql-editor'); tabActive = $event.index">
@@ -62,13 +60,19 @@
           </div>
 
           <mat-card-title>Изображение</mat-card-title>
-
           <div fxLayout="column" style="margin-bottom: 30px">
             <div fxFlex>
               <input #image1 type="file" name="bg" required accept="image/jpeg,image/png,image/gif" (change)="changeListner($event); imgErr = false; imgLarge = false ">
             </div>
             <div *ngIf="imgErr" style="color: red">Добавьте изображение</div>
             <div *ngIf="imgLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
+          </div>
+
+          <mat-card-title>Скрипт onclick</mat-card-title>
+          <div fxLayout="column" style="margin-bottom: 20px">
+            <mat-input-container fxFlex>
+              <textarea rows="3" matInput placeholder="Скрипт для выполнения при клике пользователя" name="onclick" [(ngModel)]="item.onclick"></textarea>
+            </mat-input-container>
           </div>
 
           <ms-parse422 [obj]="errorObj"></ms-parse422>

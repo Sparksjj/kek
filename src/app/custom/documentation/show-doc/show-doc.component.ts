@@ -130,6 +130,10 @@ export class ShowDocComponent implements OnInit, OnDestroy {
       ? formData.append('names[kp]', this.item.names.kp)
       : console.log();
 
+    this.item.onclick
+      ? formData.append('onclick', this.item.onclick)
+      : console.log();
+
     this.load = true;
     this.http
       .Post(this.data.urls.api + '/' + this.item.id + '/image', formData)
