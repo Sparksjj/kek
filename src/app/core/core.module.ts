@@ -1,3 +1,6 @@
+import { EqualValidator } from './equal-validator.directive';
+import { ShowAdminComponent } from './../custom/administrator/show-admin/show-admin.component';
+import { IndexAdminComponent } from './../custom/administrator/index-admin/index-admin.component';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
@@ -97,6 +100,7 @@ import { ToolbarUserButtonComponent } from './toolbar/toolbar-user-button/toolba
 import { UnloadingService } from './unloading.service';
 import { UsersService } from '../custom/users/users.service';
 import { TransactionComponent } from '../custom/transaction/transaction.component';
+import { CreateAdminComponent } from '../custom/administrator/create-admin/create-admin.component';
 
 NguiDatetime.daysOfWeek = [
   { fullName: 'Воскресенье', shortName: 'Вс' },
@@ -172,6 +176,7 @@ NguiDatetime.firstDayOfWeek = 1;
     HttpModule,
     FlexLayoutModule,
     Parse422Component,
+    EqualValidator,
     TinyMceModule,
   ],
   declarations: [
@@ -233,6 +238,10 @@ NguiDatetime.firstDayOfWeek = 1;
     ShowDocComponent,
     IndexDocComponent,
     CreateDocComponent,
+    IndexAdminComponent,
+    CreateAdminComponent,
+    EqualValidator,
+    ShowAdminComponent
   ],
   providers: [
     SidenavService,
@@ -262,4 +271,4 @@ NguiDatetime.firstDayOfWeek = 1;
     FaqService,
   ],
 })
-export class CoreModule {}
+export class CoreModule { }

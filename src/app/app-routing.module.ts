@@ -1,3 +1,5 @@
+import { ShowAdminComponent } from './custom/administrator/show-admin/show-admin.component';
+import { IndexAdminComponent } from './custom/administrator/index-admin/index-admin.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminComponent } from './core/admin/admin.component';
@@ -43,6 +45,7 @@ import { ShowTeamComponent } from './custom/team/show-team/show-team.component';
 import { ShowTemplateComponent } from './custom/template/show-template/show-template.component';
 import { ShowUsersComponent } from './custom/users/show-users/show-users.component';
 import { TransactionComponent } from './custom/transaction/transaction.component';
+import { CreateAdminComponent } from './custom/administrator/create-admin/create-admin.component';
 
 const routes: Routes = [
   /*   {
@@ -262,6 +265,20 @@ const routes: Routes = [
         path: 'transaction',
         component: TransactionComponent,
         pathMatch: 'full',
+      },
+      {
+        path: 'administrator',
+        component: IndexAdminComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'administrator/:id',
+        component: ShowAdminComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'newAdministrator',
+        component: CreateAdminComponent,
       },
     ],
   },

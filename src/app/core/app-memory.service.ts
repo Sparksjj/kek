@@ -13,7 +13,9 @@ import { User } from './classes/user';
 @Injectable()
 export class AppMemoryService {
   public userSubject = new BehaviorSubject(null);
+  public allRolesSub = new BehaviorSubject(null);
   public roles: any = {};
+  public allRoles: any[];
   public user: User | null;
   public urls = {
     previousUrl: {
@@ -120,7 +122,13 @@ export class AppMemoryService {
         this.urls.currentUrl = e[1]['urlAfterRedirects'];
       });
   }
-
+  getAllRoles(){
+    this.http.Get<any>('admin/role').subscribe(res => {
+      this.allRoles = res;
+      this.allRolesSub.next(true);
+    }, err => {
+    });
+  }
   openSimpleSnackbar(text = 'Готово', action = 'Закрыть', duration = 4000) {
     this.snackBar.open(text, action, {
       duration: duration
