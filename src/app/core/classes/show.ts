@@ -73,7 +73,7 @@ export class Show<T> implements OnInit, OnDestroy {
     this.router.navigate([this.data.urls.show]);
     this.load = false;
   }
-  saveItem(form: any) {
+  saveItem(form: any): any {
     this.imgErr = false;
     this.errorObj = undefined;
     if (form.invalid) {

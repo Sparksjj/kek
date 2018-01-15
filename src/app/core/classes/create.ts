@@ -37,7 +37,7 @@ export class Create<T> implements OnInit {
   ngOnInit() {
   }
 
-  saveItem(form: any) {
+  saveItem(form: any): any {
     this.imgErr = false;
     this.errorObj = undefined;
     if (form.invalid) {
