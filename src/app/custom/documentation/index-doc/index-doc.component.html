@@ -23,6 +23,7 @@
               <th></th>
               <th>Id</th>
               <th>Название</th>
+              <th>Показывть в блоке?</th>
               <th>Дата создания</th>
               <th>Удалить</th>
             </tr>
@@ -45,6 +46,13 @@
 
                 <td>
                   {{item?.names?.ru}}
+                  <a [routerLink]="[data.urls.show, item?.id]"></a>
+                </td>
+
+                <td>
+                  <mat-icon [color]="item?.show ? 'primary' : 'warn'">
+                    {{item?.show ? 'check_circle' : 'close'}}
+                  </mat-icon>
                   <a [routerLink]="[data.urls.show, item?.id]"></a>
                 </td>
 

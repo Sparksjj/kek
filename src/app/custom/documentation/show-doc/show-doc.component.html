@@ -20,7 +20,7 @@
 
       <mat-card-content fxLayout="row" fxLayoutAlign="space-around stretch" style="margin: 30px 0">
 
-        <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)">
+        <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)" spellcheck="false" autocomplete="off">
 
           <mat-card-title>Заголовок</mat-card-title>
           <div class="demo-tabs mat-elevation-z2 tabs1" style="margin-bottom: 40px">
@@ -91,6 +91,16 @@
             <mat-input-container fxFlex>
               <textarea rows="3" matInput placeholder="Скрипт для выполнения при клике пользователя" name="onclick" [(ngModel)]="item.onclick"></textarea>
             </mat-input-container>
+          </div>
+
+          <div fxLayout="column"
+               fxLayout.gt-md="row"
+               style="margin-bottom: 50px">
+            <mat-checkbox color="primary"
+                          name="active"
+                          [(ngModel)]="item.show">
+              Отображать в блоке "Документация проекта"?
+            </mat-checkbox>
           </div>
 
           <ms-parse422 [obj]="errorObj"></ms-parse422>
