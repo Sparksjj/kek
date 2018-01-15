@@ -93,6 +93,16 @@
             </mat-input-container>
           </div>
 
+          <div fxLayout="column"
+               fxLayout.gt-md="row"
+               style="margin-bottom: 50px">
+            <mat-checkbox color="primary"
+                          name="active"
+                          [(ngModel)]="item.show">
+              Отображать в блоке "Документация проекта"?
+            </mat-checkbox>
+          </div>
+
           <ms-parse422 [obj]="errorObj"></ms-parse422>
 
           <div class="text-center">

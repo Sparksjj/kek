@@ -113,6 +113,8 @@ export class CreateDocComponent implements OnInit {
       ? formData.append('onclick', this.item.onclick)
       : console.log();
 
+    formData.append('show', this.item.show ? '1' : '0');
+
     this.load = true;
     this.http.Post(this.data.urls.api, formData).subscribe(
       res => {

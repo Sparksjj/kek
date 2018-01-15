@@ -68,6 +68,7 @@ export class ShowDocComponent implements OnInit, OnDestroy {
   getItem() {
     this.http.Get<Doc>(this.data.urls.api + '/' + this.id).subscribe(
       res => {
+        res.show = res.show ? true : false;
         this.item = res;
         this.load = false;
       },
@@ -135,6 +136,8 @@ export class ShowDocComponent implements OnInit, OnDestroy {
     this.item.onclick
       ? formData.append('onclick', this.item.onclick)
       : console.log();
+
+    formData.append('show', this.item.show ? '1' : '0');
 
     this.load = true;
     this.http
