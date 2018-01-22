@@ -31,6 +31,15 @@
 
           <br>
 
+          <mat-card-title>Бонус рейт (%)</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <input matInput placeholder="bonus_rate" type="number" name="bonus_rate" [(ngModel)]="item.bonus_rate" min="0" max="10" required>
+            </mat-input-container>
+          </div>
+
+          <br>
+
           <mat-card-title>Новый пароль</mat-card-title>
           <div fxLayout="column" fxLayout.gt-md="row">
             <mat-input-container fxFlex>

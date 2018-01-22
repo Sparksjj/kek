@@ -85,6 +85,7 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
       email: undefined as string,
       password: undefined as string,
       password_confirmation: undefined as string,
+      bonus_rate: undefined as string,
     };
 
     if (this.item.email !== this.initialEmail) {
@@ -95,6 +96,8 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
       body.password = this.item.password;
       body.password_confirmation = this.item.password;
     }
+
+    body.bonus_rate = this.item.bonus_rate;
 
     this.load = true;
     this.http.Post(`admin/user/${this.item.id}/update`, body).subscribe(

@@ -17,13 +17,13 @@
             <mat-option *ngFor="let state of states" [value]="state.value">{{ state.value }}</mat-option>
         </mat-select> -->
     </form>
-    <span *ngFor="let page of paginationPages; let i = index" style="position: relative;top: -6px;">
+    <span *ngFor="let page of paginationPages; let i = index">
         <!-- current -->
-        <button style="position: relative; top: -6px" color="primary" mat-mini-fab disabled="true" *ngIf="page.current">
+        <button color="primary" mat-mini-fab disabled="true" *ngIf="page.current">
             {{page.number}}
         </button>
         <!-- other -->
-        <button style="position: relative; top: -6px" color="primary" mat-mini-fab [routerLink]="['/' + type]" [queryParams]="getQuery(page.number)"
+        <button color="primary" mat-mini-fab [routerLink]="['/' + type]" [queryParams]="getQuery(page.number)"
             *ngIf="(!page.current && i != 0 && i != paginationPages.length-1 && !showSpecial) ||
         (!page.current && i != 0 && i != 1 && i != paginationPages.length-1 && i != paginationPages.length-2 && showSpecial)">
             {{page.number}}
