@@ -13,7 +13,7 @@
 
         <mat-form-field>
           <mat-select ngModel #langSelect="ngModel" [(value)]="selected" placeholder="Язык" name="lang" required (change)="getItem()">
-            <mat-option *ngFor="let lang of langs; let i = index" [value]="lang">{{lang}}</mat-option>
+            <mat-option *ngFor="let lang of appMemory?.languages; let i = index" [value]="lang">{{lang}}</mat-option>
           </mat-select>
         </mat-form-field>
 
