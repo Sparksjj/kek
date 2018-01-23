@@ -38,16 +38,15 @@ export class ShowFaqComponent implements OnInit, OnDestroy {
   public load = true;
   public imgErr = false;
 
-  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
   tabActive = 0;
 
   constructor(
     private http: ApplicationHttpClient,
     private data: FaqService,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.paramsSub = this.activatedRoute.params.subscribe(params => {
@@ -92,45 +91,17 @@ export class ShowFaqComponent implements OnInit, OnDestroy {
 
     const formData: FormData = new FormData();
 
-    this.item.questions.ru
-      ? formData.append('questions[ru]', this.item.questions.ru)
-      : console.log();
-    this.item.questions.en
-      ? formData.append('questions[en]', this.item.questions.en)
-      : console.log();
-    this.item.questions.cn
-      ? formData.append('questions[cn]', this.item.questions.cn)
-      : console.log();
-    this.item.questions.es
-      ? formData.append('questions[es]', this.item.questions.es)
-      : console.log();
-    this.item.questions.vn
-      ? formData.append('questions[vn]', this.item.questions.vn)
-      : console.log();
-    this.item.questions.kp
-      ? formData.append('questions[kp]', this.item.questions.kp)
-      : console.log();
 
-    this.item.contents2.ru
-      ? formData.append('answers[ru]', this.item.contents2.ru)
-      : console.log();
-    this.item.contents2.en
-      ? formData.append('answers[en]', this.item.contents2.en)
-      : console.log();
-    this.item.contents2.cn
-      ? formData.append('answers[cn]', this.item.contents2.cn)
-      : console.log();
-    this.item.contents2.es
-      ? formData.append('answers[es]', this.item.contents2.es)
-      : console.log();
-    this.item.contents2.vn
-      ? formData.append('answers[vn]', this.item.contents2.vn)
-      : console.log();
-    this.item.contents2.kp
-      ? formData.append('answers[kp]', this.item.contents2.kp)
-      : console.log();
-
-    // formData.append('active', this.item.active ? '1' : '0');
+    if (this.appMemory.languages) {
+      this.appMemory.languages.forEach(i => {
+        this.item.questions[i]
+          ? formData.append('questions[' + i + ']', this.item.questions[i])
+          : console.log();
+        this.item.contents2[i]
+          ? formData.append('answers[' + i + ']', this.item.contents2[i])
+          : console.log();
+      });
+    }
 
     this.load = true;
     this.http.Post(this.data.urls.api + '/' + this.item.id, formData).subscribe(

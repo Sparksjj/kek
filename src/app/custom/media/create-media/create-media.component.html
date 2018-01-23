@@ -5,7 +5,7 @@
 
 <div fxLayout="column" *ngIf="!load">
   <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
-    <mat-card fxFlex>
+    <mat-card fxFlex="100%">
 
       <mat-card-title class="text-center">Новый {{data.names.ru4}}
         <div style="float: left; margin-top: -7px">
@@ -46,12 +46,8 @@
 
           <br>
 
-          <div fxLayout="column"
-               fxLayout.gt-md="row"
-               style="margin-bottom: 50px">
-            <mat-checkbox color="primary"
-                          name="active"
-                          [(ngModel)]="item.active">
+          <div fxLayout="column" fxLayout.gt-md="row" style="margin-bottom: 50px">
+            <mat-checkbox color="primary" name="active" [(ngModel)]="item.active">
               Публиковать?
             </mat-checkbox>
           </div>

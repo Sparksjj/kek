@@ -41,9 +41,9 @@ export class IndexTeam2Component implements OnInit, OnDestroy {
     private http: ApplicationHttpClient,
     public data: Team2Service,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.sub = this.activatedRoute.queryParams.subscribe((params: any) => {
@@ -76,16 +76,16 @@ export class IndexTeam2Component implements OnInit, OnDestroy {
     this.http
       .Get<any>(this.data.urls.api, { params: this.currentQuery })
       .subscribe(
-        res => {
-          this.items = res.data;
-          delete res.data;
-          this.paginationInfo = res;
-          this.load = false;
-        },
-        err => {
-          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
-          this.load = false;
-        }
+      res => {
+        this.items = res.data;
+        delete res.data;
+        this.paginationInfo = res;
+        this.load = false;
+      },
+      err => {
+        this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
+        this.load = false;
+      }
       );
   }
 

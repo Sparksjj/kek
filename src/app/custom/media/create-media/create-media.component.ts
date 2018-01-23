@@ -39,11 +39,11 @@ export class CreateMediaComponent implements OnInit {
   constructor(
     private http: ApplicationHttpClient,
     private data: MediaService,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   saveItem(form: any) {
     this.imgErr = false;

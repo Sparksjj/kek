@@ -29,7 +29,6 @@ declare var $: any;
 })
 export class CreateRoadshowComponent implements OnInit {
   @ViewChild('image1') image1;
-  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
   tabActive = 0;
   private paramsSub: Subscription;
   public error: string;
@@ -42,10 +41,10 @@ export class CreateRoadshowComponent implements OnInit {
   constructor(
     private datePipe: DatePipe,
     private http: ApplicationHttpClient,
-    private data: RoadshowService,
-    private appMemory: AppMemoryService,
+    public data: RoadshowService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.item.date = new Date();
@@ -70,43 +69,16 @@ export class CreateRoadshowComponent implements OnInit {
     }
     formData.append('date', this.item.date);
 
-    this.item.titles.ru
-      ? formData.append('titles[ru]', this.item.titles.ru)
-      : console.log();
-    this.item.titles.en
-      ? formData.append('titles[en]', this.item.titles.en)
-      : console.log();
-    this.item.titles.cn
-      ? formData.append('titles[cn]', this.item.titles.cn)
-      : console.log();
-    this.item.titles.es
-      ? formData.append('titles[es]', this.item.titles.es)
-      : console.log();
-    this.item.titles.vn
-      ? formData.append('titles[vn]', this.item.titles.vn)
-      : console.log();
-    this.item.titles.kp
-      ? formData.append('titles[kp]', this.item.titles.kp)
-      : console.log();
-
-    this.item.short_contents.ru
-      ? formData.append('short_contents[ru]', this.item.short_contents.ru)
-      : console.log();
-    this.item.short_contents.en
-      ? formData.append('short_contents[en]', this.item.short_contents.en)
-      : console.log();
-    this.item.short_contents.cn
-      ? formData.append('short_contents[cn]', this.item.short_contents.cn)
-      : console.log();
-    this.item.short_contents.es
-      ? formData.append('short_contents[es]', this.item.short_contents.es)
-      : console.log();
-    this.item.short_contents.vn
-      ? formData.append('short_contents[vn]', this.item.short_contents.vn)
-      : console.log();
-    this.item.short_contents.kp
-      ? formData.append('short_contents[kp]', this.item.short_contents.kp)
-      : console.log();
+    if (this.appMemory.languages) {
+      this.appMemory.languages.forEach(i => {
+        this.item.titles[i]
+          ? formData.append('titles[' + i + ']', this.item.titles[i])
+          : console.log();
+        this.item.short_contents[i]
+          ? formData.append('short_contents[' + i + ']', this.item.short_contents[i])
+          : console.log();
+      });
+    }
 
     formData.append('link', this.item.link);
     formData.append('active', this.item.active ? '1' : '0');

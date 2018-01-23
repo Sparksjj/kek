@@ -35,9 +35,9 @@ export class IndexPartnersComponent implements OnInit, OnDestroy {
     private http: ApplicationHttpClient,
     public data: PartnersService,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.load = true;

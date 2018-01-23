@@ -38,17 +38,16 @@ export class CreateTemplateComponent implements OnInit {
   public id: string | number;
   public load = false;
 
-  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
   tabActive = 0;
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: TemplateService,
-    private appMemory: AppMemoryService,
+    public data: TemplateService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   saveItem(form: any) {
     this.errorObj = undefined;
@@ -64,24 +63,13 @@ export class CreateTemplateComponent implements OnInit {
       ? formData.append('description', this.item.description)
       : console.log();
 
-    this.item.contents2.ru
-      ? formData.append('contents[ru]', this.item.contents2.ru)
-      : console.log();
-    this.item.contents2.en
-      ? formData.append('contents[en]', this.item.contents2.en)
-      : console.log();
-    this.item.contents2.cn
-      ? formData.append('contents[cn]', this.item.contents2.cn)
-      : console.log();
-    this.item.contents2.es
-      ? formData.append('contents[es]', this.item.contents2.es)
-      : console.log();
-    this.item.contents2.vn
-      ? formData.append('contents[vn]', this.item.contents2.vn)
-      : console.log();
-    this.item.contents2.kp
-      ? formData.append('contents[kp]', this.item.contents2.kp)
-      : console.log();
+    if (this.appMemory.languages) {
+      this.appMemory.languages.forEach(i => {
+        this.item.contents2[i]
+          ? formData.append('contents[' + i + ']', this.item.contents2[i])
+          : console.log();
+      });
+    }
 
     this.load = true;
     this.http.Post(this.data.urls.api, formData).subscribe(

@@ -28,9 +28,9 @@ export class IndexTemplateComponent implements OnInit, OnDestroy {
     private http: ApplicationHttpClient,
     private data: TemplateService,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.sub = this.activatedRoute.queryParams.subscribe((params: any) => {

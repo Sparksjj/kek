@@ -41,7 +41,7 @@ export class IndexMediaComponent implements OnInit, OnDestroy {
     private http: ApplicationHttpClient,
     public data: MediaService,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
   ) {}
 

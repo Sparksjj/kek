@@ -17,7 +17,6 @@ declare var $: any;
 
 export class Create<T> implements OnInit {
   @ViewChild('image1') image1;
-  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
   tabActive = 0;
   private paramsSub: Subscription;
   public error: string;

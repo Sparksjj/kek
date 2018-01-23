@@ -1,51 +1,33 @@
 <ms-loading *ngIf="load"></ms-loading>
-<div class="err_top"
-     style="text-align: center"
-     *ngIf="error && !load">
+<div class="err_top" style="text-align: center" *ngIf="error && !load">
   {{error}}
 </div>
 
-<div fxLayout="column"
-     *ngIf="!load">
-  <div fxLayout="row"
-       fxLayoutAlign="center stretch"
-       style="margin: 24px 0;">
-    <mat-card fxFlex>
-      <mat-card-title class="text-center">Новое {{data.names.ru1}}
+<div fxLayout="column" *ngIf="!load">
+  <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
+    <mat-card fxFlex="100%">
+      <mat-card-title class="text-center">Новая {{data.names.ru1}}
         <div style="float: left; margin-top: -7px">
-          <button mat-mini-fab
-                  [routerLink]="[(appMemory?.urls?.previousUrl?.url || data.urls.index)]"
-                  [queryParams]="appMemory?.urls?.previousUrl?.query"
-                  color="primary">
+          <button mat-mini-fab [routerLink]="[(appMemory?.urls?.previousUrl?.url || data.urls.index)]" [queryParams]="appMemory?.urls?.previousUrl?.query"
+            color="primary">
             <mat-icon>arrow_back</mat-icon>
           </button>
         </div>
       </mat-card-title>
       <mat-divider></mat-divider>
 
-      <mat-card-content fxLayout="row"
-                        fxLayoutAlign="space-around stretch"
-                        style="margin: 30px 0">
-        <form #newItemForm="ngForm"
-              fxFlex="100%"
-              (ngSubmit)="saveItem(newItemForm)">
+      <mat-card-content fxLayout="row" fxLayoutAlign="space-around stretch" style="margin: 30px 0">
+        <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)">
 
           <mat-card-title>Название</mat-card-title>
-          <div class="demo-tabs mat-elevation-z2 tabs1"
-               style="margin-bottom: 40px">
+          <div class="demo-tabs mat-elevation-z2 tabs1" style="margin-bottom: 40px">
             <mat-tab-group (selectChange)="focusInput('.tabs1 textarea')">
-              <ng-container *ngFor="let tab of tabs; let i = index">
-                <mat-tab label="{{tabs[i].toUpperCase()}}"
-                         style="border-color: red">
-                  <div fxLayout="column"
-                       style="margin: 20px">
+              <ng-container *ngFor="let tab of appMemory.languages; let i = index">
+                <mat-tab label="{{appMemory.languages[i].toUpperCase()}}" style="border-color: red">
+                  <div fxLayout="column" style="margin: 20px">
                     <mat-input-container fxFlex>
-                      <textarea rows="3"
-                                matInput
-                                placeholder="{{tabs[i].toUpperCase()}}"
-                                [name]="'title_' + tabs[i]"
-                                [(ngModel)]="item.titles[tabs[i]]"
-                                autofocus></textarea>
+                      <textarea rows="3" matInput placeholder="{{appMemory.languages[i].toUpperCase()}}" [name]="'title_' + appMemory.languages[i]"
+                        [(ngModel)]="item.titles[appMemory.languages[i]]" autofocus></textarea>
                     </mat-input-container>
                   </div>
                 </mat-tab>
@@ -54,20 +36,14 @@
           </div>
 
           <mat-card-title>Краткое описание</mat-card-title>
-          <div class="demo-tabs mat-elevation-z2 tabs2"
-               style="margin-bottom: 40px">
+          <div class="demo-tabs mat-elevation-z2 tabs2" style="margin-bottom: 40px">
             <mat-tab-group (selectChange)="focusInput('.tabs2 textarea')">
-              <ng-container *ngFor="let tab of tabs; let i = index">
-                <mat-tab label="{{tabs[i].toUpperCase()}}"
-                         style="border-color: red">
-                  <div fxLayout="column"
-                       style="margin: 20px">
+              <ng-container *ngFor="let tab of appMemory.languages; let i = index">
+                <mat-tab label="{{appMemory.languages[i].toUpperCase()}}" style="border-color: red">
+                  <div fxLayout="column" style="margin: 20px">
                     <mat-input-container fxFlex>
-                      <textarea rows="3"
-                                matInput
-                                placeholder="{{tabs[i].toUpperCase()}}"
-                                [name]="'short_' + tabs[i]"
-                                [(ngModel)]="item.short_contents[tabs[i]]"></textarea>
+                      <textarea rows="3" matInput placeholder="{{appMemory.languages[i].toUpperCase()}}" [name]="'short_' + appMemory.languages[i]"
+                        [(ngModel)]="item.short_contents[appMemory.languages[i]]"></textarea>
                     </mat-input-container>
                   </div>
                 </mat-tab>
@@ -76,16 +52,13 @@
           </div>
 
           <mat-card-title>Полное описание</mat-card-title>
-          <div class="demo-tabs mat-elevation-z2 tabs3"
-               style="margin-bottom: 40px">
+          <div class="demo-tabs mat-elevation-z2 tabs3" style="margin-bottom: 40px">
             <mat-tab-group (selectChange)="focusInput('.tabs3 .ql-editor'); tabActive = $event.index">
-              <ng-container *ngFor="let tab of tabs; let i = index">
-                <mat-tab label="{{tabs[i].toUpperCase()}}">
+              <ng-container *ngFor="let tab of appMemory.languages; let i = index">
+                <mat-tab label="{{appMemory.languages[i].toUpperCase()}}">
                   <div fxLayout="column">
                     <div class="editor-container mat-elevation-z16">
-                      <angular-tinymce name="{{'content_' + tabs[i]}}"
-                                       [(ngModel)]="item.contents2[tabs[i]]"
-                                       *ngIf="i === tabActive"></angular-tinymce>
+                      <angular-tinymce name="{{'content_' + appMemory.languages[i]}}" [(ngModel)]="item.contents2[appMemory.languages[i]]" *ngIf="i === tabActive"></angular-tinymce>
                     </div>
                   </div>
                 </mat-tab>
@@ -97,29 +70,17 @@
             Добавить картинку
           </mat-card-title>
 
-          <div fxLayout="column"
-               style="margin-bottom: 30px">
+          <div fxLayout="column" style="margin-bottom: 30px">
             оптимальные пропорции: 740 x 240
             <div fxFlex>
-              <input #image1
-                     type="file"
-                     name="icon_first"
-                     required
-                     accept="image/jpeg,image/png,image/gif"
-                     (change)="changeListner($event); imgErr = false; imgLarge = false ">
+              <input #image1 type="file" name="icon_first" required accept="image/jpeg,image/png,image/gif" (change)="changeListner($event); imgErr = false; imgLarge = false ">
             </div>
-            <div *ngIf="imgErr"
-                 style="color: red">Добавьте изображение</div>
-            <div *ngIf="imgLarge"
-                 style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
+            <div *ngIf="imgErr" style="color: red">Добавьте изображение</div>
+            <div *ngIf="imgLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
           </div>
 
-          <div fxLayout="column"
-               fxLayout.gt-md="row"
-               style="margin-bottom: 50px">
-            <mat-checkbox color="primary"
-                          name="active"
-                          [(ngModel)]="item.active">
+          <div fxLayout="column" fxLayout.gt-md="row" style="margin-bottom: 50px">
+            <mat-checkbox color="primary" name="active" [(ngModel)]="item.active">
               Публиковать?
             </mat-checkbox>
           </div>
@@ -127,10 +88,7 @@
           <ms-parse422 [obj]="errorObj"></ms-parse422>
 
           <div class="text-center">
-            <button [disabled]="newItemForm.submitted && newItemForm.invalid"
-                    type="submit"
-                    mat-raised-button
-                    color="primary">Сохранить</button>
+            <button [disabled]="newItemForm.submitted && newItemForm.invalid" type="submit" mat-raised-button color="primary">Сохранить</button>
           </div>
         </form>
       </mat-card-content>

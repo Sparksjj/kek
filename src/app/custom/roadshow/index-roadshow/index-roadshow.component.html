@@ -6,7 +6,7 @@
 
 <div fxLayout="column" *ngIf="!load">
   <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
-    <mat-card fxFlex>
+    <mat-card fxFlex="100%">
       <mat-card-title>
         <span *ngIf="items?.length > 0; else no_items">Все {{data.names.ru2}}</span>
         <ng-template #no_items>Нет {{data.names.ru3}}</ng-template>

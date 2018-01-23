@@ -30,7 +30,6 @@ export class Show<T> implements OnInit, OnDestroy {
   public imgErr = false;
   public docErr = false;
 
-  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
   tabActive = 0;
 
   constructor(

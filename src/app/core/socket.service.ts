@@ -14,7 +14,7 @@ export class SocketService {
   private cahanel: any;
 
   constructor(
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private authService: AuthService
   ) {
     this.createSocet();

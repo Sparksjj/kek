@@ -39,11 +39,11 @@ export class CreatePartnersComponent implements OnInit {
   constructor(
     private http: ApplicationHttpClient,
     private data: PartnersService,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   saveItem(form: any) {
     this.imgErr = false;

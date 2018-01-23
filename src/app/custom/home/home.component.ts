@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private http: ApplicationHttpClient,
-    private appMemory: AppMemoryService
-  ) {}
+    public appMemory: AppMemoryService
+  ) { }
 
   ngOnInit() {
     this.http.Get<Statistic>('admin/statistics').subscribe(

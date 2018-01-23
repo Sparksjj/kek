@@ -33,7 +33,7 @@ export class IndexNewsComponent implements OnInit, OnDestroy {
     private http: ApplicationHttpClient,
     private data: NewsService,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
   ) {}
 

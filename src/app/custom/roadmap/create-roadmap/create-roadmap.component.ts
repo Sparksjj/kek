@@ -35,16 +35,15 @@ export class CreateRoadmapComponent implements OnInit {
   public id: string | number;
   public load = false;
   public imgErr = false;
-  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
 
   constructor(
     private http: ApplicationHttpClient,
     private data: RoadmapService,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   saveItem(form: any) {
     this.imgErr = false;
@@ -55,43 +54,16 @@ export class CreateRoadmapComponent implements OnInit {
 
     const formData: FormData = new FormData();
 
-    this.item.quarters.ru
-      ? formData.append('quarters[ru]', this.item.quarters.ru)
-      : console.log();
-    this.item.quarters.en
-      ? formData.append('quarters[en]', this.item.quarters.en)
-      : console.log();
-    this.item.quarters.cn
-      ? formData.append('quarters[cn]', this.item.quarters.cn)
-      : console.log();
-    this.item.quarters.es
-      ? formData.append('quarters[es]', this.item.quarters.es)
-      : console.log();
-    this.item.quarters.vn
-      ? formData.append('quarters[vn]', this.item.quarters.vn)
-      : console.log();
-    this.item.quarters.kp
-      ? formData.append('quarters[kp]', this.item.quarters.kp)
-      : console.log();
-
-    this.item.descriptions.ru
-      ? formData.append('descriptions[ru]', this.item.descriptions.ru)
-      : console.log();
-    this.item.descriptions.en
-      ? formData.append('descriptions[en]', this.item.descriptions.en)
-      : console.log();
-    this.item.descriptions.cn
-      ? formData.append('descriptions[cn]', this.item.descriptions.cn)
-      : console.log();
-    this.item.descriptions.es
-      ? formData.append('descriptions[es]', this.item.descriptions.es)
-      : console.log();
-    this.item.descriptions.vn
-      ? formData.append('descriptions[vn]', this.item.descriptions.vn)
-      : console.log();
-    this.item.descriptions.kp
-      ? formData.append('descriptions[kp]', this.item.descriptions.kp)
-      : console.log();
+    if (this.appMemory.languages) {
+      this.appMemory.languages.forEach(i => {
+        this.item.quarters[i]
+          ? formData.append('quarters[' + i + ']', this.item.quarters[i])
+          : console.log();
+        this.item.descriptions[i]
+          ? formData.append('descriptions[' + i + ']', this.item.descriptions[i])
+          : console.log();
+      });
+    }
 
     formData.append('year', this.item.year.toString());
     formData.append('status', this.item.selectedStatus);

@@ -1,33 +1,19 @@
 <ms-loading *ngIf="load"></ms-loading>
 
-<div class="err_top"
-     style="text-align: center"
-     *ngIf="error && !load">
+<div class="err_top" style="text-align: center" *ngIf="error && !load">
   {{error}}
 </div>
 
-<div fxLayout="column"
-     [style.display]="load ? 'none': 'flex'">
-  <div fxLayout="row"
-       fxLayoutAlign="center stretch"
-       style="margin: 24px 0;">
-    <mat-card fxFlex>
-      <form #translateForm="ngForm"
-            fxFlex="100%"
-            (ngSubmit)="saveItem(translateForm)">
+<div fxLayout="column" [style.display]="load ? 'none': 'flex'">
+  <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
+    <mat-card fxFlex="100%">
+      <form #translateForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(translateForm)">
 
         <mat-card-title>Редактирование переводов</mat-card-title>
 
         <mat-form-field>
-          <mat-select ngModel
-                      #langSelect="ngModel"
-                      [(value)]="selected"
-                      placeholder="Язык"
-                      name="lang"
-                      required
-                      (change)="getItem()">
-            <mat-option *ngFor="let lang of langs; let i = index"
-                        [value]="lang">{{lang}}</mat-option>
+          <mat-select ngModel #langSelect="ngModel" [(value)]="selected" placeholder="Язык" name="lang" required (change)="getItem()">
+            <mat-option *ngFor="let lang of langs; let i = index" [value]="lang">{{lang}}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -55,10 +41,8 @@
 
           <ms-parse422 [obj]="errorObj"></ms-parse422>
 
-          <button [disabled]="translateForm.submitted && translateForm.invalid || fileInvalid || fileErr"
-                  type="submit"
-                  mat-raised-button
-                  color="primary">Сохранить изменения</button>
+          <button [disabled]="translateForm.submitted && translateForm.invalid || fileInvalid || fileErr" type="submit" mat-raised-button
+            color="primary">Сохранить изменения</button>
         </div>
       </form>
 

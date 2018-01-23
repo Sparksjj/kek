@@ -35,11 +35,11 @@ export class CreateAppComponent implements OnInit {
   constructor(
     private http: ApplicationHttpClient,
     private data: AppService,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   saveItem(form: any) {
     this.errorObj = undefined;

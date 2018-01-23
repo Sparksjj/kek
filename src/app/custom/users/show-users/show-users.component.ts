@@ -42,7 +42,7 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
     private http: ApplicationHttpClient,
     private data: UsersService,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
   ) {}
 

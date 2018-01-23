@@ -5,7 +5,7 @@
 
 <div fxLayout="column" *ngIf="!load">
   <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
-    <mat-card fxFlex>
+    <mat-card fxFlex="100%">
 
       <mat-card-title class="text-center">Новый {{data.names.ru1}}
         <div style="float: left; margin-top: -7px">
@@ -26,11 +26,12 @@
           <div class="demo-tabs mat-elevation-z2 tabs1" style="margin-bottom: 40px">
             <mat-tab-group (selectChange)="focusInput('.tabs1 textarea')">
 
-              <ng-container *ngFor="let tab of tabs; let i = index">
-                <mat-tab label="{{tabs[i].toUpperCase()}}" style="border-color: red">
+              <ng-container *ngFor="let tab of appMemory.languages; let i = index">
+                <mat-tab label="{{appMemory.languages[i].toUpperCase()}}" style="border-color: red">
                   <div fxLayout="column" style="margin: 20px">
                     <mat-input-container fxFlex>
-                      <textarea rows="3" matInput placeholder="{{tabs[i].toUpperCase()}}" [name]="'title_' + tabs[i]" [(ngModel)]="item.names[tabs[i]]" autofocus></textarea>
+                      <textarea rows="3" matInput placeholder="{{appMemory.languages[i].toUpperCase()}}" [name]="'title_' + appMemory.languages[i]"
+                        [(ngModel)]="item.names[appMemory.languages[i]]" autofocus></textarea>
                     </mat-input-container>
                   </div>
                 </mat-tab>
@@ -44,11 +45,11 @@
 
             <mat-tab-group (selectChange)="focusInput('.tabs3 .ql-editor'); tabActive = $event.index">
 
-              <ng-container *ngFor="let tab of tabs; let i = index">
-                <mat-tab label="{{tabs[i].toUpperCase()}}">
+              <ng-container *ngFor="let tab of appMemory.languages; let i = index">
+                <mat-tab label="{{appMemory.languages[i].toUpperCase()}}">
                   <div fxLayout="column" style="margin: 30px">
                     <div fxFlex>
-                      <input #docInput type="file" name="{{'content_' + tabs[i]}}" required accept="application/pdf" (change)="changeListner2($event)">
+                      <input #docInput type="file" name="{{'content_' + appMemory.languages[i]}}" required accept="application/pdf" (change)="changeListner2($event)">
                     </div>
                     <div *ngIf="docErr" style="color: red">Добавьте документ</div>
                     <div *ngIf="docLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер вложения превышает 1Mb</div>
@@ -75,12 +76,8 @@
             </mat-input-container>
           </div>
 
-          <div fxLayout="column"
-               fxLayout.gt-md="row"
-               style="margin-bottom: 50px">
-            <mat-checkbox color="primary"
-                          name="active"
-                          [(ngModel)]="item.show">
+          <div fxLayout="column" fxLayout.gt-md="row" style="margin-bottom: 50px">
+            <mat-checkbox color="primary" name="active" [(ngModel)]="item.show">
               Отображать в блоке "Документация проекта"?
             </mat-checkbox>
           </div>

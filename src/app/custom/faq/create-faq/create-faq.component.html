@@ -5,7 +5,7 @@
 
 <div fxLayout="column" *ngIf="!load">
   <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
-    <mat-card fxFlex>
+    <mat-card fxFlex="100%">
 
       <mat-card-title class="text-center">Новое {{data.names.ru1}}
         <div style="float: left; margin-top: -7px">
@@ -27,11 +27,12 @@
           <div class="demo-tabs mat-elevation-z2 tabs1" style="margin-bottom: 40px">
             <mat-tab-group (selectChange)="focusInput('.tabs1 textarea')">
 
-              <ng-container *ngFor="let tab of tabs; let i = index">
-                <mat-tab label="{{tabs[i].toUpperCase()}}" style="border-color: red">
+              <ng-container *ngFor="let tab of appMemory.languages; let i = index">
+                <mat-tab label="{{appMemory.languages[i].toUpperCase()}}" style="border-color: red">
                   <div fxLayout="column" style="margin: 20px">
                     <mat-input-container fxFlex>
-                      <textarea rows="3" matInput placeholder="{{tabs[i].toUpperCase()}}" [name]="'title_' + tabs[i]" [(ngModel)]="item.questions[tabs[i]]" autofocus></textarea>
+                      <textarea rows="3" matInput placeholder="{{appMemory.languages[i].toUpperCase()}}" [name]="'title_' + appMemory.languages[i]"
+                        [(ngModel)]="item.questions[appMemory.languages[i]]" autofocus></textarea>
                     </mat-input-container>
                   </div>
                 </mat-tab>
@@ -46,12 +47,13 @@
 
             <mat-tab-group (selectChange)="focusInput('.tabs3 .ql-editor'); tabActive = $event.index">
 
-              <ng-container *ngFor="let tab of tabs; let i = index">
-                <mat-tab label="{{tabs[i].toUpperCase()}}">
+              <ng-container *ngFor="let tab of appMemory.languages; let i = index">
+                <mat-tab label="{{appMemory.languages[i].toUpperCase()}}">
                   <div fxLayout="column">
                     <div class="editor-container mat-elevation-z16">
-                      <quill-editor [modules]="appMemory.defaultModules.modules" #editor [msCustomQuill]="editor" [placeholder]="'Введите текст на ' + tabs[i] + ' языке'"
-                        name="{{'content_' + tabs[i]}}" [(ngModel)]="item.contents2[tabs[i]]" *ngIf="i === tabActive"></quill-editor>
+                      <quill-editor [modules]="appMemory.defaultModules.modules" #editor [msCustomQuill]="editor" [placeholder]="'Введите текст на ' + appMemory.languages[i] + ' языке'"
+                        name="{{'content_' + appMemory.languages[i]}}" [(ngModel)]="item.contents2[appMemory.languages[i]]"
+                        *ngIf="i === tabActive"></quill-editor>
                     </div>
                   </div>
                 </mat-tab>

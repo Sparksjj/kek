@@ -26,7 +26,7 @@ export class SidenavItemComponent implements OnInit {
   @HostBinding('class.sidenav-item') sidenavItemClass: boolean = true;
 
   constructor(
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private sidenavService: SidenavService
   ) {}
 

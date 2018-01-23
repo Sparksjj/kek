@@ -41,7 +41,7 @@ export class IndexFaqComponent implements OnInit, OnDestroy {
     private http: ApplicationHttpClient,
     public data: FaqService,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
   ) {}
 

@@ -11,7 +11,7 @@ import { MediaReplayService } from './core/sidenav/mediareplay/media-replay.serv
 })
 export class AppComponent {
   constructor(
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private unloadingService: UnloadingService,
     private socket: SocketService,
     mediaReplayService: MediaReplayService

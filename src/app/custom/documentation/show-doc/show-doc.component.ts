@@ -41,16 +41,15 @@ export class ShowDocComponent implements OnInit, OnDestroy {
   public imgErr = false;
   public docErr = false;
 
-  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
   tabActive = 0;
 
   constructor(
     private http: ApplicationHttpClient,
     private data: DocService,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.paramsSub = this.activatedRoute.params.subscribe(params => {
@@ -101,37 +100,29 @@ export class ShowDocComponent implements OnInit, OnDestroy {
       );
     }
 
-    this.docInput.forEach((e, i) => {
-      if (this.docInput.toArray()[i].nativeElement.files.length) {
-        formData.append(
-          `docs[${this.tabs[i]}]`,
-          this.docInput.toArray()[i].nativeElement.files[0]
-        );
-      }
-    });
+
+
+
+    if (this.appMemory.languages) {
+      this.docInput.forEach((e, i) => {
+        if (this.docInput.toArray()[i].nativeElement.files.length) {
+          formData.append(
+            `docs[${this.appMemory[i]}]`,
+            this.docInput.toArray()[i].nativeElement.files[0]
+          );
+        }
+      });
+
+      this.appMemory.languages.forEach(i => {
+        this.item.names[i]
+          ? formData.append('names[' + i + ']', this.item.names[i])
+          : console.log();
+      });
+    }
 
     if (this.docErr || this.imgErr) {
       return;
     }
-
-    this.item.names.ru
-      ? formData.append('names[ru]', this.item.names.ru)
-      : console.log();
-    this.item.names.en
-      ? formData.append('names[en]', this.item.names.en)
-      : console.log();
-    this.item.names.cn
-      ? formData.append('names[cn]', this.item.names.cn)
-      : console.log();
-    this.item.names.es
-      ? formData.append('names[es]', this.item.names.es)
-      : console.log();
-    this.item.names.vn
-      ? formData.append('names[vn]', this.item.names.vn)
-      : console.log();
-    this.item.names.kp
-      ? formData.append('names[kp]', this.item.names.kp)
-      : console.log();
 
     this.item.onclick
       ? formData.append('onclick', this.item.onclick)
@@ -143,26 +134,26 @@ export class ShowDocComponent implements OnInit, OnDestroy {
     this.http
       .Post(this.data.urls.api + '/' + this.item.id + '/image', formData)
       .subscribe(
-        res => {
-          this.tabActive = 0;
-          this.load = false;
-          this.router.navigate([this.data.urls.index]);
-          this.appMemory.openSimpleSnackbar();
-        },
-        err => {
-          if (err.status === 422) {
-            this.errorObj = err.error.errors || { err: [err.error.error] };
-          } else if (err.status === 413) {
-            /*this.contentLarge = true;
-          this.load = false;
-          setTimeout(() => {
-            $('.main-container').scrollTop(10000);
-          }, 100); */
-          } else {
-            this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
-          }
-          this.load = false;
+      res => {
+        this.tabActive = 0;
+        this.load = false;
+        this.router.navigate([this.data.urls.index]);
+        this.appMemory.openSimpleSnackbar();
+      },
+      err => {
+        if (err.status === 422) {
+          this.errorObj = err.error.errors || { err: [err.error.error] };
+        } else if (err.status === 413) {
+          /*this.contentLarge = true;
+        this.load = false;
+        setTimeout(() => {
+          $('.main-container').scrollTop(10000);
+        }, 100); */
+        } else {
+          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
         }
+        this.load = false;
+      }
       );
   }
 

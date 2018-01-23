@@ -38,17 +38,16 @@ export class CreateTeam2Component implements OnInit {
   public load = false;
   public imgErr = false;
 
-  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
   tabActive = 0;
 
   constructor(
     private http: ApplicationHttpClient,
     private data: Team2Service,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   saveItem(form: any) {
     this.imgErr = false;
@@ -73,62 +72,20 @@ export class CreateTeam2Component implements OnInit {
       ? formData.append('linkedin', this.item.linkedin)
       : console.log();
 
-    this.item.descriptions.ru
-      ? formData.append('descriptions[ru]', this.item.descriptions.ru)
-      : console.log();
-    this.item.descriptions.en
-      ? formData.append('descriptions[en]', this.item.descriptions.en)
-      : console.log();
-    this.item.descriptions.cn
-      ? formData.append('descriptions[cn]', this.item.descriptions.cn)
-      : console.log();
-    this.item.descriptions.es
-      ? formData.append('descriptions[es]', this.item.descriptions.es)
-      : console.log();
-    this.item.descriptions.vn
-      ? formData.append('descriptions[vn]', this.item.descriptions.vn)
-      : console.log();
-    this.item.descriptions.kp
-      ? formData.append('descriptions[kp]', this.item.descriptions.kp)
-      : console.log();
 
-    this.item.posts.ru
-      ? formData.append('posts[ru]', this.item.posts.ru)
-      : console.log();
-    this.item.posts.en
-      ? formData.append('posts[en]', this.item.posts.en)
-      : console.log();
-    this.item.posts.cn
-      ? formData.append('posts[cn]', this.item.posts.cn)
-      : console.log();
-    this.item.posts.es
-      ? formData.append('posts[es]', this.item.posts.es)
-      : console.log();
-    this.item.posts.vn
-      ? formData.append('posts[vn]', this.item.posts.vn)
-      : console.log();
-    this.item.posts.kp
-      ? formData.append('posts[kp]', this.item.posts.kp)
-      : console.log();
-
-    this.item.names.ru
-      ? formData.append('names[ru]', this.item.names.ru)
-      : console.log();
-    this.item.names.en
-      ? formData.append('names[en]', this.item.names.en)
-      : console.log();
-    this.item.names.cn
-      ? formData.append('names[cn]', this.item.names.cn)
-      : console.log();
-    this.item.names.es
-      ? formData.append('names[es]', this.item.names.es)
-      : console.log();
-    this.item.names.vn
-      ? formData.append('names[vn]', this.item.names.vn)
-      : console.log();
-    this.item.names.kp
-      ? formData.append('names[kp]', this.item.names.kp)
-      : console.log();
+    if (this.appMemory.languages) {
+      this.appMemory.languages.forEach(i => {
+        this.item.descriptions[i]
+          ? formData.append('descriptions[' + i + ']', this.item.descriptions[i])
+          : console.log();
+        this.item.posts[i]
+          ? formData.append('posts[' + i + ']', this.item.posts[i])
+          : console.log();
+        this.item.names[i]
+          ? formData.append('names[' + i + ']', this.item.names[i])
+          : console.log();
+      });
+    }
 
     formData.append('type', this.item.type);
     // formData.append('active', this.item.active ? '1' : '0');

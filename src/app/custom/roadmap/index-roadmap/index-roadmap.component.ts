@@ -47,9 +47,9 @@ export class IndexRoadmapComponent implements OnInit, OnDestroy {
     private http: ApplicationHttpClient,
     public data: RoadmapService,
     private activatedRoute: ActivatedRoute,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.sub = this.activatedRoute.queryParams.subscribe((params: any) => {
@@ -64,16 +64,16 @@ export class IndexRoadmapComponent implements OnInit, OnDestroy {
     this.http
       .Get<any>(this.data.urls.api, { params: this.currentQuery })
       .subscribe(
-        res => {
-          this.items = res;
-          /*delete res.data;
-          this.paginationInfo = res; */
-          this.load = false;
-        },
-        err => {
-          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
-          this.load = false;
-        }
+      res => {
+        this.items = res;
+        /*delete res.data;
+        this.paginationInfo = res; */
+        this.load = false;
+      },
+      err => {
+        this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
+        this.load = false;
+      }
       );
   }
   changeOrder() {

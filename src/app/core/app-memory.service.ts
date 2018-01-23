@@ -16,6 +16,7 @@ export class AppMemoryService {
   public allRolesSub = new BehaviorSubject(null);
   public roles: any = {};
   public allRoles: any[];
+  public languages: any;
   public user: User | null;
   public urls = {
     previousUrl: {
@@ -90,6 +91,7 @@ export class AppMemoryService {
     private snackBar: MatSnackBar,
     private router: Router
   ) {
+    this.getStaticData();
     this.getUser();
     authService.changeLoginSubject.subscribe((islogged: any) => {
       if (islogged === null) {
@@ -122,10 +124,16 @@ export class AppMemoryService {
         this.urls.currentUrl = e[1]['urlAfterRedirects'];
       });
   }
-  getAllRoles(){
+  getAllRoles() {
     this.http.Get<any>('admin/role').subscribe(res => {
       this.allRoles = res;
       this.allRolesSub.next(true);
+    }, err => {
+    });
+  }
+  getStaticData() {
+    this.http.Get<any>('static').subscribe(res => {
+      this.languages = res.languages || [];
     }, err => {
     });
   }

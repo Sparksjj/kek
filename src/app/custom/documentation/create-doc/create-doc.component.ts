@@ -40,17 +40,16 @@ export class CreateDocComponent implements OnInit {
   public imgErr = false;
   public docErr = false;
 
-  tabs = ['ru', 'en', 'cn', 'es', 'vn', 'kp'];
   tabActive = 0;
 
   constructor(
     private http: ApplicationHttpClient,
     private data: DocService,
-    private appMemory: AppMemoryService,
+    public appMemory: AppMemoryService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   saveItem(form: any) {
     this.imgErr = false;
@@ -65,20 +64,30 @@ export class CreateDocComponent implements OnInit {
       this.imgErr = true;
     }
 
-    let pass = false;
 
-    this.docInput.forEach((e, i) => {
-      if (this.docInput.toArray()[i].nativeElement.files.length) {
-        formData.append(
-          `docs[${this.tabs[i]}]`,
-          this.docInput.toArray()[i].nativeElement.files[0]
-        );
-        pass = true;
-        this.docErr = false;
-      } else if (!pass) {
-        this.docErr = true;
-      }
-    });
+    if (this.appMemory.languages) {
+      let pass = false;
+
+      this.docInput.forEach((e, i) => {
+        if (this.docInput.toArray()[i].nativeElement.files.length) {
+          formData.append(
+            `docs[${this.appMemory.languages[i]}]`,
+            this.docInput.toArray()[i].nativeElement.files[0]
+          );
+          pass = true;
+          this.docErr = false;
+        } else if (!pass) {
+          this.docErr = true;
+        }
+      });
+
+      this.appMemory.languages.forEach(i => {
+        this.item.names[i]
+          ? formData.append('names[' + i + ']', this.item.names[i])
+          : console.log();
+      });
+    }
+
 
     if (this.docErr || this.imgErr) {
       return;
@@ -89,25 +98,6 @@ export class CreateDocComponent implements OnInit {
       this.image1.nativeElement.files[0],
       this.image1.nativeElement.files[0].name
     );
-
-    this.item.names.ru
-      ? formData.append('names[ru]', this.item.names.ru)
-      : console.log();
-    this.item.names.en
-      ? formData.append('names[en]', this.item.names.en)
-      : console.log();
-    this.item.names.cn
-      ? formData.append('names[cn]', this.item.names.cn)
-      : console.log();
-    this.item.names.es
-      ? formData.append('names[es]', this.item.names.es)
-      : console.log();
-    this.item.names.vn
-      ? formData.append('names[vn]', this.item.names.vn)
-      : console.log();
-    this.item.names.kp
-      ? formData.append('names[kp]', this.item.names.kp)
-      : console.log();
 
     this.item.onclick
       ? formData.append('onclick', this.item.onclick)

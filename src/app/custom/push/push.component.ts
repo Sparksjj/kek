@@ -31,10 +31,10 @@ export class PushComponent implements OnInit {
 
   constructor(
     private http: ApplicationHttpClient,
-    private appMemory: AppMemoryService
-  ) {}
+    public appMemory: AppMemoryService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   saveItem(form: any) {
     this.errorObj = undefined;
