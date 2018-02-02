@@ -8,6 +8,7 @@ export class Statistic {
   tokens: number;
   eth: string;
   btc: string;
+  ltc: string;
 }
 @Component({
   selector: 'ms-home',
@@ -17,10 +18,7 @@ export class Statistic {
 export class HomeComponent implements OnInit {
   public items: Statistic;
 
-  constructor(
-    private http: ApplicationHttpClient,
-    public appMemory: AppMemoryService
-  ) { }
+  constructor(private http: ApplicationHttpClient, public appMemory: AppMemoryService) {}
 
   ngOnInit() {
     this.http.Get<Statistic>('admin/statistics').subscribe(
