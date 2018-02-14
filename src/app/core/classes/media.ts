@@ -10,4 +10,5 @@ export class Media {
   updated_at: string;
   change_img: boolean;
   date: any;
+  cities?: any = {};
 }

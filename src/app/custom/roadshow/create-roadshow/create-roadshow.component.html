@@ -54,6 +54,24 @@
             </mat-tab-group>
           </div>
           <br>
+
+          <mat-card-title>Город</mat-card-title>
+          <div class="demo-tabs mat-elevation-z2 tabs3" style="margin-bottom: 40px">
+            <mat-tab-group (selectChange)="focusInput('.tabs3 textarea')">
+              <ng-container *ngFor="let tab of appMemory.languages; let i = index">
+                <mat-tab label="{{appMemory.languages[i].toUpperCase()}}" style="border-color: red">
+                  <div fxLayout="column" style="margin: 20px">
+                    <mat-input-container fxFlex>
+                      <textarea rows="3" matInput placeholder="{{appMemory.languages[i].toUpperCase()}}" [name]="'cities_' + appMemory.languages[i]"
+                        [(ngModel)]="item.cities[appMemory.languages[i]]"></textarea>
+                    </mat-input-container>
+                  </div>
+                </mat-tab>
+              </ng-container>
+            </mat-tab-group>
+          </div>
+          <br>
+
           <mat-card-title>Ссылка</mat-card-title>
           <div fxLayout="column" fxLayout.gt-md="row">
             <mat-input-container fxFlex>

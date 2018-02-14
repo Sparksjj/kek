@@ -47,7 +47,7 @@ export class ShowRoadshowComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public appMemory: AppMemoryService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.paramsSub = this.activatedRoute.params.subscribe(params => {
@@ -66,6 +66,11 @@ export class ShowRoadshowComponent implements OnInit, OnDestroy {
     this.http.Get<Media>(this.data.urls.api + '/' + this.id).subscribe(
       res => {
         this.item = res;
+
+        if (!this.item.cities) {
+          this.item.cities = {};
+        }
+
         this.load = false;
       },
       err => {
@@ -109,7 +114,13 @@ export class ShowRoadshowComponent implements OnInit, OnDestroy {
           ? formData.append('titles[' + i + ']', this.item.titles[i])
           : console.log();
         this.item.short_contents[i]
-          ? formData.append('short_contents[' + i + ']', this.item.short_contents[i])
+          ? formData.append(
+              'short_contents[' + i + ']',
+              this.item.short_contents[i]
+            )
+          : console.log();
+        this.item.cities[i]
+          ? formData.append('cities[' + i + ']', this.item.cities[i])
           : console.log();
       });
     }
@@ -121,24 +132,24 @@ export class ShowRoadshowComponent implements OnInit, OnDestroy {
     this.http
       .Post(this.data.urls.api + '/' + this.item.id + '/image', formData)
       .subscribe(
-      res => {
-        this.load = false;
-        this.appMemory.openSimpleSnackbar();
-      },
-      err => {
-        if (err.status === 422) {
-          this.errorObj = err.error.errors || { err: [err.error.error] };
-        } else if (err.status === 413) {
-          /*           this.contentLarge = true;
+        res => {
+          this.load = false;
+          this.appMemory.openSimpleSnackbar();
+        },
+        err => {
+          if (err.status === 422) {
+            this.errorObj = err.error.errors || { err: [err.error.error] };
+          } else if (err.status === 413) {
+            /*           this.contentLarge = true;
         this.load = false;
         setTimeout(() => {
           $('.main-container').scrollTop(10000);
         }, 100); */
-        } else {
-          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
+          } else {
+            this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
+          }
+          this.load = false;
         }
-        this.load = false;
-      }
       );
   }
 

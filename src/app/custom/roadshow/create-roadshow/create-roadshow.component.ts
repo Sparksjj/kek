@@ -44,7 +44,7 @@ export class CreateRoadshowComponent implements OnInit {
     public data: RoadshowService,
     public appMemory: AppMemoryService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.item.date = new Date();
@@ -75,7 +75,13 @@ export class CreateRoadshowComponent implements OnInit {
           ? formData.append('titles[' + i + ']', this.item.titles[i])
           : console.log();
         this.item.short_contents[i]
-          ? formData.append('short_contents[' + i + ']', this.item.short_contents[i])
+          ? formData.append(
+              'short_contents[' + i + ']',
+              this.item.short_contents[i]
+            )
+          : console.log();
+        this.item.cities[i]
+          ? formData.append('cities[' + i + ']', this.item.cities[i])
           : console.log();
       });
     }
