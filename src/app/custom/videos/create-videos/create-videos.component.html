@@ -1,0 +1,95 @@
+<ms-loading *ngIf="load"></ms-loading>
+<div class="err_top" style="text-align: center" *ngIf="error && !load">
+  {{error}}
+</div>
+
+<div fxLayout="column" *ngIf="!load">
+  <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
+    <mat-card fxFlex="100%">
+
+      <mat-card-title class="text-center">Новое {{data.names.ru4}}
+        <div style="float: left; margin-top: -7px">
+          <button mat-mini-fab [routerLink]="[(appMemory?.urls?.previousUrl?.url || data.urls.index)]" [queryParams]="appMemory?.urls?.previousUrl?.query"
+            color="primary">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+      </mat-card-title>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content fxLayout="row" fxLayoutAlign="space-around stretch" style="margin: 30px 0">
+
+        <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)" autocomplete="off" spellcheck="false">
+
+          <mat-card-title>Название</mat-card-title>
+          <div class="demo-tabs mat-elevation-z2 tabs1" style="margin-bottom: 40px">
+            <mat-tab-group (selectChange)="focusInput('.tabs1 textarea')">
+              <ng-container *ngFor="let tab of appMemory.languages; let i = index">
+                <mat-tab label="{{appMemory.languages[i].toUpperCase()}}" style="border-color: red">
+                  <div fxLayout="column" style="margin: 20px">
+                    <mat-input-container fxFlex>
+                      <textarea rows="3" matInput placeholder="{{appMemory.languages[i].toUpperCase()}}" [name]="'title_' + appMemory.languages[i]"
+                        [(ngModel)]="item.titles[appMemory.languages[i]]" autofocus></textarea>
+                    </mat-input-container>
+                  </div>
+                </mat-tab>
+              </ng-container>
+            </mat-tab-group>
+          </div>
+
+          <mat-card-title>Ссылка на видео</mat-card-title>
+          <div fxLayout="column" fxLayout.gt-md="row">
+            <mat-input-container fxFlex>
+              <input matInput placeholder="Ссылка на видео" name="link" [(ngModel)]="item.src" required maxlength="250">
+            </mat-input-container>
+          </div>
+
+          <br>
+
+
+          <mat-card-title>Категория</mat-card-title>
+          <mat-form-field>
+            <mat-select placeholder="Выберите категорию" [(value)]="item.category" required>
+              <mat-option *ngFor="let category of data.categories" [value]="category">
+                {{ category }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <br>
+
+          <mat-card-title style="margin-bottom: 30px">
+            Добавить картинку
+          </mat-card-title>
+
+          <div fxLayout="column" style="margin-bottom: 30px">
+            оптимальные пропорции: 360x180
+            <div fxFlex>
+              <input #image1 type="file" name="icon_first" required accept="image/jpeg,image/png,image/gif" (change)="changeListner($event); imgErr = false; imgLarge = false ">
+            </div>
+            <div *ngIf="imgErr" style="color: red">Добавьте изображение</div>
+            <div *ngIf="imgLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
+          </div>
+
+          <br>
+
+          <div fxLayout="column" fxLayout.gt-md="row" style="margin-bottom: 50px">
+            <mat-checkbox color="primary" name="active" [(ngModel)]="item.is_favorite">
+              Избранное?
+            </mat-checkbox>
+          </div>
+
+          <ms-parse422 [obj]="errorObj"></ms-parse422>
+
+          <div class="text-center">
+            <button [disabled]="newItemForm.submitted && newItemForm.invalid" type="submit" mat-raised-button color="primary">Сохранить</button>
+          </div>
+
+        </form>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>

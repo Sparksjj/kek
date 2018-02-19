@@ -101,6 +101,10 @@ import { UnloadingService } from './unloading.service';
 import { UsersService } from '../custom/users/users.service';
 import { TransactionComponent } from '../custom/transaction/transaction.component';
 import { CreateAdminComponent } from '../custom/administrator/create-admin/create-admin.component';
+import { IndexVideosComponent } from '../custom/videos/index-videos/index-videos.component';
+import { CreateVideosComponent } from '../custom/videos/create-videos/create-videos.component';
+import { ShowVideosComponent } from '../custom/videos/show-videos/show-videos.component';
+import { VideosService } from '../custom/videos/videos.service';
 
 NguiDatetime.daysOfWeek = [
   { fullName: 'Воскресенье', shortName: 'Вс' },
@@ -241,7 +245,10 @@ NguiDatetime.firstDayOfWeek = 1;
     IndexAdminComponent,
     CreateAdminComponent,
     EqualValidator,
-    ShowAdminComponent
+    ShowAdminComponent,
+    IndexVideosComponent,
+    CreateVideosComponent,
+    ShowVideosComponent,
   ],
   providers: [
     SidenavService,
@@ -263,6 +270,7 @@ NguiDatetime.firstDayOfWeek = 1;
     MediaService,
     PartnersService,
     DocService,
+    VideosService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerLocationInterceptor,
@@ -271,4 +279,4 @@ NguiDatetime.firstDayOfWeek = 1;
     FaqService,
   ],
 })
-export class CoreModule { }
+export class CoreModule {}

@@ -126,6 +126,17 @@ export class SidenavService {
       undefined,
       ['admin.documentation']
     );
+    menu.addSubItem(
+      first,
+      'Видео',
+      'ondemand_video',
+      '/videos',
+      8,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.video']
+    );
     const second = menu.addItem(
       'Отчеты',
       'add_alert',

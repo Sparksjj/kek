@@ -46,6 +46,9 @@ import { ShowTemplateComponent } from './custom/template/show-template/show-temp
 import { ShowUsersComponent } from './custom/users/show-users/show-users.component';
 import { TransactionComponent } from './custom/transaction/transaction.component';
 import { CreateAdminComponent } from './custom/administrator/create-admin/create-admin.component';
+import { IndexVideosComponent } from './custom/videos/index-videos/index-videos.component';
+import { ShowVideosComponent } from './custom/videos/show-videos/show-videos.component';
+import { CreateVideosComponent } from './custom/videos/create-videos/create-videos.component';
 
 const routes: Routes = [
   /*   {
@@ -260,6 +263,20 @@ const routes: Routes = [
       {
         path: 'newDocument',
         component: CreateDocComponent,
+      },
+      {
+        path: 'videos',
+        component: IndexVideosComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'videos/:id',
+        component: ShowVideosComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'newVideo',
+        component: CreateVideosComponent,
       },
       {
         path: 'transaction',

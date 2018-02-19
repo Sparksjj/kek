@@ -49,7 +49,7 @@
                 <mat-tab label="{{appMemory.languages[i].toUpperCase()}}">
                   <div fxLayout="column" style="margin: 30px">
                     <div class="item-doclink" *ngIf="item?.files">
-                      <a [href]="item?.files[appMemory.languages[i]]" target="_blank" rel="noopener">{{item?.files[appMemory.languages[i]]}}</a>
+                      <a [href]="item?.files[appMemory.languages[i]]" target="_blank" rel="noopener">{{item?.files[appMemory.languages[i]]?.name || item?.files[appMemory.languages[i]]}}</a>
                       <span *ngIf="!item?.files[appMemory.languages[i]]">Документ не прикрёплен</span>
                     </div>
 
