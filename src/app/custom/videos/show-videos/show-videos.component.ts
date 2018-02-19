@@ -115,6 +115,7 @@ export class ShowVideosComponent implements OnInit, OnDestroy {
       .subscribe(
         res => {
           this.load = false;
+          this.router.navigate([this.data.urls.index]);
           this.appMemory.openSimpleSnackbar();
         },
         err => {
