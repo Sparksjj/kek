@@ -24,10 +24,6 @@ export class IndexVideosComponent implements OnInit, OnDestroy {
   public load = true;
   public error: string;
   public sub: Subscription;
-  public currentQuery = {
-    page: 1,
-    sort: 'createdAt:asc',
-  };
   public simpleOptions: SortablejsOptions = {
     animation: 300,
     onUpdate: (event: any) => {
@@ -45,8 +41,6 @@ export class IndexVideosComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.activatedRoute.queryParams.subscribe((params: any) => {
-      this.currentQuery.page = params['page'] || 1;
-      this.currentQuery.sort = params['page'] || 'createdAt:asc';
       this.load = true;
       this.getItems();
     });
@@ -79,18 +73,16 @@ export class IndexVideosComponent implements OnInit, OnDestroy {
 
   public getItems(): void {
     this.error = '';
-    this.http
-      .Get<any>(this.data.urls.api, { params: this.currentQuery })
-      .subscribe(
-        res => {
-          this.items = res;
-          this.load = false;
-        },
-        err => {
-          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
-          this.load = false;
-        }
-      );
+    this.http.Get<any>(this.data.urls.api).subscribe(
+      res => {
+        this.items = res;
+        this.load = false;
+      },
+      err => {
+        this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
+        this.load = false;
+      }
+    );
   }
 
   public deleteItem(item: any): void {

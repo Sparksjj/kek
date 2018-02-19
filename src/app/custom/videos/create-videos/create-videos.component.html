@@ -39,25 +39,31 @@
           </div>
 
           <mat-card-title>Ссылка на видео</mat-card-title>
-          <div fxLayout="column" fxLayout.gt-md="row">
-            <mat-input-container fxFlex>
-              <input matInput placeholder="Ссылка на видео" name="link" [(ngModel)]="item.src" required maxlength="250">
-            </mat-input-container>
+          <div class="demo-tabs mat-elevation-z2 tabs2" style="margin-bottom: 40px">
+            <mat-tab-group (selectChange)="focusInput('.tabs2 textarea')">
+              <ng-container *ngFor="let tab of appMemory.languages; let i = index">
+                <mat-tab label="{{appMemory.languages[i].toUpperCase()}}" style="border-color: red">
+                  <div fxLayout="column" style="margin: 20px">
+                    <mat-input-container fxFlex>
+                      <textarea rows="3" matInput placeholder="{{appMemory.languages[i].toUpperCase()}}" [name]="'src_' + appMemory.languages[i]"
+                        [(ngModel)]="item.srcs[appMemory.languages[i]]" maxlength="250" autofocus></textarea>
+                    </mat-input-container>
+                  </div>
+                </mat-tab>
+              </ng-container>
+            </mat-tab-group>
           </div>
 
           <br>
 
-
           <mat-card-title>Категория</mat-card-title>
-          <mat-form-field>
+          <mat-form-field style="margin-bottom: 30px;">
             <mat-select placeholder="Выберите категорию" [(value)]="item.category" required>
               <mat-option *ngFor="let category of data.categories" [value]="category">
                 {{ category }}
               </mat-option>
             </mat-select>
           </mat-form-field>
-
-          <br>
 
           <mat-card-title style="margin-bottom: 30px">
             Добавить картинку

@@ -1,7 +1,7 @@
 export class Video {
   id: number;
-  src: string;
   titles?: any = {};
+  srcs?: any = {};
   category: string;
   image: string;
   created_at: string;

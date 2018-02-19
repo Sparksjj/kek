@@ -25,11 +25,6 @@ export class IndexDocComponent implements OnInit, OnDestroy {
   public load = true;
   public error: string;
   public sub: Subscription;
-  public currentQuery = {
-    page: 1,
-    sort: 'createdAt:asc',
-    count: 20,
-  };
 
   simpleOptions: SortablejsOptions = {
     animation: 300,
@@ -44,12 +39,10 @@ export class IndexDocComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public appMemory: AppMemoryService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.sub = this.activatedRoute.queryParams.subscribe((params: any) => {
-      this.currentQuery.page = params['page'] || 1;
-      this.currentQuery.sort = params['page'] || 'createdAt:asc';
       this.load = true;
       this.getItems();
     });
@@ -74,9 +67,7 @@ export class IndexDocComponent implements OnInit, OnDestroy {
   }
   getItems() {
     this.error = '';
-    this.http
-      .Get<any>(this.data.urls.api, { params: this.currentQuery })
-      .subscribe(
+    this.http.Get<any>(this.data.urls.api).subscribe(
       res => {
         this.items = res;
         /*delete res.data;
@@ -87,7 +78,7 @@ export class IndexDocComponent implements OnInit, OnDestroy {
         this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
         this.load = false;
       }
-      );
+    );
   }
 
   ngOnDestroy() {

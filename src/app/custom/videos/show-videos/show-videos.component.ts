@@ -99,10 +99,13 @@ export class ShowVideosComponent implements OnInit, OnDestroy {
         this.item.titles[el]
           ? formData.append('titles[' + el + ']', this.item.titles[el])
           : console.log();
+
+        this.item.srcs[el]
+          ? formData.append('srcs[' + el + ']', this.item.srcs[el])
+          : console.log();
       });
     }
 
-    formData.append('src', this.item.src);
     formData.append('category', this.item.category);
     formData.append('is_favorite', this.item.is_favorite ? '1' : '0');
 

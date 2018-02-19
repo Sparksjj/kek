@@ -6,7 +6,8 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 
 import { AppMemoryService } from './../../../core/app-memory.service';
 import { ApplicationHttpClient } from './../../../core/http-client';
@@ -70,10 +71,13 @@ export class CreateVideosComponent implements OnInit {
         this.item.titles[el]
           ? formData.append('titles[' + el + ']', this.item.titles[el])
           : console.log();
+
+        this.item.srcs[el]
+          ? formData.append('srcs[' + el + ']', this.item.srcs[el])
+          : console.log();
       });
     }
 
-    formData.append('src', this.item.src);
     formData.append('category', this.item.category);
     formData.append('is_favorite', this.item.is_favorite ? '1' : '0');
 
