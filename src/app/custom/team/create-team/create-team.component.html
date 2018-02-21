@@ -20,7 +20,7 @@
 
       <mat-card-content fxLayout="row" fxLayoutAlign="space-around stretch" style="margin: 30px 0">
 
-        <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)">
+        <form #newItemForm="ngForm" fxFlex="100%" (ngSubmit)="saveItem(newItemForm)" autocomplete="off" spellcheck="false">
 
           <mat-card-title>Имя</mat-card-title>
 
@@ -95,7 +95,7 @@
           </mat-card-title>
 
           <div fxLayout="column" style="margin-bottom: 30px">
-            оптимальные пропорции: 80x80
+            <!-- оптимальные пропорции: 80x80 -->
             <div fxFlex>
               <input #image1 type="file" name="icon_first" required accept="image/jpeg,image/png,image/gif" (change)="changeListner($event); imgErr = false; imgLarge = false ">
             </div>
@@ -103,7 +103,20 @@
             <div *ngIf="imgLarge" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
           </div>
 
-          <!--           <div fxLayout="column" fxLayout.gt-md="row" style="margin-bottom: 50px">
+          <mat-card-title style="margin-bottom: 30px">
+            Добавить флаг
+          </mat-card-title>
+
+          <div fxLayout="column" style="margin-bottom: 30px">
+            <!-- оптимальные пропорции: 80x80 -->
+            <div fxFlex>
+              <input #image2 type="file" name="icon_flag" required accept="image/jpeg,image/png,image/gif" (change)="changeListner2($event); imgErr2 = false; imgLarge2 = false ">
+            </div>
+            <div *ngIf="imgErr2" style="color: red">Добавьте изображение флага страны</div>
+            <div *ngIf="imgLarge2" style="color: red; width: 100%; display: block; margin-top: 7px">Максимальный размер изображения превышает 1Mb</div>
+          </div>
+
+          <!-- <div fxLayout="column" fxLayout.gt-md="row" style="margin-bottom: 50px">
             <mat-checkbox color="primary" name="active" [(ngModel)]="item.active">
               Публиковать?
             </mat-checkbox>

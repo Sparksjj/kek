@@ -6,7 +6,7 @@ import { Pagination } from './../../../core/classes/pagination';
 import { ApplicationHttpClient } from './../../../core/http-client';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';;
+import { Subscription } from 'rxjs/Subscription';
 import { TeamService } from '../team.service';
 
 @Component({
@@ -14,9 +14,9 @@ import { TeamService } from '../team.service';
   templateUrl: './index-team.component.html',
   styleUrls: ['./index-team.component.scss'],
   host: {
-    '[@routeAnimation]': 'true'
+    '[@routeAnimation]': 'true',
   },
-  animations: [routeAnimation]
+  animations: [routeAnimation],
 })
 export class IndexTeamComponent implements OnInit, OnDestroy {
   public items: Team[];
@@ -28,14 +28,14 @@ export class IndexTeamComponent implements OnInit, OnDestroy {
     page: 1,
     sort: 'createdAt:asc',
     count: 20,
-    type: 'team_member'
+    type: 'team_member',
   };
 
   simpleOptions: SortablejsOptions = {
     animation: 300,
     onUpdate: (event: any) => {
       this.changeOrder();
-    }
+    },
   };
 
   constructor(
@@ -44,7 +44,7 @@ export class IndexTeamComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public appMemory: AppMemoryService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.sub = this.activatedRoute.queryParams.subscribe((params: any) => {
@@ -77,16 +77,16 @@ export class IndexTeamComponent implements OnInit, OnDestroy {
     this.http
       .Get<any>(this.data.urls.api, { params: this.currentQuery })
       .subscribe(
-      res => {
-        this.items = res.data;
-        delete res.data;
-        this.paginationInfo = res;
-        this.load = false;
-      },
-      err => {
-        this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
-        this.load = false;
-      }
+        res => {
+          this.items = res.data;
+          delete res.data;
+          this.paginationInfo = res;
+          this.load = false;
+        },
+        err => {
+          this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
+          this.load = false;
+        }
       );
   }
 

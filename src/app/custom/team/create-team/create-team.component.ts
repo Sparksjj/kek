@@ -4,9 +4,10 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 
 import { AppMemoryService } from './../../../core/app-memory.service';
 import { ApplicationHttpClient } from './../../../core/http-client';
@@ -21,14 +22,13 @@ declare var $: any;
   templateUrl: './create-team.component.html',
   styleUrls: ['./create-team.component.scss'],
   host: {
-    '[@routeAnimation]': 'true'
+    '[@routeAnimation]': 'true',
   },
-  animations: [routeAnimation]
+  animations: [routeAnimation],
 })
 export class CreateTeamComponent implements OnInit {
   @ViewChild('image1') image1;
   @ViewChild('image2') image2;
-  @ViewChild('image3') image3;
 
   private paramsSub: Subscription;
   public error: string;
@@ -37,6 +37,7 @@ export class CreateTeamComponent implements OnInit {
   public id: string | number;
   public load = false;
   public imgErr = false;
+  public imgErr2 = false;
 
   tabActive = 0;
 
@@ -45,12 +46,14 @@ export class CreateTeamComponent implements OnInit {
     public data: TeamService,
     public appMemory: AppMemoryService,
     private router: Router
-  ) { }
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   saveItem(form: any) {
     this.imgErr = false;
+    this.imgErr2 = false;
+
     this.errorObj = undefined;
     if (form.invalid) {
       return;
@@ -62,18 +65,30 @@ export class CreateTeamComponent implements OnInit {
       this.imgErr = true;
       return;
     }
+
     formData.append(
       'image',
       this.image1.nativeElement.files[0],
       this.image1.nativeElement.files[0].name
     );
 
+    if (this.image2.nativeElement.files[0]) {
+      formData.append(
+        'flag',
+        this.image2.nativeElement.files[0],
+        this.image2.nativeElement.files[0].name
+      );
+    }
+
     formData.append('linkedin', this.item.linkedin);
 
     if (this.appMemory.languages) {
       this.appMemory.languages.forEach(i => {
         this.item.descriptions[i]
-          ? formData.append('descriptions[' + i + ']', this.item.descriptions[i])
+          ? formData.append(
+              'descriptions[' + i + ']',
+              this.item.descriptions[i]
+            )
           : console.log();
         this.item.posts[i]
           ? formData.append('posts[' + i + ']', this.item.posts[i])
@@ -114,30 +129,21 @@ export class CreateTeamComponent implements OnInit {
   onChange(event, img: string) {
     this.errorObj = undefined;
     this.imgErr = false;
-    /*     var files = event.srcElement.files;
-    this.news['image'] = files; */
+  }
+
+  onChange2(event, img: string) {
+    this.errorObj = undefined;
+    this.imgErr2 = false;
   }
 
   changeListner(event) {
     this.errorObj = undefined;
     this.imgErr = false;
-    /*     if (this.image) {
-      if (this.image.nativeElement.files.length > 0) {
-        let size = Math.round(this.image.nativeElement.files[0].size / 1024);
-        if (size > 1000) {
-          this.image.nativeElement.value = '';
-          return;
-        }
-      }
-    } */
-    /*     let reader = new FileReader();
-    reader.onload = e => {
-      let src = e.target['result'];
-    };
- */
-    /*    if (event.target.files[0]) {
-      reader.readAsDataURL(event.target.files[0]);
-    } */
+  }
+
+  changeListner2(event) {
+    this.errorObj = undefined;
+    this.imgErr2 = false;
   }
 
   focusInput(cl: string) {

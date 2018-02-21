@@ -12,6 +12,8 @@ export class Team {
   description: string;
   type: string;
   change_img: boolean;
+  flag: string;
+  change_flag: boolean;
   constructor(type?: string) {
     this.type = type || 'team_member';
   }
