@@ -42,6 +42,7 @@
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts",
+        "test": "environments/environment.testapp.ts",
         "stage": "environments/environment.stage.ts"
       }
     }
