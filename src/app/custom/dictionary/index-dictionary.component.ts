@@ -66,7 +66,13 @@ export class IndexDictionaryComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.http.Get<any>(`admin/dictionary/${this.selected}`).subscribe(
         res => {
-          this.parsedJSON = JSON.stringify(res);
+          if (!res) {
+            if (this.editor) {
+              this.editor.destroy();
+            }
+            return;
+          }
+          this.parsedJSON = JSON.stringify(res.json);
 
           this.initJSONEditor();
         },
@@ -77,28 +83,6 @@ export class IndexDictionaryComponent implements OnInit, OnDestroy {
     });
   }
 
-  // public changeListner(event): void {
-  //   this.errorObj = undefined;
-  //   this.fileErr = false;
-  //   this.fileInvalid = false;
-  //
-  //   const reader = new FileReader();
-  //   let obj;
-  //
-  //   reader.onload = () => {
-  //     try {
-  //       obj = JSON.parse(reader.result);
-  //       this.parsedJSON = JSON.stringify(obj);
-  //     } catch (e) {
-  //       this.fileInvalid = true;
-  //       this.parsedJSON = undefined;
-  //       event.target.value = null;
-  //     }
-  //   };
-  //
-  //   reader.readAsText(this.translateInput.nativeElement.files[0]);
-  // }
-
   public saveItem(form: any) {
     this.error = undefined;
     this.errorObj = undefined;
@@ -108,14 +92,10 @@ export class IndexDictionaryComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // if (this.translateInput && !this.translateInput.nativeElement.files[0]) {
-    //   this.fileErr = true;
-    //   return;
-    // }
-
     this.parsedJSON = JSON.stringify(this.editor.get(), null, 2);
 
     const body = {
+      language: this.selected,
       json: this.parsedJSON,
     };
 
@@ -130,12 +110,6 @@ export class IndexDictionaryComponent implements OnInit, OnDestroy {
       err => {
         if (err.status === 422) {
           this.errorObj = err.error.errors || { err: [err.error.error] };
-        } else if (err.status === 413) {
-          /*           this.contentLarge = true;
-        this.load = false;
-        setTimeout(() => {
-          $('.main-container').scrollTop(10000);
-        }, 100); */
         } else {
           this.error = 'Ошибка сервера, попробуйте перезагрузить страницу.';
         }
