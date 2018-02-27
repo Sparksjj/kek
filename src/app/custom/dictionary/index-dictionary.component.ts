@@ -1,5 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 
 import { AppMemoryService } from '../../core/app-memory.service';
 import { ApplicationHttpClient } from '../../core/http-client';
@@ -44,8 +50,13 @@ export class IndexDictionaryComponent implements OnInit, OnDestroy {
     }
 
     const container = document.getElementById('jsoneditor');
-    const options = { mode: 'form' };
-    this.editor = new JSONEditor(container, <any>options, JSON.parse(this.parsedJSON));
+    const options = { mode: 'tree' };
+
+    this.editor = new (<any>window).JSONEditor(
+      container,
+      <any>options,
+      JSON.parse(this.parsedJSON)
+    );
 
     this.editor.expandAll();
     this.editor.focus();
@@ -56,6 +67,7 @@ export class IndexDictionaryComponent implements OnInit, OnDestroy {
       this.http.Get<any>(`admin/dictionary/${this.selected}`).subscribe(
         res => {
           this.parsedJSON = JSON.stringify(res);
+
           this.initJSONEditor();
         },
         err => {
