@@ -105,6 +105,7 @@ import { IndexVideosComponent } from '../custom/videos/index-videos/index-videos
 import { CreateVideosComponent } from '../custom/videos/create-videos/create-videos.component';
 import { ShowVideosComponent } from '../custom/videos/show-videos/show-videos.component';
 import { VideosService } from '../custom/videos/videos.service';
+import { ReferralComponent } from '../custom/referral/referral.component';
 
 NguiDatetime.daysOfWeek = [
   { fullName: 'Воскресенье', shortName: 'Вс' },
@@ -241,6 +242,7 @@ NguiDatetime.firstDayOfWeek = 1;
     ShowRoadshowComponent,
     ShowDocComponent,
     IndexDocComponent,
+    ReferralComponent,
     CreateDocComponent,
     IndexAdminComponent,
     CreateAdminComponent,

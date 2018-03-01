@@ -180,6 +180,17 @@ export class SidenavService {
       undefined
       // ['admin.transaction']
     );
+    menu.addSubItem(
+      second,
+      'Referral',
+      'shuffle',
+      '/referral',
+      8,
+      undefined,
+      undefined,
+      undefined
+      // ['admin.transaction']
+    );
     menu.addItem(
       'Новости',
       'local_activity',

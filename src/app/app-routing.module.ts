@@ -49,6 +49,7 @@ import { CreateAdminComponent } from './custom/administrator/create-admin/create
 import { IndexVideosComponent } from './custom/videos/index-videos/index-videos.component';
 import { ShowVideosComponent } from './custom/videos/show-videos/show-videos.component';
 import { CreateVideosComponent } from './custom/videos/create-videos/create-videos.component';
+import { ReferralComponent } from './custom/referral/referral.component';
 
 const routes: Routes = [
   /*   {
@@ -281,6 +282,11 @@ const routes: Routes = [
       {
         path: 'transaction',
         component: TransactionComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'referral',
+        component: ReferralComponent,
         pathMatch: 'full',
       },
       {

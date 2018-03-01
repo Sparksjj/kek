@@ -1,0 +1,7 @@
+<ms-loading *ngIf="load"></ms-loading>
+
+<div fxLayout="column" *ngIf="!load">
+  <div fxLayout="row" fxLayoutAlign="center stretch" style="margin: 24px 0;">
+    <button mat-raised-button color="primary" (click)="uploading()">Create refferal XLS</button>
+  </div>
+</div>
