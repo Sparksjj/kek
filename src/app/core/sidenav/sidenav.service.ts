@@ -131,11 +131,22 @@ export class SidenavService {
       'Видео',
       'ondemand_video',
       '/videos',
-      8,
+      9,
       undefined,
       undefined,
       undefined,
       ['admin.video']
+    );
+    menu.addSubItem(
+      first,
+      'Биржи',
+      'shopping_cart',
+      '/exchanges',
+      10,
+      undefined,
+      undefined,
+      undefined,
+      ['admin.stock-exchange']
     );
     const second = menu.addItem(
       'Отчеты',

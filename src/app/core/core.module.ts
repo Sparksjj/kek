@@ -106,6 +106,10 @@ import { CreateVideosComponent } from '../custom/videos/create-videos/create-vid
 import { ShowVideosComponent } from '../custom/videos/show-videos/show-videos.component';
 import { VideosService } from '../custom/videos/videos.service';
 import { ReferralComponent } from '../custom/referral/referral.component';
+import { ShowExchangesComponent } from '../custom/exchanges/show-exchanges/show-exchanges.component';
+import { CreateExchangesComponent } from '../custom/exchanges/create-exchanges/create-exchanges.component';
+import { IndexExchangesComponent } from '../custom/exchanges/index-exchanges/index-exchanges.component';
+import { ExchangesService } from '../custom/exchanges/exchanges.service';
 
 NguiDatetime.daysOfWeek = [
   { fullName: 'Воскресенье', shortName: 'Вс' },
@@ -251,6 +255,9 @@ NguiDatetime.firstDayOfWeek = 1;
     IndexVideosComponent,
     CreateVideosComponent,
     ShowVideosComponent,
+    IndexExchangesComponent,
+    CreateExchangesComponent,
+    ShowExchangesComponent,
   ],
   providers: [
     SidenavService,
@@ -273,6 +280,7 @@ NguiDatetime.firstDayOfWeek = 1;
     PartnersService,
     DocService,
     VideosService,
+    ExchangesService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerLocationInterceptor,

@@ -50,6 +50,9 @@ import { IndexVideosComponent } from './custom/videos/index-videos/index-videos.
 import { ShowVideosComponent } from './custom/videos/show-videos/show-videos.component';
 import { CreateVideosComponent } from './custom/videos/create-videos/create-videos.component';
 import { ReferralComponent } from './custom/referral/referral.component';
+import { IndexExchangesComponent } from './custom/exchanges/index-exchanges/index-exchanges.component';
+import { ShowExchangesComponent } from './custom/exchanges/show-exchanges/show-exchanges.component';
+import { CreateExchangesComponent } from './custom/exchanges/create-exchanges/create-exchanges.component';
 
 const routes: Routes = [
   /*   {
@@ -278,6 +281,20 @@ const routes: Routes = [
       {
         path: 'newVideo',
         component: CreateVideosComponent,
+      },
+      {
+        path: 'exchanges',
+        component: IndexExchangesComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'exchanges/:id',
+        component: ShowExchangesComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'newExchange',
+        component: CreateExchangesComponent,
       },
       {
         path: 'transaction',
