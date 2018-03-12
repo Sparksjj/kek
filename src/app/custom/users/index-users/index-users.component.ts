@@ -27,6 +27,7 @@ export class IndexUsersComponent extends IndexWithPagComponent<Email> {
   ) {
     super(http, data, activatedRoute, appMemory, router);
   }
+
   sort(type: string) {
     this.currentQuery.page = 1;
     if (this.currentQuery.sort.indexOf(type) !== 0) {
@@ -44,6 +45,7 @@ export class IndexUsersComponent extends IndexWithPagComponent<Email> {
     }
     this.refresh();
   }
+
   refresh() {
     if (this.currentQuery.fromDate) {
       this.currentQuery.from = this.currentQuery.fromDate.toString();
@@ -61,6 +63,7 @@ export class IndexUsersComponent extends IndexWithPagComponent<Email> {
       queryParams: this.currentQuery,
     });
   }
+
   uploading(qyery: any) {
     this.loadUploading = true;
     this.unloadingService.exportAsFilePost(this.data.urls.api, qyery).then(

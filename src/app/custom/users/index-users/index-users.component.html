@@ -32,6 +32,15 @@
             clear
           </mat-icon>
         </mat-input-container>
+        <mat-input-container style="margin-right: 15px">
+          <input matInput placeholder="Введите email пользователя" type="text" [(ngModel)]="currentQuery.email" (keyup.enter)="refresh()">
+          <mat-icon matPrefix class="pointer" style="padding-right: 5px; position: relative; top: 4px;">
+            search
+          </mat-icon>
+          <mat-icon matSuffix style="position: relative; top: 4px;" class="pointer" *ngIf="currentQuery.email" (click)="currentQuery.email = undefined; currentQuery.page = 1; refresh()">
+            clear
+          </mat-icon>
+        </mat-input-container>
       </div>
 
 

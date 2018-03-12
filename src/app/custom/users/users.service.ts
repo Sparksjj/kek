@@ -9,7 +9,7 @@ export class UsersService extends CrudService {
         en: 'users',
         ru1: 'Пользователь',
         ru2: 'пользователи',
-        ru3: 'пользователи',
+        ru3: 'пользователей',
         ru4: 'пользователи',
       },
       {

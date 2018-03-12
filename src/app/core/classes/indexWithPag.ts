@@ -24,6 +24,7 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
     to: undefined,
     fromDate: undefined,
     toDate: undefined,
+    email: undefined,
   };
 
   constructor(
@@ -47,6 +48,10 @@ export class IndexWithPagComponent<T> implements OnInit, OnDestroy {
       if (params['from']) {
         this.currentQuery.to = params['to'];
         this.currentQuery.toDate = params['to'];
+      }
+
+      if (params['email']) {
+        this.currentQuery.email = params['email'];
       }
 
       this.load = true;
