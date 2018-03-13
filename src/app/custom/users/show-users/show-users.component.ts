@@ -40,7 +40,7 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
 
   constructor(
     private http: ApplicationHttpClient,
-    private data: UsersService,
+    public data: UsersService,
     private activatedRoute: ActivatedRoute,
     public appMemory: AppMemoryService,
     private router: Router
@@ -86,6 +86,7 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
       password: undefined as string,
       password_confirmation: undefined as string,
       bonus_rate: undefined as string,
+      token_rate: undefined as string,
     };
 
     if (this.item.email !== this.initialEmail) {
@@ -98,6 +99,7 @@ export class ShowUsersComponent implements OnInit, OnDestroy {
     }
 
     body.bonus_rate = this.item.bonus_rate;
+    body.token_rate = this.item.token_rate || 0;
 
     this.load = true;
     this.http.Post(`admin/user/${this.item.id}/update`, body).subscribe(
