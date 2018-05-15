@@ -6,8 +6,8 @@
 export const environment = {
   production: false,
   googleApi: '',
-  api: 'https://iqeon.stage.farm/api/v1/',
-  socketUrl: 'http://iqeon.stage.farm',
-  vebLink: 'http://ico.stage.farm',
+  api: 'http://demoicoapi.stage.farm/api/v1/',
+  socketUrl: 'http://demoicoapi.stage.farm',
+  vebLink: 'http://icodemo.stage.farm',
   socketPort: ':6001',
 };

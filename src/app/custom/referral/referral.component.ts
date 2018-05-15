@@ -11,7 +11,6 @@ export class ReferralComponent implements OnInit {
   constructor(private unloadingService: UnloadingService) {}
 
   ngOnInit() {}
-  //https://iqeon.stage.farm/api/v1//xls
   uploading() {
     this.load = true;
     this.unloadingService.exportAsFilePost('admin/referral', '').then(
